@@ -1,3 +1,5 @@
+'use strict';
+
 const db = require("../db.js");
 const User = require("./User");
 const Post = require("./Post");

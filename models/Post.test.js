@@ -54,7 +54,7 @@ describe('getPost', function () {
         expect(res.id).toEqual(expect.any(Number));
         expect(res.body).toEqual('we need to do x, y, z');
         expect(res.userId).toEqual(expect.any(Number));
-    })
+    });
 
     test("returns NotFound if post id DNE", async function () {
         try {
@@ -63,8 +63,8 @@ describe('getPost', function () {
         } catch (err) {
             expect(err instanceof NotFoundError).toBeTruthy();
         }  
-    })
-})
+    });
+});
 
 describe("update", function () {
     test("works", async function () {
@@ -117,7 +117,7 @@ describe("deletePost", function () {
         const { id } = grabPostId.rows[0];
         await Post.deletePost(id);
         const res = await db.query(
-            `SELECT * FROM users WHERE id=${id}`);
+            `SELECT * FROM posts WHERE id=${id}`);
         expect(res.rows.length).toEqual(0);
     });
 

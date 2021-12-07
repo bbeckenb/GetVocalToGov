@@ -44,7 +44,6 @@ describe("authenticate", function () {
         // const users = await db.query('SELECT * FROM users');
         const user = await User.authenticate('JDean1', '1234');
         expect(user).toBeInstanceOf(User);
-        console.log(user)
         expect(user.email).toEqual("jdean@gmail.com");
         expect(user.isAdmin).toEqual(true);
         expect(user.password.startsWith("$2b$")).toEqual(true);

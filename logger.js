@@ -29,8 +29,23 @@ const UserModelLogger = createLogger({
        new transports.File({ filename: 'combinedErrors.log' })
      ]
  });
+
+ const TemplateModelLogger = createLogger({
+    format: combine(
+        timestamp({
+            format: 'YYY-MM-DD HH:mm:ss'
+        }),
+        json()
+    ),
+    
+    transports: [
+       new transports.Console(),
+       new transports.File({ filename: 'combinedErrors.log' })
+     ]
+ });
  
  module.exports = {
      UserModelLogger: UserModelLogger, 
      PostModelLogger: PostModelLogger,
+     TemplateModelLogger: TemplateModelLogger,
  };

@@ -3,7 +3,8 @@
 const db = require("../db");
 const { PostModelLogger } = require("../logger");
 const {
-    BadRequestError, NotFoundError
+    BadRequestError, 
+    NotFoundError
 } = require("../ExpressError");
 
 class Post {
