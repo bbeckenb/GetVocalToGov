@@ -23,7 +23,7 @@ class User {
         this.isAdmin = isAdmin;
     }
     
-    static async usernameExists(username) {
+    static async _usernameExists(username) {
         const checkDbForUsername = await db.query(
             `SELECT username 
             FROM users
@@ -34,7 +34,7 @@ class User {
     }
 
     static async register({ firstName, lastName, username, password, address, email, isAdmin }) {
-        if (await User.usernameExists(username)) {
+        if (await User._usernameExists(username)) {
             throw new BadRequestError(`Duplicate username: ${username}`);
         }
         const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
@@ -97,7 +97,7 @@ class User {
     }
 
     static async getUser(username) {
-        const userCheck = await User.usernameExists(username)
+        const userCheck = await User._usernameExists(username)
         if (!userCheck) {
             throw new NotFoundError(`${username} Does Not Exist`);
         }
@@ -119,7 +119,7 @@ class User {
     }
 
     static async deleteUser(username) {
-        const userCheck = await User.usernameExists(username)
+        const userCheck = await User._usernameExists(username)
         if (!userCheck) {
             throw new NotFoundError(`${username} Does Not Exist`);
         }

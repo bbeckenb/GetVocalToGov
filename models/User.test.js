@@ -117,15 +117,15 @@ describe("update", function () {
     });
 });
 
-describe("usernameExists", function () {
+describe("_usernameExists", function () {
     test("returns bool true if username exists", async function () {
         //check existing test username
-        const check = await User.usernameExists('JDean1');
+        const check = await User._usernameExists('JDean1');
         expect(check).toEqual(true);
     });
 
     test("returns bool false if username DNE", async function() {
-        const check = await User.usernameExists('usernameDNE');
+        const check = await User._usernameExists('usernameDNE');
         expect(check).toEqual(false);
     });
 });
