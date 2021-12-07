@@ -9,7 +9,7 @@ async function commonBeforeAll() {
     await db.query("DELETE FROM posts;");
     await db.query("DELETE FROM templates;");
 
-    const testUser0 = {
+    const testUser0Data = {
                         firstName:"Jimmy", 
                         lastName:"Dean", 
                         username:"JDean1", 
@@ -18,13 +18,13 @@ async function commonBeforeAll() {
                         email:"jdean@gmail.com", 
                         isAdmin:true,
                      }
-    await User.register(testUser0)
+    const testUser0 = await User.register(testUser0Data)
 
     const testPost0 = {
         title: "test title", 
         link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
         body: "we need to do x, y, z", 
-        username: "JDean1", 
+        userId: testUser0.id, 
         tag: "health care", 
         location: "CO"
      }

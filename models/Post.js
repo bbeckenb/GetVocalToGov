@@ -1,6 +1,7 @@
 "use strict";
 
 const db = require("../db");
+const { PostModelLogger } = require("../logger");
 const {
     BadRequestError
 } = require("../ExpressError");
@@ -8,33 +9,33 @@ const {
 class Post {
     /* Post class scaffolding for Post ORM holds attributes Post (id, userId, link, title, body, timestamp, tag/s, location) */
 
-    constructor(id, title, link, body, username, tag, location) {
+    constructor(id, title, link, body, userId, tag, location) {
         this.id = id;
         this.title = title;
         this.link = link;
         this.body = body;
-        this.username = username;
+        this.userId = userId;
         this.tag = tag;
         this.location = location;
       }
 
-    static async create({ title, link, body, username, tag, location }) {
+    static async create({ title, link, body, userId, tag, location }) {
         const result = await db.query(
             `INSERT INTO posts
             (
                 title, 
                 link, 
                 body, 
-                username, 
+                user_id, 
                 tag,
                 location)
                 VALUES ($1, $2, $3, $4, $5, $6)
                 RETURNING id`,
-                [title, link, body, username, tag, location]
+                [title, link, body, userId, tag, location]
         );
-
         let { id } = result.rows[0];
-        return new Post(id, title, link, body, username, tag, location);
+        PostModelLogger.info(`New Post ${id} created`);
+        return new Post(id, title, link, body, userId, tag, location);
     }
 
 }

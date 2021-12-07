@@ -1,24 +1,12 @@
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:50:56"}
-{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-06 16:50:56"}
-{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-06 16:50:56"}
-{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-06 16:50:56"}
-{"level":"error","message":"Error occurred updating User: error: syntax error at or near \"WHERE\"","timestamp":"21Y-12-06 16:50:56"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:50:56"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:50:56"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:52:18"}
-{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-06 16:52:18"}
-{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-06 16:52:18"}
-{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-06 16:52:19"}
-{"level":"error","message":"Error occurred updating User: error: update or delete on table \"users\" violates foreign key constraint \"posts_username_fkey\" on table \"posts\"","timestamp":"21Y-12-06 16:52:19"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:52:19"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:52:19"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:53:16"}
-{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-06 16:53:16"}
-{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-06 16:53:16"}
-{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-06 16:53:16"}
-{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-06 16:53:16"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:53:16"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 16:53:16"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 19:32:27"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 19:32:27"}
-{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-06 19:32:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New Post 81 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-07 10:33:17"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New Post 82 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New Post 83 created","timestamp":"21Y-12-07 10:33:17"}
+{"level":"info","message":"New Post 84 created","timestamp":"21Y-12-07 10:33:17"}
