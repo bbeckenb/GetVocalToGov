@@ -31,7 +31,7 @@ async function commonBeforeAll() {
         email:"jdean2@gmail.com", 
         isAdmin:false,
      }
-    const testUser1 = await User.register(testUser1Data);
+const testUser1 = await User.register(testUser1Data)
 
     const testPost0 = {
         title: "test title", 
@@ -49,6 +49,7 @@ async function commonBeforeAll() {
      }
      await Template.create(testTemplate0);
 };
+
 
 async function commonBeforeEach() {
     await db.query("BEGIN");

@@ -12,6 +12,8 @@ const { BadRequestError } = require("../ExpressError");
 
 const router = express.Router();
 
+//register / login (C of CRUD) is part of auth
+
 router.get("/:username", checkLoggedIn, async function (req, res, next) {
     try {
         const user = await User.getUser(req.params.username);

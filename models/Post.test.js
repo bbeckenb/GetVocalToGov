@@ -83,6 +83,7 @@ describe("update", function () {
          expect(updatedPost).toBeInstanceOf(Post);
          expect(updatedPost.title).toEqual("test title updated");
          expect(updatedPost.body).toEqual("we need to do a, b, c")
+         expect(updatedPost.id).toEqual(expect.any(Number));
     });
 
     test("throws NotFound error if id Does Not Exist", async function () {

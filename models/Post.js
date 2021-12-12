@@ -11,7 +11,7 @@ class Post {
     /* Post class scaffolding for Post ORM holds attributes Post (id, userId, link, title, body, timestamp, tag/s, location) */
 
     constructor({id, title, link, body, userId, tag, location}) {
-        this.id = id;
+        this.id = Number(id);
         this.title = title;
         this.link = link;
         this.body = body;

@@ -38,6 +38,8 @@ function checkCorrectUserOrAdmin(req, res, next) {
     }
 }
 
+// create ownership check
+
 module.exports = {
     authJWT,
     checkLoggedIn,

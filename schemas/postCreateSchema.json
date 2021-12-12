@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "$id": "http://example.com/example.json",
+    "type": "object",
+    "title": "The root schema",
+    "description": "The root schema comprises the entire JSON document.",
+    "default": {},
+    "examples": [
+        {
+            "title": "test title 2",
+            "link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
+            "body": "we need to do q, r, s",
+            "tag": "health care",
+            "location": "FL"
+        }
+    ],
+    "required": [
+        "title",
+        "link",
+        "body",
+        "tag",
+        "location"
+    ],
+    "properties": {
+        "title": {
+            "$id": "#/properties/title",
+            "type": "string",
+            "title": "The title schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "test title 2"
+            ]
+        },
+        "link": {
+            "$id": "#/properties/link",
+            "type": "string",
+            "title": "The link schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/"
+            ]
+        },
+        "body": {
+            "$id": "#/properties/body",
+            "type": "string",
+            "title": "The body schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "we need to do q, r, s"
+            ]
+        },
+        "tag": {
+            "$id": "#/properties/tag",
+            "type": "string",
+            "title": "The tag schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "health care"
+            ]
+        },
+        "location": {
+            "$id": "#/properties/location",
+            "type": "string",
+            "title": "The location schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "FL"
+            ]
+        }
+    },
+    "additionalProperties": true
+}
