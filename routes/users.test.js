@@ -31,7 +31,6 @@ describe("GET /users/:username", function () {
         
         expect(res.body).toEqual({
             user: {
-                id: expect.any(Number),
                 firstName: 'Jimmy',
                 lastName: 'Dean',
                 username: 'JDean1',
@@ -65,7 +64,6 @@ describe("PATCH /users/:username", function () {
         const res = await request(app)
             .patch("/users/JDean1")
             .send({
-                id: expect.any(Number),
                 firstName: 'Jammy',
                 lastName: 'Dane',
                 username: 'JDean12',
@@ -77,7 +75,6 @@ describe("PATCH /users/:username", function () {
 
         expect(res.body).toEqual({
             user: {
-                id: expect.any(Number),
                 password: expect.any(String),
                 firstName: 'Jammy',
                 lastName: 'Dane',
@@ -102,7 +99,6 @@ describe("PATCH /users/:username", function () {
         const res = await request(app)
             .patch("/users/JDean1")
             .send({
-                id: expect.any(Number),
                 firstName: 'Jammy',
                 lastName: 'Dane',
                 username: 'JDean12',
@@ -119,7 +115,6 @@ describe("PATCH /users/:username", function () {
         const res = await request(app)
             .patch("/users/JDean1")
             .send({
-                id: expect.any(Number),
                 password: '1234',
                 address: 'your house',
                 email: 'jdean1@gmail.com',              

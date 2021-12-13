@@ -31,7 +31,8 @@ describe("POST /posts", function () {
             link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
             body: "we need to do q, r, s", 
             tag: "health care", 
-            location: "FL"
+            location: "FL",
+            userId: "JDean1"
         }
         const res = await request(app)
             .post(`/posts`)
@@ -42,8 +43,7 @@ describe("POST /posts", function () {
         expect(res.body).toEqual({
             post: { 
                 ...newPost, 
-                id: expect.any(Number),
-                userId: expect.any(Number)
+                id: expect.any(Number)
              }
         });
     });
@@ -85,7 +85,7 @@ describe("GET /posts/:postId", function () {
                 title: "test title", 
                 link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
                 body: "we need to do x, y, z", 
-                userId: expect.any(Number), 
+                userId: "JDean1", 
                 tag: "health care", 
                 location: "CO"
              }
@@ -128,7 +128,7 @@ describe("PATCH /posts/:postId", function () {
         expect(res.body).toEqual({post: { 
                                         ...updatedPost, 
                                         id: expect.any(Number),
-                                        userId: expect.any(Number)
+                                        userId: "JDean1"
         }});
     });
 
@@ -162,8 +162,8 @@ describe("PATCH /posts/:postId", function () {
             link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
             body: "we need to do l, m, n", 
             tag: "health care", 
-            location: "GA"
-        }
+            location: "GA",
+        };
         const res = await request(app)
         .patch(`/posts/0`)
         .set("authorization", `Bearer ${testUser0TokenAdmin}`)
@@ -200,7 +200,7 @@ describe("DELETE /posts/:postId", function () {
         expect(res.body).toEqual({ deleted: id });
     });
 
-    test("no if User does not have ownership of post Unauth", async function () {
+    test("if User does not have ownership of post Unauth", async function () {
         const postToDelete = await db.query(`SELECT id FROM posts WHERE title='test title'`);
         const { id } = postToDelete.rows[0];
         const res = await request(app)
