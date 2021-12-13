@@ -37,7 +37,7 @@ async function commonBeforeAll() {
         title: "test title", 
         link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
         body: "we need to do x, y, z", 
-        userId: testUser0.id, 
+        userId: testUser0.username, 
         tag: "health care", 
         location: "CO"
      }

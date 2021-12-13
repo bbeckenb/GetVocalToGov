@@ -38,14 +38,13 @@ class User {
         }
         const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
         try {
-            const res = await db.query(
+            await db.query(
                 `INSERT INTO users
                 (first_name, last_name, username, password, address, email, is_admin)
                 VALUES ($1, $2, $3, $4, $5, $6, $7)`,
                 [firstName, lastName, username, hashedPassword, address, email, isAdmin]
             );
             UserModelLogger.info(`New User ${username} created`);
-            const { id } = res.rows[0];
             return new User({ firstName, lastName, username, password: hashedPassword, address, email, isAdmin }); 
         } catch (err) {
             UserModelLogger.error(`Error occurred registering new user: ${err}`)
@@ -98,8 +97,7 @@ class User {
             throw new NotFoundError(`${username} Does Not Exist`);
         }
         const res = await db.query(
-            `SELECT id,
-                    first_name AS "firstName", 
+            `SELECT first_name AS "firstName", 
                     last_name AS "lastName", 
                     username, 
                     password, 
