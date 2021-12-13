@@ -336,3 +336,231 @@
 {"level":"info","message":"Post with id 524 updated","timestamp":"21Y-12-11 20:23:23"}
 {"level":"error","message":"Post with id 0 Not Found","timestamp":"21Y-12-11 20:23:23"}
 {"level":"info","message":"Post with id 524 Deleted","timestamp":"21Y-12-11 20:23:23"}
+{"level":"error","message":"Error occurred registering new user: error: column \"id\" does not exist","timestamp":"21Y-12-13 16:08:56"}
+{"level":"error","message":"Error occurred registering new user: error: column \"id\" does not exist","timestamp":"21Y-12-13 16:08:56"}
+{"level":"error","message":"Error occurred registering new user: error: column \"id\" does not exist","timestamp":"21Y-12-13 16:08:56"}
+{"level":"error","message":"Error occurred registering new user: error: column \"id\" does not exist","timestamp":"21Y-12-13 16:08:56"}
+{"level":"error","message":"Error occurred registering new user: error: column \"id\" does not exist","timestamp":"21Y-12-13 16:08:56"}
+{"level":"error","message":"Error occurred registering new user: error: column \"id\" does not exist","timestamp":"21Y-12-13 16:08:56"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New Post 1 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"template with id 1 updated","timestamp":"21Y-12-13 16:15:26"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"template with id 1 Deleted","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New Post 2 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New Post 3 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New Post 4 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"Post with id 4 updated","timestamp":"21Y-12-13 16:15:26"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User TB12 created","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"Post with id 4 Deleted","timestamp":"21Y-12-13 16:15:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New Post 7 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New Post 8 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"Post with id 7 updated","timestamp":"21Y-12-13 16:17:37"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"Post with id 7 Deleted","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New Post 9 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User TB12 created","timestamp":"21Y-12-13 16:17:37"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New Post 11 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:20:55"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New Post 12 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New Post 13 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New Post 14 created","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"Post with id 13 updated","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"Post with id 13 Deleted","timestamp":"21Y-12-13 16:20:55"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New Post 15 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:23:17"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New Post 16 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New Post 17 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User TB12 created","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:23:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:25"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:25"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:25"}
+{"level":"info","message":"New Post 20 created","timestamp":"21Y-12-13 16:23:25"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-13 16:23:25"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:23:25"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:23:25"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:23:25"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New Post 23 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New Post 24 created","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"Post with id 23 updated","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"Post with id 23 Deleted","timestamp":"21Y-12-13 16:23:26"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:25:49"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:25:49"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:25:49"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:25:49"}
+{"level":"info","message":"New Post 27 created","timestamp":"21Y-12-13 16:25:49"}
+{"level":"info","message":"New Post 28 created","timestamp":"21Y-12-13 16:25:49"}
+{"level":"info","message":"Post with id 27 updated","timestamp":"21Y-12-13 16:25:50"}
+{"level":"info","message":"Post with id 27 Deleted","timestamp":"21Y-12-13 16:25:50"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New Post 29 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New Post 30 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New Post 31 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"template with id 19 Deleted","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"Post with id 30 updated","timestamp":"21Y-12-13 16:28:09"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New Post 33 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:28:09"}
+{"level":"info","message":"New User TB12 created","timestamp":"21Y-12-13 16:28:09"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:29:13"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New Post 34 created","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-13 16:29:13"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:29:13"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:29:13"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:35:10"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:35:10"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:35:10"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:35:10"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:35:10"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:35:10"}
+{"level":"error","message":"Error occurred registering new user: error: duplicate key value violates unique constraint \"users_username_key\"","timestamp":"21Y-12-13 16:35:10"}
+{"level":"info","message":"New Post 36 created","timestamp":"21Y-12-13 16:35:10"}
+{"level":"info","message":"New Post 37 created","timestamp":"21Y-12-13 16:35:10"}
+{"level":"info","message":"Post with id 36 updated","timestamp":"21Y-12-13 16:35:11"}
+{"level":"info","message":"Post with id 36 Deleted","timestamp":"21Y-12-13 16:35:11"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:51"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:51"}
+{"level":"info","message":"New Post 39 created","timestamp":"21Y-12-13 16:37:51"}
+{"level":"info","message":"template with id 23 updated","timestamp":"21Y-12-13 16:37:51"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"21Y-12-13 16:37:51"}
+{"level":"info","message":"template with id 23 Deleted","timestamp":"21Y-12-13 16:37:51"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New Post 41 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New Post 42 created","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"Post with id 41 updated","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"Post with id 41 Deleted","timestamp":"21Y-12-13 16:37:52"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:56"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:37:56"}
+{"level":"info","message":"New Post 43 created","timestamp":"21Y-12-13 16:37:56"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:37:56"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:37:56"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 44 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User TB12 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 45 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:37:57"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 46 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 47 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"Post with id 46 updated","timestamp":"21Y-12-13 16:37:57"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"Post with id 46 Deleted","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 48 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 49 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"Post with id 48 updated","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"Post with id 48 Deleted","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New Post 50 created","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"template with id 31 updated","timestamp":"21Y-12-13 16:37:57"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"template with id 31 Deleted","timestamp":"21Y-12-13 16:37:57"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New Post 51 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New Post 52 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New User TB12 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New User JDean2 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New Post 53 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"New Post 54 created","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"Post with id 53 updated","timestamp":"21Y-12-13 16:49:33"}
+{"level":"info","message":"Post with id 53 Deleted","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New Post 55 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New User JDean12 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"User JDean1 updated","timestamp":"21Y-12-13 16:49:34"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New Post 56 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New Post 57 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"Post with id 56 updated","timestamp":"21Y-12-13 16:49:34"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"Post with id 56 Deleted","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New User JDean1 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"New Post 58 created","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"template with id 38 updated","timestamp":"21Y-12-13 16:49:34"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"21Y-12-13 16:49:34"}
+{"level":"info","message":"template with id 38 Deleted","timestamp":"21Y-12-13 16:49:34"}

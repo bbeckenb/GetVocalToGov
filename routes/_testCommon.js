@@ -7,9 +7,9 @@ const Template = require("../models/Template");
 const { genAuthToken } = require("../helpers/tokens");
 
 async function commonBeforeAll() {
-    await db.query("DELETE FROM users;");
-    await db.query("DELETE FROM posts;");
-    await db.query("DELETE FROM templates;");
+    await db.query("DELETE FROM users");
+    await db.query("DELETE FROM posts");
+    await db.query("DELETE FROM templates");
 
     const testUser0Data = {
                         firstName:"Jimmy", 
@@ -31,7 +31,7 @@ async function commonBeforeAll() {
         email:"jdean2@gmail.com", 
         isAdmin:false,
      }
-const testUser1 = await User.register(testUser1Data)
+    const testUser1 = await User.register(testUser1Data)
 
     const testPost0 = {
         title: "test title", 

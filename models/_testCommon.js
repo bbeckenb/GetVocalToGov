@@ -7,9 +7,9 @@ const Template = require ("./Template");
 
 
 async function commonBeforeAll() {
-    await db.query("DELETE FROM users;");
-    await db.query("DELETE FROM posts;");
-    await db.query("DELETE FROM templates;");
+    await db.query("DELETE FROM users");
+    await db.query("DELETE FROM posts");
+    await db.query("DELETE FROM templates");
 
     const testUser0Data = {
                         firstName:"Jimmy", 
@@ -26,7 +26,7 @@ async function commonBeforeAll() {
         title: "test title", 
         link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
         body: "we need to do x, y, z", 
-        userId: testUser0.id, 
+        userId: testUser0.username, 
         tag: "health care", 
         location: "CO"
      }
