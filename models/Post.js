@@ -75,18 +75,20 @@ class Post {
             PostModelLogger.error(`Post with id ${id} Not Found`)
             throw new NotFoundError(`Post with id ${id} Not Found`);
         }
-        const { title, link, body, userId, tag, location } = data;
+        const { title, link, body, tag, location } = data;
         try {
-            await db.query(
+            const res = await db.query(
                 `UPDATE posts
                 SET title = $1,
                     link = $2,
                     body = $3,
                     tag = $4,
                     location = $5
-                WHERE id = $6`,
+                WHERE id = $6
+                RETURNING user_id AS "userId"`,
                 [title, link, body, tag, location, id]
             );
+            const { userId } = res.rows[0];
             PostModelLogger.info(`Post with id ${id} updated`);
             return new Post({id, title, link, body, userId, tag, location})
         } catch (err) {
