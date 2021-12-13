@@ -3,7 +3,6 @@ const db = require("../db");
 const User = require("./User");
 const {
     NotFoundError,
-    BadRequestError,
     UnauthorizedError,
   } = require("../expressError");
 const {
@@ -79,7 +78,7 @@ describe("update", function () {
         const updateData = {
             firstName:"Jammy", 
             lastName:"Dane", 
-            username:"JDean1", 
+            username:"JD1", 
             password:"1234", 
             address:"your house", 
             email:"jdean1@gmail.com", 
@@ -88,7 +87,7 @@ describe("update", function () {
          const updatedUser = await User.update('JDean1', updateData);
          expect(updatedUser.firstName).toEqual('Jammy');
          expect(updatedUser.lastName).toEqual('Dane');
-         expect(updatedUser.id).toEqual(expect.any(Number));
+         expect(updatedUser.username).toEqual("JD1");
     });
 
     test("throws NotFound error if username is invalid", async function () {
@@ -134,7 +133,6 @@ describe("getUser", function () {
         const res = await User.getUser('JDean1');
 
         expect(res).toBeInstanceOf(User);
-        expect(res.id).toEqual(expect.any(Number));
         expect(res.firstName).toEqual("Jimmy");
         expect(res.email).toEqual("jdean@gmail.com");
         expect(res.isAdmin).toEqual(true);

@@ -12,12 +12,11 @@ const {
 
 class User {
     /* User class scaffolding for User ORM holds attributes (firstName, lastName, username, pw, address) */
-    constructor({ id, firstName, lastName, username, password, address, email, isAdmin }) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor({ username, password, firstName, lastName, address, email, isAdmin }) {
         this.username = username;
         this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.address = address;
         this.email = email;
         this.isAdmin = isAdmin;
@@ -42,13 +41,12 @@ class User {
             const res = await db.query(
                 `INSERT INTO users
                 (first_name, last_name, username, password, address, email, is_admin)
-                VALUES ($1, $2, $3, $4, $5, $6, $7)
-                RETURNING id`,
+                VALUES ($1, $2, $3, $4, $5, $6, $7)`,
                 [firstName, lastName, username, hashedPassword, address, email, isAdmin]
             );
             UserModelLogger.info(`New User ${username} created`);
             const { id } = res.rows[0];
-            return new User({ id, firstName, lastName, username, password: hashedPassword, address, email, isAdmin }); 
+            return new User({ firstName, lastName, username, password: hashedPassword, address, email, isAdmin }); 
         } catch (err) {
             UserModelLogger.error(`Error occurred registering new user: ${err}`)
             throw new BadRequestError(`Something went wrong while you were registering: ${err}`);
@@ -83,13 +81,11 @@ class User {
                     address = $4, 
                     email = $5, 
                     is_admin = $6
-                WHERE username = $7
-                RETURNING id`,
+                WHERE username = $7`,
                 [ firstName, lastName, username, address, email, isAdmin, heldUsername]
             );
             UserModelLogger.info(`User ${heldUsername} updated`)
-            const { id } = res.rows[0];
-            return new User({ id, firstName, lastName, username, password: authorizedUser.password, address, email, isAdmin }); 
+            return new User({ firstName, lastName, username, password: authorizedUser.password, address, email, isAdmin }); 
         } catch (err) {
             UserModelLogger.error(`Error occurred updating User: ${err}`)
             throw new BadRequestError(`Something went wrong while updating User: ${err}`);
