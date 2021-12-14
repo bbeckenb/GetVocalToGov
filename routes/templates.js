@@ -2,7 +2,8 @@
 
 const express = require("express");
 const jsonschema = require("jsonschema");
-
+const templateCreateSchema = require("../schemas/templateCreateSchema.json");
+const templateUpdateSchema = require("../schemas/templateUpdateSchema.json");
 const {
     checkLoggedIn,
     checkCorrectUserOrAdmin
@@ -18,44 +19,44 @@ const {
 const router = express.Router();
 
 router.post("/", checkLoggedIn, async function (req, res, next) {
-    // try {
-    //     const validator = jsonschema.validate(req.body, postCreateSchema);
-    //     if(!validator.valid) {
-    //         const errs = validator.errors.map(err => err.stack);
-    //         throw new BadRequestError(errs);
-    //     }
-    //     const post = await Post.create(req.body);
-    //     return res.status(201).json({ post });
-    // } catch (err) {
-    //     return next(err); 
-    // } 
+    try {
+        const validator = jsonschema.validate(req.body, templateCreateSchema);
+        if(!validator.valid) {
+            const errs = validator.errors.map(err => err.stack);
+            throw new BadRequestError(errs);
+        }
+        const template = await Template.create({ ...req.body, userId: res.locals.user.username });
+        return res.status(201).json({ template });
+    } catch (err) {
+        return next(err); 
+    } 
 });
 
 router.get("/:templateId", checkLoggedIn, async function (req, res, next) {
-    // try {
-    //     const post = await Post.getPost(req.params.postId);
-    //     return res.json({ post });
-    // } catch (err) {
-    //     return next(err);
-    // }
+    try {
+        const template = await Template.getTemplate(req.params.templateId);
+        return res.json({ template });
+    } catch (err) {
+        return next(err);
+    }
 });
 
 router.patch("/:templateId", checkLoggedIn, async function (req, res, next) {
-    // try {
-    //     const validator = jsonschema.validate(req.body, postUpdateSchema);
-    //     if(!validator.valid) {
-    //         const errs = validator.errors.map(err => err.stack);
-    //         throw new BadRequestError(errs);
-    //     }
-    //     const postToUpdate = await Post.getPost(req.params.postId);
-    //     if (res.locals.user.username !== postToUpdate.userId) {
-    //         throw new UnauthorizedError();
-    //     }
-    //     const post = await Post.update(req.params.postId, req.body);
-    //     return res.json({ post });
-    // } catch (err) {
-    //     return next(err); 
-    // } 
+    try {
+        const validator = jsonschema.validate(req.body, templateUpdateSchema);
+        if(!validator.valid) {
+            const errs = validator.errors.map(err => err.stack);
+            throw new BadRequestError(errs);
+        }
+        const templateToUpdate = await Template.getTemplate(req.params.templateId);
+        if (res.locals.user.username !== templateToUpdate.userId) {
+            throw new UnauthorizedError();
+        }
+        const template = await Template.update(req.params.templateId, { ...req.body, userId: res.locals.user.username });
+        return res.json({ template });
+    } catch (err) {
+        return next(err); 
+    } 
 });
 
 router.delete("/:templateId", checkCorrectUserOrAdmin, async function (req, res, next) {

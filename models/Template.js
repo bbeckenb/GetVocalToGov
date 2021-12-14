@@ -11,7 +11,7 @@ class Template {
     /* Template class scaffolding for Template ORM holds attributes Template (id, title, body, templateId, username) */
 
     constructor({ id, title, body, postId, userId }) {
-        this.id = id;
+        this.id = Number(id);
         this.title = title;
         this.body = body;
         this.userId = userId;

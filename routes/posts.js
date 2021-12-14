@@ -10,7 +10,6 @@ const {
     checkCorrectUserOrAdmin
 } = require("../middleware/auth");
 const Post = require("../models/Post");
-const User = require("../models/User");
 const { 
     BadRequestError, 
     NotFoundError,
@@ -49,10 +48,7 @@ router.patch("/:postId", checkLoggedIn, async function (req, res, next) {
             const errs = validator.errors.map(err => err.stack);
             throw new BadRequestError(errs);
         }
-        const postToUpdate = await Post.getPost(req.params.postId);
-        if (res.locals.user.username !== postToUpdate.userId) {
-            throw new UnauthorizedError();
-        }
+        
         const post = await Post.update(req.params.postId, req.body);
         return res.json({ post });
     } catch (err) {

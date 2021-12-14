@@ -1,17 +1,27 @@
 "use strict";
 
-const jwt = require("jsonwebtoken");
+const db = require("../db.js");
 const { UnauthorizedError } = require("../ExpressError");
 const {
     authJWT, 
     checkLoggedIn,
-    checkCorrectUserOrAdmin
+    checkCorrectUserOrAdmin,
+    checkPostOwnerOrAdmin
 } = require("./auth");
+const {
+    commonBeforeAll,
+    commonBeforeEach,
+    commonAfterEach,
+    commonAfterAll,
+    goodJWTnoAdmin,
+    goodJWTwithAdmin,
+    badJWT
+} = require("./_testCommon");
 
-const { SECRET_KEY } = require("../config");
-const goodJWTwithAdmin = jwt.sign({ username: "test", isAdmin: true }, SECRET_KEY);
-const goodJWTnoAdmin = jwt.sign({ username: "test", isAdmin: false }, SECRET_KEY);
-const badJWT = jwt.sign({ username: "test", isAdmin: true }, 'bad_key');
+beforeAll(commonBeforeAll);
+beforeEach(commonBeforeEach);
+afterEach(commonAfterEach);
+afterAll(commonAfterAll);
 
 describe("authJWT", function () {
     test("works through header", function () {
@@ -100,4 +110,39 @@ describe("checkCorrectUserOrAdmin", function () {
         }
         checkCorrectUserOrAdmin(req, res, next);
     });
-})
+});
+
+describe("checkPostOwnerOrAdmin", function () {
+    test("works for user non admin", async function() {
+        const postSearch = await db.query(`SELECT id FROM posts WHERE title='test title'`);
+        const { id } = postSearch.rows[0];
+        const req = { params: { postId: id } };
+        const res = { locals: { user: { username: "JDean1", isAdmin: false } } };
+        const next = function (err) {
+            expect(err).toBeFalsy();
+        }
+        checkPostOwnerOrAdmin(req, res, next);
+    });
+
+    test("works for non owner admin", async function() {
+        const postSearch = await db.query(`SELECT id FROM posts WHERE title='test title'`);
+        const { id } = postSearch.rows[0];
+        const req = { params: { postId: id } };
+        const res = { locals: { user: { username: "adminGuy", isAdmin: true } } };
+        const next = function (err) {
+            expect(err).toBeFalsy();
+        }
+        checkPostOwnerOrAdmin(req, res, next);
+    });
+
+    test("not owner or admin, unauth", async function() {
+        const postSearch = await db.query(`SELECT id FROM posts WHERE title='test title'`);
+        const { id } = postSearch.rows[0];
+        const req = { params: { postId: id } };
+        const res = { locals: { user: { username: "badManTricksterGuy", isAdmin: false } } };
+        const next = function (err) {
+            expect(err instanceof UnauthorizedError).toBeTruthy();
+        }
+        checkPostOwnerOrAdmin(req, res, next);
+    });
+});
