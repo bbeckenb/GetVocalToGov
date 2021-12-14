@@ -56,16 +56,12 @@ router.patch("/:templateId", checkLoggedIn, checkTemplateOwnerOrAdmin, async fun
 });
 
 router.delete("/:templateId", checkLoggedIn, checkTemplateOwnerOrAdmin, async function (req, res, next) {
-    // try {
-    //     const postToDelete = await Post.getPost(req.params.postId);
-    //     if (!res.locals.user.isAdmin && res.locals.user.username !== postToDelete.userId) {
-    //         throw new UnauthorizedError();
-    //     }
-    //     await Post.deletePost(req.params.postId);
-    //     return res.json({ deleted: Number(req.params.postId) })
-    // } catch (err) {
-    //     return next(err);
-    // }
+    try {
+        await Template.deleteTemplate(req.params.templateId);
+        return res.json({ deleted: Number(req.params.templateId) })
+    } catch (err) {
+        return next(err);
+    }
 });
 
 module.exports = router;

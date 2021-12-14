@@ -139,14 +139,104 @@ describe("PATCH /templates/:templateId", function () {
             .set("authorization", `Bearer ${testUser0TokenAdmin}`);
 
         expect(res.statusCode).toEqual(200);
-        expect(res.body).toEqual({ template: {
-                                                id: id,
-                                                title: 'updated title',
-                                                body: 'updated body',
-                                                userId: "JDean1",
-                                                postId: expect.any(Number)
-                                            }
-                                });
+        expect(res.body).toEqual({ 
+            template: {
+                id: id,
+                title: 'updated title',
+                body: 'updated body',
+                userId: "JDean1",
+                postId: expect.any(Number)
+            }
+        });
+    });
+
+    test("if template DNE, not found", async function () {
+        const res = await request(app)
+            .patch(`/templates/0`)
+            .send({
+                title: 'updated title',
+                body: 'updated body'
+            })
+            .set("authorization", `Bearer ${testUser0TokenAdmin}`);
+
+        expect(res.statusCode).toEqual(404);
+    });
+
+    test("if user is not owner or admin, unauth", async function () {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+
+        const res = await request(app)
+            .patch(`/templates/${id}`)
+            .send({
+                title: 'updated title',
+                body: 'updated body'
+            })
+            .set("authorization", `Bearer ${testUser1TokenNonAdmin}`);
+
+        expect(res.statusCode).toEqual(401);
+    });
+
+    test("if no token, unauth", async function () {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+
+        const res = await request(app)
+            .patch(`/templates/${id}`)
+
+        expect(res.statusCode).toEqual(401);
+    });
+
+    test("if all data not included bad request", async function () {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+
+        const res = await request(app)
+            .patch(`/templates/${id}`)
+            .send({
+                body: 'updated body'
+            })
+            .set("authorization", `Bearer ${testUser0TokenAdmin}`);
+
+        expect(res.statusCode).toEqual(400);
     });
 });
 
+describe("DELETE /templates/:templateId", function () {
+    test("works", async function () {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+        const res = await request(app)
+            .delete(`/templates/${id}`)
+            .set("authorization", `Bearer ${testUser0TokenAdmin}`);
+        expect(res.statusCode).toEqual(200);
+        expect(res.body).toEqual({
+            deleted: Number(id)
+        });
+    });
+
+    test("if no token unauth", async function () {
+        const res = await request(app)
+            .delete(`/templates/0`)
+
+        expect(res.statusCode).toEqual(401);
+    });
+
+    test("if template DNE, not found", async function () {
+        const res = await request(app)
+            .delete(`/templates/0`)
+            .set("authorization", `Bearer ${testUser0TokenAdmin}`);
+
+        expect(res.statusCode).toEqual(404);
+    });
+
+    test("if User does not have ownership of template Unauth", async function () {
+        const templateToDelete = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateToDelete.rows[0];
+        const res = await request(app)
+            .delete(`/templates/${id}`)
+            .set("authorization", `Bearer ${testUser1TokenNonAdmin}`)
+
+        expect(res.statusCode).toEqual(401);
+    });
+});
