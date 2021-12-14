@@ -10,10 +10,12 @@ const {
 class Template {
     /* Template class scaffolding for Template ORM holds attributes Template (id, title, body, templateId, username) */
 
-    constructor({ id, title, body }) {
+    constructor({ id, title, body, postId, userId }) {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.userId = userId;
+        this.postId = postId || null;
     }
 
     static async _templateExists(id) {
@@ -89,6 +91,8 @@ class Template {
         `, [id]);
         TemplateModelLogger.info(`template with id ${id} Deleted`);
     }
+
+    stat
 }
 
 

@@ -16,7 +16,7 @@ CREATE TABLE posts (
   title TEXT NOT NULL,
   link TEXT,
   body TEXT NOT NULL,
-  user_id VARCHAR(30)
+  user_id VARCHAR(30) NOT NULL
     REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE,
   tag category NOT NULL,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
@@ -26,21 +26,15 @@ CREATE TABLE posts (
 CREATE TABLE templates (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,
-  body TEXT NOT NULL
-);
-
-CREATE TABLE users_posts_templates (
-  post_id INTEGER NOT NULL
-    REFERENCES posts(id) ON DELETE CASCADE,
-  user_id VARCHAR(30)
-    REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE,
-  template_id INTEGER NOT NULL
-    REFERENCES templates(id) ON DELETE CASCADE,
-  PRIMARY KEY (user_id, post_id, template_id)
+  body TEXT NOT NULL,
+  post_id INTEGER
+    REFERENCES posts(id) ON DELETE SET NULL,
+  user_id VARCHAR(30) NOT NULL
+    REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE favorites (
-  user_id VARCHAR(30)
+  user_id VARCHAR(30) NOT NULL
     REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE,
   template_id INTEGER NOT NULL
     REFERENCES templates(id) ON DELETE CASCADE,
@@ -48,7 +42,7 @@ CREATE TABLE favorites (
 );
 
 CREATE TABLE bookmarks (
-  user_id VARCHAR(30)
+  user_id VARCHAR(30) NOT NULL
     REFERENCES users(username) ON DELETE CASCADE ON UPDATE CASCADE,
   post_id INTEGER NOT NULL
     REFERENCES posts(id) ON DELETE CASCADE,
