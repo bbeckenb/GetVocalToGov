@@ -15,7 +15,7 @@ class Template {
         this.title = title;
         this.body = body;
         this.userId = userId;
-        this.postId = postId || null;
+        this.postId = postId;
     }
 
     static async _templateExists(id) {
@@ -28,24 +28,26 @@ class Template {
         return checkDbForId.rows[0] ? true : false
     }
 
-    static async create({ title, body }) {
+    static async create({ title, body, postId=null, userId }) {
         const result = await db.query(
             `INSERT INTO templates
-            (title, body)                
-                VALUES ($1, $2)
+            (title, body, post_id, user_id)                
+                VALUES ($1, $2, $3, $4)
                 RETURNING id`,
-                [title, body]
+                [title, body, postId, userId]
         );
 
         const { id } = result.rows[0];
-        return new Template({ id, title, body });
+        return new Template({ id, title, body, postId, userId });
     }
 
     static async getTemplate(id) {
         const res = await db.query(
             `SELECT id,
                     title,
-                    body
+                    body,
+                    post_id AS "postId",
+                    user_id AS "userId"
             FROM templates
             WHERE id = $1`, 
             [id]
@@ -65,15 +67,18 @@ class Template {
         }
         const { title, body } = data;
         try {
-            await db.query(
+            const res = await db.query(
                 `UPDATE templates
                 SET title = $1,
                     body = $2
-                WHERE id = $3`,
+                WHERE id = $3
+                RETURNING post_id AS "postId",
+                          user_id AS "userId"`,
                 [title, body, id]
             );
+            const { postId, userId } = res.rows[0];
             TemplateModelLogger.info(`template with id ${id} updated`);
-            return new Template({id, title, body})
+            return new Template({id, title, body, postId, userId})
         } catch (err) {
             TemplateModelLogger.error(`Error occurred updating template with id ${id}: ${err}`)
             throw new BadRequestError(`Error occurred updating template with id ${id}: ${err}`);

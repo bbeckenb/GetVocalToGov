@@ -45,7 +45,9 @@ async function commonBeforeAll() {
 
      const testTemplate0 = {
         title: "test title", 
-        body: "test template body"
+        body: "test template body",
+        userId: "JDean1",
+        postId: testPost0.id
      }
      await Template.create(testTemplate0);
 };

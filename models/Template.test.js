@@ -25,6 +25,7 @@ describe('check to see if basic Template can be created', function () {
         const testTemplate1 = {
             title: 'test title', 
             body: 'we need to do x, y, z', 
+            userId: 'JDean1'
          }
         
         const res = await Template.create(testTemplate1);
@@ -32,6 +33,8 @@ describe('check to see if basic Template can be created', function () {
         expect(res.id).toEqual(expect.any(Number));
         expect(res.title).toEqual('test title');
         expect(res.body).toEqual('we need to do x, y, z');
+        expect(res.userId).toEqual('JDean1');
+        expect(res.postId).toEqual(null);
     });
 });
 
@@ -84,6 +87,8 @@ describe("update", function () {
          expect(updatedtemplate).toBeInstanceOf(Template);
          expect(updatedtemplate.title).toEqual("test title updated");
          expect(updatedtemplate.body).toEqual("body updated")
+         expect(updatedtemplate.postId).toEqual(expect.any(Number));
+         expect(updatedtemplate.userId).toEqual("JDean1");
     });
 
     test("throws NotFound error if id Does Not Exist", async function () {
