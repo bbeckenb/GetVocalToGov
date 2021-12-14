@@ -33,7 +33,7 @@ async function commonBeforeAll() {
      }
     const testUser1 = await User.register(testUser1Data)
 
-    const testPost0 = {
+    const testPost0Data = {
         title: "test title", 
         link:"https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/", 
         body: "we need to do x, y, z", 
@@ -41,15 +41,15 @@ async function commonBeforeAll() {
         tag: "health care", 
         location: "CO"
      }
-     await Post.create(testPost0);
+     const testPost0 = await Post.create(testPost0Data);
 
-     const testTemplate0 = {
+     const testTemplate0Data = {
         title: "test title", 
         body: "test template body",
         userId: "JDean1",
         postId: testPost0.id
      }
-     await Template.create(testTemplate0);
+     await Template.create(testTemplate0Data);
 };
 
 

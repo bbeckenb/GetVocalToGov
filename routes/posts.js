@@ -60,10 +60,10 @@ router.patch("/:postId", checkLoggedIn, async function (req, res, next) {
     } 
 });
 
-router.delete("/:postId", checkLoggedIn, async function (req, res, next) {
+router.delete("/:postId", checkCorrectUserOrAdmin, async function (req, res, next) {
     try {
         const postToDelete = await Post.getPost(req.params.postId);
-        if (res.locals.user.username !== postToDelete.userId) {
+        if (!res.locals.user.isAdmin && res.locals.user.username !== postToDelete.userId) {
             throw new UnauthorizedError();
         }
         await Post.deletePost(req.params.postId);
