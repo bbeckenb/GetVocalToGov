@@ -6,7 +6,7 @@ const templateCreateSchema = require("../schemas/templateCreateSchema.json");
 const templateUpdateSchema = require("../schemas/templateUpdateSchema.json");
 const {
     checkLoggedIn,
-    checkCorrectUserOrAdmin
+    checkTemplateOwnerOrAdmin
 } = require("../middleware/auth");
 const Template = require("../models/Template");
 
@@ -41,16 +41,12 @@ router.get("/:templateId", checkLoggedIn, async function (req, res, next) {
     }
 });
 
-router.patch("/:templateId", checkLoggedIn, async function (req, res, next) {
+router.patch("/:templateId", checkLoggedIn, checkTemplateOwnerOrAdmin, async function (req, res, next) {
     try {
         const validator = jsonschema.validate(req.body, templateUpdateSchema);
         if(!validator.valid) {
             const errs = validator.errors.map(err => err.stack);
             throw new BadRequestError(errs);
-        }
-        const templateToUpdate = await Template.getTemplate(req.params.templateId);
-        if (res.locals.user.username !== templateToUpdate.userId) {
-            throw new UnauthorizedError();
         }
         const template = await Template.update(req.params.templateId, { ...req.body, userId: res.locals.user.username });
         return res.json({ template });
@@ -59,7 +55,7 @@ router.patch("/:templateId", checkLoggedIn, async function (req, res, next) {
     } 
 });
 
-router.delete("/:templateId", checkCorrectUserOrAdmin, async function (req, res, next) {
+router.delete("/:templateId", checkLoggedIn, checkTemplateOwnerOrAdmin, async function (req, res, next) {
     // try {
     //     const postToDelete = await Post.getPost(req.params.postId);
     //     if (!res.locals.user.isAdmin && res.locals.user.username !== postToDelete.userId) {

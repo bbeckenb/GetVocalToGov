@@ -179,8 +179,10 @@ describe("PATCH /posts/:postId", function () {
             tag: "health care", 
             location: "FL"
         }
+        const postToUpdate = await db.query(`SELECT id FROM posts WHERE title='test title'`);
+        const { id } = postToUpdate.rows[0];
         const res = await request(app)
-            .patch(`/posts/0`)
+            .patch(`/posts/${id}`)
             .set("authorization", `Bearer ${testUser0TokenAdmin}`)
             .send(badPost);
 

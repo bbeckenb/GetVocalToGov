@@ -7,7 +7,7 @@ const postUpdateSchema = require("../schemas/postUpdateSchema.json");
 
 const {
     checkLoggedIn,
-    checkCorrectUserOrAdmin
+    checkPostOwnerOrAdmin
 } = require("../middleware/auth");
 const Post = require("../models/Post");
 const { 
@@ -41,14 +41,13 @@ router.get("/:postId", checkLoggedIn, async function (req, res, next) {
     }
 });
 
-router.patch("/:postId", checkLoggedIn, async function (req, res, next) {
+router.patch("/:postId", checkLoggedIn, checkPostOwnerOrAdmin, async function (req, res, next) {
     try {
         const validator = jsonschema.validate(req.body, postUpdateSchema);
         if(!validator.valid) {
             const errs = validator.errors.map(err => err.stack);
             throw new BadRequestError(errs);
         }
-        
         const post = await Post.update(req.params.postId, req.body);
         return res.json({ post });
     } catch (err) {
@@ -56,12 +55,8 @@ router.patch("/:postId", checkLoggedIn, async function (req, res, next) {
     } 
 });
 
-router.delete("/:postId", checkCorrectUserOrAdmin, async function (req, res, next) {
+router.delete("/:postId", checkLoggedIn, checkPostOwnerOrAdmin, async function (req, res, next) {
     try {
-        const postToDelete = await Post.getPost(req.params.postId);
-        if (!res.locals.user.isAdmin && res.locals.user.username !== postToDelete.userId) {
-            throw new UnauthorizedError();
-        }
         await Post.deletePost(req.params.postId);
         return res.json({ deleted: Number(req.params.postId) })
     } catch (err) {

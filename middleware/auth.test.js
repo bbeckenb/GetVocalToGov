@@ -6,7 +6,8 @@ const {
     authJWT, 
     checkLoggedIn,
     checkCorrectUserOrAdmin,
-    checkPostOwnerOrAdmin
+    checkPostOwnerOrAdmin,
+    checkTemplateOwnerOrAdmin
 } = require("./auth");
 const {
     commonBeforeAll,
@@ -144,5 +145,40 @@ describe("checkPostOwnerOrAdmin", function () {
             expect(err instanceof UnauthorizedError).toBeTruthy();
         }
         checkPostOwnerOrAdmin(req, res, next);
+    });
+});
+
+describe("checkTemplateOwnerOrAdmin", function () {
+    test("works for user non admin", async function() {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+        const req = { params: { templateId: id } };
+        const res = { locals: { user: { username: "JDean1", isAdmin: false } } };
+        const next = function (err) {
+            expect(err).toBeFalsy();
+        }
+        checkTemplateOwnerOrAdmin(req, res, next);
+    });
+
+    test("works for non owner admin", async function() {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+        const req = { params: { templateId: id } };
+        const res = { locals: { user: { username: "adminGuy", isAdmin: true } } };
+        const next = function (err) {
+            expect(err).toBeFalsy();
+        }
+        checkTemplateOwnerOrAdmin(req, res, next);
+    });
+
+    test("not owner or admin, unauth", async function() {
+        const templateSearch = await db.query(`SELECT id FROM templates WHERE title='test title'`);
+        const { id } = templateSearch.rows[0];
+        const req = { params: { templateId: id } };
+        const res = { locals: { user: { username: "badManTricksterGuy", isAdmin: false } } };
+        const next = function (err) {
+            expect(err instanceof UnauthorizedError).toBeTruthy();
+        }
+        checkTemplateOwnerOrAdmin(req, res, next);
     });
 });
