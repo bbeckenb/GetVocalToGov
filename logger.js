@@ -1,51 +1,53 @@
- 
-const { createLogger, format, transports, config } = require('winston');
+const {
+  createLogger, format, transports,
+} = require('winston');
+
 const { combine, timestamp, json } = format;
- 
+
 const UserModelLogger = createLogger({
-    format: combine(
-        timestamp({
-            format: 'YYY-MM-DD HH:mm:ss'
-        }),
-        json()
-    ),
-    
-    transports: [
-       new transports.Console(),
-       new transports.File({ filename: 'combinedErrors.log' })
-     ]
- });
+  format: combine(
+    timestamp({
+      format: 'YYY-MM-DD HH:mm:ss',
+    }),
+    json(),
+  ),
 
- const PostModelLogger = createLogger({
-    format: combine(
-        timestamp({
-            format: 'YYY-MM-DD HH:mm:ss'
-        }),
-        json()
-    ),
-    
-    transports: [
-       new transports.Console(),
-       new transports.File({ filename: 'combinedErrors.log' })
-     ]
- });
+  transports: [
+    new transports.Console(),
+    new transports.File({ filename: 'combinedErrors.log' }),
+  ],
+});
 
- const TemplateModelLogger = createLogger({
-    format: combine(
-        timestamp({
-            format: 'YYY-MM-DD HH:mm:ss'
-        }),
-        json()
-    ),
-    
-    transports: [
-       new transports.Console(),
-       new transports.File({ filename: 'combinedErrors.log' })
-     ]
- });
- 
- module.exports = {
-     UserModelLogger: UserModelLogger, 
-     PostModelLogger: PostModelLogger,
-     TemplateModelLogger: TemplateModelLogger,
- };
+const PostModelLogger = createLogger({
+  format: combine(
+    timestamp({
+      format: 'YYY-MM-DD HH:mm:ss',
+    }),
+    json(),
+  ),
+
+  transports: [
+    new transports.Console(),
+    new transports.File({ filename: 'combinedErrors.log' }),
+  ],
+});
+
+const TemplateModelLogger = createLogger({
+  format: combine(
+    timestamp({
+      format: 'YYY-MM-DD HH:mm:ss',
+    }),
+    json(),
+  ),
+
+  transports: [
+    new transports.Console(),
+    new transports.File({ filename: 'combinedErrors.log' }),
+  ],
+});
+
+module.exports = {
+  UserModelLogger,
+  PostModelLogger,
+  TemplateModelLogger,
+};
