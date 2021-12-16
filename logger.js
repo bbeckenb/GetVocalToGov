@@ -7,7 +7,7 @@ const { combine, timestamp, json } = format;
 const UserModelLogger = createLogger({
   format: combine(
     timestamp({
-      format: 'YYY-MM-DD HH:mm:ss',
+      format: 'YYYY-MM-DD HH:mm:ss',
     }),
     json(),
   ),
@@ -21,7 +21,7 @@ const UserModelLogger = createLogger({
 const PostModelLogger = createLogger({
   format: combine(
     timestamp({
-      format: 'YYY-MM-DD HH:mm:ss',
+      format: 'YYYY-MM-DD HH:mm:ss',
     }),
     json(),
   ),
@@ -35,7 +35,7 @@ const PostModelLogger = createLogger({
 const TemplateModelLogger = createLogger({
   format: combine(
     timestamp({
-      format: 'YYY-MM-DD HH:mm:ss',
+      format: 'YYYY-MM-DD HH:mm:ss',
     }),
     json(),
   ),
