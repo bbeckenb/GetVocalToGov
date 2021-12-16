@@ -3,32 +3,33 @@ const { EasyPostClientLogger } = require('../logger');
 require('dotenv').config();
 const {
     BadRequestError,
-  } = require('../ExpressError');
+} = require('../ExpressError');
 
 class EasyPostClient {
-    constructor () {}
-
     static async verifyAddress({ street, city, state, zip }) {
-        const easyPostApi = new EasyPost(process.env.EASY_POST_API_KEY);
-        const res = await new easyPostApi.Address({
-            verify: ['delivery'],
-            street1: street,
-            city: city,
-            state: state,
-            zip: zip,
-            country: 'US'
-          });
-          try {
-            await res.save();
-            return { street: res.street1, 
-                     city: res.city, 
-                     state: res.state, 
-                     zip: res.zip.substring(0,5) }
-          } catch (err) {
-            EasyPostClientLogger.error(`Error occurred verifying address:`, err.errors)
-            throw new BadRequestError(`Something went wrong verifying User address: ${err.errors}`);
-          }
-      }
+        const easyPostKey = process.env.NODE_ENV === 'test' ? process.env.EASY_POST_API_TEST_KEY : process.env.EASY_POST_API_KEY;
+        const api = new EasyPost(easyPostKey);
+        const address = new api.Address({
+          verify: ['delivery'],
+          street1: street,
+          city: city,
+          state: state,
+          zip: zip,
+          country: 'US'
+        });        
+        try {
+          await address.save();
+          return { 
+                    street: address.street1, 
+                    city: address.city, 
+                    state: address.state, 
+                    zip: address.zip.substring(0,5) }
+        } catch (err) {
+          console.log(err)
+          throw new BadRequestError(`Something went wrong verifying User address:`, err);
+        }
+    }
 }
+
 
 module.exports = EasyPostClient;

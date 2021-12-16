@@ -38,9 +38,9 @@ class User {
     return checkDbForUsername.rows[0] !== undefined;
   }
 
-  static async register({
-    username, password, firstName, lastName, street, city, state, zip, email, isAdmin,
-  }) {
+  static async register(data) {
+    const { username, password, firstName, lastName, email, isAdmin } = data;
+    const { street, city, state, zip } = await User.userDataChecks(data);
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     try {
       await db.query(
@@ -146,7 +146,8 @@ class User {
     if (await User._usernameExists(username)) {
       throw new BadRequestError(`Duplicate username: ${username}`);
     }
-    return await EasyPostClient.verifyAddress(data);
+    const verifiedAddress = await EasyPostClient.verifyAddress(data);
+    return verifiedAddress
   }
 }
 
