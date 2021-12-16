@@ -46,8 +46,23 @@ const TemplateModelLogger = createLogger({
   ],
 });
 
+const EasyPostClientLogger = createLogger({
+  format: combine(
+    timestamp({
+      format: 'YYYY-MM-DD HH:mm:ss',
+    }),
+    json(),
+  ),
+
+  transports: [
+    new transports.Console(),
+    new transports.File({ filename: 'combinedErrors.log' }),
+  ],
+});
+
 module.exports = {
   UserModelLogger,
   PostModelLogger,
   TemplateModelLogger,
+  EasyPostClientLogger,
 };

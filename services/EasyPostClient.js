@@ -1,4 +1,5 @@
 const EasyPost = require('@easypost/api');
+const { EasyPostClientLogger } = require('../logger');
 require('dotenv').config();
 const {
     BadRequestError,
@@ -24,7 +25,8 @@ class EasyPostClient {
                      state: res.state, 
                      zip: res.zip.substring(0,5) }
           } catch (err) {
-            throw new BadRequestError(`Something went wrong verifying User address: ${err}`);
+            EasyPostClientLogger.error(`Error occurred verifying address:`, err.errors)
+            throw new BadRequestError(`Something went wrong verifying User address: ${err.errors}`);
           }
       }
 }

@@ -36,4 +36,4 @@ describe('verifyAddress', () => {
         expect(err instanceof BadRequestError).toBeTruthy();
       }
     });
-  });
+});

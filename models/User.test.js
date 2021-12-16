@@ -182,16 +182,17 @@ describe('deleteUser', () => {
   });
 });
 
-describe('validateAddress', () => {
+describe('userDataChecks', () => {
   test('works', async () => {
-    const goodAddress = {
+    const goodData = {
       street: '2210 oceanwalk dr w', 
       city: 'atlantic beach', 
       state: 'FL', 
-      zip: '32233', 
+      zip: '32233',
+      username: 'newUsername' 
     }
-    const addressOut = await User.validateAddress(goodAddress);
-    expect(addressOut).toEqual({
+    const dataOut = await User.userDataChecks(goodData);
+    expect(dataOut).toEqual({
       street: '2210 OCEANWALK DR W', 
       city: 'ATLANTIC BEACH', 
       state: 'FL', 
@@ -199,18 +200,34 @@ describe('validateAddress', () => {
     });
   });
 
-  test('works', async () => {
-    const badAddress = {
+  test('bad address Bad Req', async () => {
+    const badData = {
       street: 'UNDELIEVRABLE ST', 
-      city: 'pp town', 
+      city: 'DNE town', 
       state: 'IX', 
       zip: 35, 
     }
     try {
-        await User.validateAddress(badAddress);
+        await User.userDataChecks(badData);
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
     }
   });
-})
+
+  test('username exists Bad Req', async () => {
+    const badData = {
+      street: '2210 OCEANWALK DR W', 
+      city: 'ATLANTIC BEACH', 
+      state: 'FL', 
+      zip: '32233', 
+      username: 'JDean1'
+    }
+    try {
+        await User.userDataChecks(badData);
+      fail();
+    } catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
+});

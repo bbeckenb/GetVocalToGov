@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
-const EasyPost = require('@easypost/api');
 const bcrypt = require('bcrypt');
 const db = require('../db');
+const EasyPostClient = require('../services/EasyPostClient');
 const { UserModelLogger } = require('../logger');
 const { BCRYPT_WORK_FACTOR } = require('../config');
 const {
@@ -35,15 +35,12 @@ class User {
             WHERE username = $1`,
       [username],
     );
-    return !!checkDbForUsername.rows[0];
+    return checkDbForUsername.rows[0] !== undefined;
   }
 
   static async register({
     username, password, firstName, lastName, street, city, state, zip, email, isAdmin,
   }) {
-    if (await User._usernameExists(username)) {
-      throw new BadRequestError(`Duplicate username: ${username}`);
-    }
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     try {
       await db.query(
@@ -144,27 +141,12 @@ class User {
     UserModelLogger.info(`${username} Deleted`);
   }
 
-  static async validateAddress({ street, city, state, zip }) {
-    const easyPostApi = new EasyPost(process.env.EASY_POST_API_KEY);
-      const res = await new easyPostApi.Address({
-        verify: ['delivery'],
-        street1: street,
-        city: city,
-        state: state,
-        zip: zip,
-        country: 'US'
-      });
-      try {
-        await res.save();
-        return { street: res.street1, 
-                 city: res.city, 
-                 state: res.state, 
-                 zip: res.zip.substring(0,5) }
-      } catch (err) {
-        UserModelLogger.error(`Error occurred verifying User address: ${err}`);
-        throw new BadRequestError(`Something went wrong verifying User address: ${err}`);
-      }
-      
+  static async userDataChecks(data) {
+    const { username } = data;
+    if (await User._usernameExists(username)) {
+      throw new BadRequestError(`Duplicate username: ${username}`);
+    }
+    return await EasyPostClient.verifyAddress(data);
   }
 }
 
