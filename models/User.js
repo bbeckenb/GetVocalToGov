@@ -76,9 +76,8 @@ class User {
   static async update(heldUsername, data) {
     /* setting this up for form entry, all fields will be auto-filled except password.
     All fields can be adjusted, password will be used to authorize change */
-    const {
-      username, firstName, lastName, password, email, isAdmin, street, city, state, zip,
-    } = data;
+    const { username, password, firstName, lastName, email, isAdmin } = data;
+    const { street, city, state, zip } = await User.userDataChecks(data);
     // use authenticate to ensure User who is requesting update is aware of required password
     const authorizedUser = await User.authenticate(heldUsername, password);
     try {

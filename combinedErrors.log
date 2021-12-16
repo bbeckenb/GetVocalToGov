@@ -1007,3 +1007,25 @@
 {"level":"info","message":"template with id 770 updated","timestamp":"2021-12-16 17:21:52"}
 {"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-16 17:21:52"}
 {"level":"info","message":"template with id 770 Deleted","timestamp":"2021-12-16 17:21:52"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:23:14"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 17:23:14"}
+{"level":"info","message":"New Post 698 created","timestamp":"2021-12-16 17:23:14"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 17:23:14"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-16 17:23:14"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:23:15"}
+{"level":"info","message":"New Post 699 created","timestamp":"2021-12-16 17:23:15"}
+{"level":"info","message":"New User JDean12 created","timestamp":"2021-12-16 17:23:15"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 17:23:15"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 17:23:16"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 17:23:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:23:18"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 17:23:18"}
+{"level":"info","message":"New Post 700 created","timestamp":"2021-12-16 17:23:18"}
+{"level":"info","message":"template with id 774 updated","timestamp":"2021-12-16 17:23:18"}
+{"level":"info","message":"template with id 774 Deleted","timestamp":"2021-12-16 17:23:18"}
+{"level":"error","message":"Error occurred registering new user: Error: Client was closed and is not queryable","timestamp":"2021-12-16 17:46:04"}
+{"level":"error","message":"Error occurred registering new user: Error: Client was closed and is not queryable","timestamp":"2021-12-16 17:46:05"}
+{"level":"error","message":"Error occurred registering new user: Error: Client was closed and is not queryable","timestamp":"2021-12-16 17:46:05"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:46:06"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-16 17:46:06"}
+{"level":"error","message":"Error occurred registering new user: Error: Client was closed and is not queryable","timestamp":"2021-12-16 17:46:06"}
