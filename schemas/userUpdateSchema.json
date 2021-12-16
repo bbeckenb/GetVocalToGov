@@ -11,7 +11,10 @@
             "password": "test_password",
             "firstName": "bob",
             "lastName": "canoe",
-            "address": "my house",
+            "street": "60 Sierra Street",
+            "city": "Calumet City",
+            "state": "IL",
+            "zip": "60409",
             "email": "tedbear@gmail.com"
         }
     ],
@@ -20,7 +23,10 @@
         "password",
         "firstName",
         "lastName",
-        "address",
+        "street",
+        "city",
+        "state",
+        "zip",
         "email"
     ],
     "properties": {
@@ -64,14 +70,44 @@
                 "canoe"
             ]
         },
-        "address": {
-            "$id": "#/properties/address",
+        "street": {
+            "$id": "#/properties/street",
             "type": "string",
-            "title": "The address schema",
+            "title": "The street schema",
             "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
-                "my house"
+                "60 Sierra Street"
+            ]
+        },
+        "city": {
+            "$id": "#/properties/city",
+            "type": "string",
+            "title": "The city schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "Calumet City"
+            ]
+        },
+        "state": {
+            "$id": "#/properties/state",
+            "type": "string",
+            "title": "The state schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "IL"
+            ]
+        },
+        "zip": {
+            "$id": "#/properties/zip",
+            "type": "string",
+            "title": "The zip schema",
+            "description": "An explanation about the purpose of this instance.",
+            "default": "",
+            "examples": [
+                "60409"
             ]
         },
         "email": {
@@ -85,5 +121,5 @@
             ]
         }
     },
-    "additionalProperties": true
+    "additionalProperties": false
 }

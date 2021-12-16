@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+const EasyPost = require('@easypost/api');
 const bcrypt = require('bcrypt');
 const db = require('../db');
 const { UserModelLogger } = require('../logger');
@@ -11,15 +12,18 @@ const {
 
 class User {
   /* User class scaffolding for User ORM holds attributes
-  User (firstName, lastName, username, pw, address) */
+  User (username, password, firstName, lastName, street, city, state, zip, email, isAdmin) */
   constructor({
-    username, password, firstName, lastName, address, email, isAdmin,
+    username, password, firstName, lastName, street, city, state, zip, email, isAdmin,
   }) {
     this.username = username;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
-    this.address = address;
+    this.street = street;
+    this.city = city;
+    this.state = state;
+    this.zip = zip;
     this.email = email;
     this.isAdmin = isAdmin;
   }
@@ -35,7 +39,7 @@ class User {
   }
 
   static async register({
-    firstName, lastName, username, password, address, email, isAdmin,
+    username, password, firstName, lastName, street, city, state, zip, email, isAdmin,
   }) {
     if (await User._usernameExists(username)) {
       throw new BadRequestError(`Duplicate username: ${username}`);
@@ -44,13 +48,13 @@ class User {
     try {
       await db.query(
         `INSERT INTO users
-                (first_name, last_name, username, password, address, email, is_admin)
-                VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [firstName, lastName, username, hashedPassword, address, email, isAdmin],
+                (first_name, last_name, username, password, email, is_admin, street, city, state, zip)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+        [firstName, lastName, username, hashedPassword, email, isAdmin, street, city, state, zip],
       );
       UserModelLogger.info(`New User ${username} created`);
       return new User({
-        firstName, lastName, username, password: hashedPassword, address, email, isAdmin,
+        firstName, lastName, username, password: hashedPassword, email, isAdmin, street, city, state, zip
       });
     } catch (err) {
       UserModelLogger.error(`Error occurred registering new user: ${err}`);
@@ -76,25 +80,28 @@ class User {
     /* setting this up for form entry, all fields will be auto-filled except password.
     All fields can be adjusted, password will be used to authorize change */
     const {
-      username, firstName, lastName, password, address, email, isAdmin,
+      username, firstName, lastName, password, email, isAdmin, street, city, state, zip,
     } = data;
     // use authenticate to ensure User who is requesting update is aware of required password
     const authorizedUser = await User.authenticate(heldUsername, password);
     try {
-      const res = await db.query(
+      await db.query(
         `UPDATE users
                 SET first_name = $1, 
                     last_name = $2, 
                     username = $3, 
-                    address = $4, 
-                    email = $5, 
-                    is_admin = $6
-                WHERE username = $7`,
-        [firstName, lastName, username, address, email, isAdmin, heldUsername],
+                    email = $4, 
+                    is_admin = $5,
+                    street = $6, 
+                    city = $7, 
+                    state = $8, 
+                    zip = $9 
+                WHERE username = $10`,
+        [firstName, lastName, username, email, isAdmin, street, city, state, zip, heldUsername],
       );
       UserModelLogger.info(`User ${heldUsername} updated`);
       return new User({
-        firstName, lastName, username, password: authorizedUser.password, address, email, isAdmin,
+        firstName, lastName, username, password: authorizedUser.password, email, isAdmin, street, city, state, zip
       });
     } catch (err) {
       UserModelLogger.error(`Error occurred updating User: ${err}`);
@@ -112,9 +119,12 @@ class User {
                     last_name AS "lastName", 
                     username, 
                     password, 
-                    address, 
                     email, 
-                    is_admin AS "isAdmin"
+                    is_admin AS "isAdmin",
+                    street, 
+                    city, 
+                    state, 
+                    zip
             FROM users
             WHERE username = $1`,
       [username],
@@ -132,6 +142,29 @@ class User {
             WHERE username = $1
         `, [username]);
     UserModelLogger.info(`${username} Deleted`);
+  }
+
+  static async validateAddress({ street, city, state, zip }) {
+    const easyPostApi = new EasyPost(process.env.EASY_POST_API_KEY);
+      const res = await new easyPostApi.Address({
+        verify: ['delivery'],
+        street1: street,
+        city: city,
+        state: state,
+        zip: zip,
+        country: 'US'
+      });
+      try {
+        await res.save();
+        return { street: res.street1, 
+                 city: res.city, 
+                 state: res.state, 
+                 zip: res.zip.substring(0,5) }
+      } catch (err) {
+        UserModelLogger.error(`Error occurred verifying User address: ${err}`);
+        throw new BadRequestError(`Something went wrong verifying User address: ${err}`);
+      }
+      
   }
 }
 

@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/bbeckenb/GetVocalToGov#readme",
   "dependencies": {
+    "@easypost/api": "^4.0.0",
     "bcrypt": "^5.0.1",
     "colors": "^1.4.0",
     "cors": "^2.8.5",

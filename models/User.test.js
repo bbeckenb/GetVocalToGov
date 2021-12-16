@@ -3,6 +3,7 @@ const User = require('./User');
 const {
   NotFoundError,
   UnauthorizedError,
+  BadRequestError,
 } = require('../ExpressError');
 const {
   commonBeforeAll,
@@ -24,7 +25,11 @@ describe('check to see if basic User was stored in db from _testCommon', () => {
       lastName: 'Deanus',
       username: 'JDean12',
       password: '1234',
-      address: 'my house',
+      street: '60 Sierra Street', 
+      city: 'Calumet City', 
+      state: 'IL', 
+      zip: '60409', 
+      county: 'Cook',
       email: 'jdean@gmail.com',
       isAdmin: true,
     };
@@ -79,7 +84,11 @@ describe('update', () => {
       lastName: 'Dane',
       username: 'JD1',
       password: '1234',
-      address: 'your house',
+      street: '60 Sierra Street', 
+      city: 'Calumet City', 
+      state: 'IL', 
+      zip: '60409', 
+      county: 'Cook',
       email: 'jdean1@gmail.com',
       isAdmin: true,
     };
@@ -172,3 +181,36 @@ describe('deleteUser', () => {
     }
   });
 });
+
+describe('validateAddress', () => {
+  test('works', async () => {
+    const goodAddress = {
+      street: '2210 oceanwalk dr w', 
+      city: 'atlantic beach', 
+      state: 'FL', 
+      zip: '32233', 
+    }
+    const addressOut = await User.validateAddress(goodAddress);
+    expect(addressOut).toEqual({
+      street: '2210 OCEANWALK DR W', 
+      city: 'ATLANTIC BEACH', 
+      state: 'FL', 
+      zip: '32233', 
+    });
+  });
+
+  test('works', async () => {
+    const badAddress = {
+      street: 'UNDELIEVRABLE ST', 
+      city: 'pp town', 
+      state: 'IX', 
+      zip: 35, 
+    }
+    try {
+        await User.validateAddress(badAddress);
+      fail();
+    } catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
+})

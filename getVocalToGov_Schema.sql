@@ -1,3 +1,4 @@
+CREATE TYPE "states" AS ENUM ('USA', 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY');
 CREATE TABLE users (
     username VARCHAR(30) PRIMARY KEY,
     first_name VARCHAR(30) NOT NULL,
@@ -5,12 +6,14 @@ CREATE TABLE users (
     password TEXT NOT NULL,
     email TEXT NOT NULL 
         CHECK (position('@' IN email) > 1),
-    address TEXT NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    state states NOT NULL,
+    zip VARCHAR(30) NOT NULL,
     is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TYPE "category" AS ENUM ('environment', 'health care', 'defense');
-CREATE TYPE "states" AS ENUM ('USA', 'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY');
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,

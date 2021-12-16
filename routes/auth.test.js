@@ -59,7 +59,11 @@ describe('POST /auth/register', () => {
         lastName: 'Bear',
         username: 'TB12',
         password: '1234',
-        address: 'my house',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
+        county: 'Cook',
         email: 'tedbear@gmail.com',
         isAdmin: true,
       });
@@ -73,7 +77,11 @@ describe('POST /auth/register', () => {
       .send({
         username: 'TB12',
         password: '1234',
-        address: 'my house',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
+        county: 'Cook',
         email: 'tedbear@gmail.com',
         isAdmin: true,
       });

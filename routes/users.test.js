@@ -27,7 +27,10 @@ describe('GET /users/:username', () => {
         lastName: 'Dean',
         username: 'JDean1',
         password: expect.any(String),
-        address: 'my house',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
         email: 'jdean@gmail.com',
         isAdmin: true,
       },
@@ -60,8 +63,11 @@ describe('PATCH /users/:username', () => {
         lastName: 'Dane',
         username: 'JDean12',
         password: '1234',
-        address: 'your house',
-        email: 'jdean1@gmail.com',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
+        email: 'jdean@gmail.com',
       })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
@@ -71,8 +77,11 @@ describe('PATCH /users/:username', () => {
         firstName: 'Jammy',
         lastName: 'Dane',
         username: 'JDean12',
-        address: 'your house',
-        email: 'jdean1@gmail.com',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
+        email: 'jdean@gmail.com',
         isAdmin: true,
       },
     });
@@ -95,7 +104,10 @@ describe('PATCH /users/:username', () => {
         lastName: 'Dane',
         username: 'JDean12',
         password: '1234',
-        address: 'your house',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
         email: 'jdean1@gmail.com',
       })
       .set('authorization', `Bearer ${testUser1TokenNonAdmin}`);
@@ -108,7 +120,12 @@ describe('PATCH /users/:username', () => {
       .patch('/users/JDean1')
       .send({
         password: '1234',
-        address: 'your house',
+        street: '60 Sierra Street', 
+        city: 'Calumet City', 
+        state: 'IL', 
+        zip: '60409', 
+        email: 'jdean@gmail.com',
+        isAdmin: true,
         email: 'jdean1@gmail.com',
       })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);

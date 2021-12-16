@@ -14,7 +14,10 @@ async function commonBeforeAll() {
     lastName: 'Dean',
     username: 'JDean1',
     password: '1234',
-    address: 'my house',
+    street: '60 Sierra Street', 
+    city: 'Calumet City', 
+    state: 'IL', 
+    zip: '60409', 
     email: 'jdean@gmail.com',
     isAdmin: true,
   };
@@ -25,7 +28,10 @@ async function commonBeforeAll() {
     lastName: 'Dean',
     username: 'JDean2',
     password: '1234',
-    address: 'my house',
+    street: '60 Sierra Street', 
+    city: 'Calumet City', 
+    state: 'IL', 
+    zip: '60409', 
     email: 'jdean2@gmail.com',
     isAdmin: false,
   };
