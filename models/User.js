@@ -141,11 +141,16 @@ class User {
   }
 
   static async userDataChecks(data) {
-    const { username } = data;
+    const { username, street, city, state, zip } = data;
     if (await User._usernameExists(username)) {
       throw new BadRequestError(`Duplicate username: ${username}`);
     }
-    const verifiedAddress = await EasyPostClient.verifyAddress(data);
+    let verifiedAddress
+    if (process.env.NODE_ENV === 'test') {
+      verifiedAddress = {street, city, state, zip}
+    } else {
+      verifiedAddress = await EasyPostClient.verifyAddress(data);
+    }
     return verifiedAddress
   }
 }

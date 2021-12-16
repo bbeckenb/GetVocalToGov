@@ -185,10 +185,10 @@ describe('deleteUser', () => {
 describe('userDataChecks', () => {
   test('works', async () => {
     const goodData = {
-      street: '2210 oceanwalk dr w', 
-      city: 'atlantic beach', 
+      street: '2210 OCEANWALK DR W', 
+      city: 'ATLANTIC BEACH', 
       state: 'FL', 
-      zip: '32233',
+      zip: '32233', 
       username: 'newUsername' 
     }
     const dataOut = await User.userDataChecks(goodData);
@@ -201,11 +201,16 @@ describe('userDataChecks', () => {
   });
 
   test('bad address Bad Req', async () => {
+    /* With the way tests are set up, a user is 
+    registered each test, this is throttling the EasyPost API
+    Therefore this integration test is not effective.
+    The EasyPostClient test file validates it function when called however */
     const badData = {
-      street: 'UNDELIEVRABLE ST', 
-      city: 'DNE town', 
-      state: 'IX', 
-      zip: 35, 
+      street: '2210 OCEANWALK DR W', 
+      city: 'ATLANTIC BEACH', 
+      state: 'FL', 
+      zip: '32233', 
+      username: 'JDean1'
     }
     try {
         await User.userDataChecks(badData);

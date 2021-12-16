@@ -1029,3 +1029,125 @@
 {"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:46:06"}
 {"level":"info","message":"New User TB12 created","timestamp":"2021-12-16 17:46:06"}
 {"level":"error","message":"Error occurred registering new user: Error: Client was closed and is not queryable","timestamp":"2021-12-16 17:46:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:15"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 17:52:15"}
+{"level":"info","message":"New Post 702 created","timestamp":"2021-12-16 17:52:15"}
+{"level":"info","message":"template with id 779 updated","timestamp":"2021-12-16 17:52:16"}
+{"level":"info","message":"template with id 779 Deleted","timestamp":"2021-12-16 17:52:16"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:16"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 17:52:17"}
+{"level":"info","message":"New Post 703 created","timestamp":"2021-12-16 17:52:17"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 17:52:17"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-16 17:52:17"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:18"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 17:52:19"}
+{"level":"info","message":"New Post 704 created","timestamp":"2021-12-16 17:52:19"}
+{"level":"info","message":"New Post 705 created","timestamp":"2021-12-16 17:52:19"}
+{"level":"info","message":"Post with id 704 updated","timestamp":"2021-12-16 17:52:19"}
+{"level":"info","message":"Post with id 704 Deleted","timestamp":"2021-12-16 17:52:19"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:19"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 17:52:20"}
+{"level":"info","message":"New Post 706 created","timestamp":"2021-12-16 17:52:20"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 17:52:20"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 17:52:20"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"New Post 707 created","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"template with id 785 updated","timestamp":"2021-12-16 17:52:21"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"template with id 785 Deleted","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"New Post 708 created","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"New User JDean12 created","timestamp":"2021-12-16 17:52:21"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 17:52:21"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 17:52:22"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 17:52:23"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:23"}
+{"level":"info","message":"New Post 709 created","timestamp":"2021-12-16 17:52:23"}
+{"level":"info","message":"New Post 710 created","timestamp":"2021-12-16 17:52:23"}
+{"level":"info","message":"Post with id 709 updated","timestamp":"2021-12-16 17:52:23"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"2021-12-16 17:52:23"}
+{"level":"info","message":"Post with id 709 Deleted","timestamp":"2021-12-16 17:52:23"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 17:52:24"}
+{"level":"info","message":"New Post 711 created","timestamp":"2021-12-16 17:52:24"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:09"}
+{"level":"info","message":"New Post 712 created","timestamp":"2021-12-16 18:03:09"}
+{"level":"info","message":"New User JDean12 created","timestamp":"2021-12-16 18:03:09"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 18:03:09"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 18:03:09"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 18:03:09"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 18:03:09"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New Post 713 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New Post 714 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"template with id 792 updated","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"template with id 792 Deleted","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New Post 715 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:10"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New Post 716 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New Post 717 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"Post with id 716 updated","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"Post with id 716 Deleted","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New Post 718 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New Post 719 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New Post 720 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"Post with id 719 updated","timestamp":"2021-12-16 18:03:11"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"Post with id 719 Deleted","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New Post 721 created","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"template with id 799 updated","timestamp":"2021-12-16 18:03:11"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"template with id 799 Deleted","timestamp":"2021-12-16 18:03:11"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:06:59"}
+{"level":"info","message":"New Post 722 created","timestamp":"2021-12-16 18:06:59"}
+{"level":"info","message":"New User JDean12 created","timestamp":"2021-12-16 18:06:59"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 18:06:59"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 18:06:59"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 18:06:59"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 18:06:59"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New Post 723 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New Post 724 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New Post 725 created","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"Post with id 724 updated","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"Post with id 724 Deleted","timestamp":"2021-12-16 18:07:00"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New Post 726 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"template with id 804 updated","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"template with id 804 Deleted","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New Post 727 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New Post 728 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New Post 729 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New Post 730 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"Post with id 729 updated","timestamp":"2021-12-16 18:07:01"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"Post with id 729 Deleted","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"New Post 731 created","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"template with id 810 updated","timestamp":"2021-12-16 18:07:01"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-16 18:07:01"}
+{"level":"info","message":"template with id 810 Deleted","timestamp":"2021-12-16 18:07:01"}
