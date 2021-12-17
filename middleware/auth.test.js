@@ -1,4 +1,5 @@
-const db = require('../db.js');
+/* eslint-disable no-undef */
+const db = require('../db');
 const { UnauthorizedError } = require('../ExpressError');
 const {
   authJWT,
@@ -64,7 +65,7 @@ describe('checkLoggedIn', () => {
     expect.assertions(1);
     const req = {};
     const res = { locals: { user: { username: 'test', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkLoggedIn(req, res, next);
@@ -74,7 +75,7 @@ describe('checkLoggedIn', () => {
     expect.assertions(1);
     const req = {};
     const res = { locals: {} };
-    const next = function (err) {
+    const next = (err) => {
       expect(err instanceof UnauthorizedError).toBeTruthy();
     };
     checkLoggedIn(req, res, next);
@@ -85,7 +86,7 @@ describe('checkCorrectUserOrAdmin', () => {
   test('works for admin', () => {
     const req = { params: { username: 'test' } };
     const res = { locals: { user: { username: 'admin', isAdmin: true } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkCorrectUserOrAdmin(req, res, next);
@@ -94,7 +95,7 @@ describe('checkCorrectUserOrAdmin', () => {
   test('works for correct user', () => {
     const req = { params: { username: 'test' } };
     const res = { locals: { user: { username: 'test', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkCorrectUserOrAdmin(req, res, next);
@@ -103,7 +104,7 @@ describe('checkCorrectUserOrAdmin', () => {
   test('stops wrong user non admin', () => {
     const req = { params: { username: 'wrong' } };
     const res = { locals: { user: { username: 'test', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err instanceof UnauthorizedError).toBeTruthy();
     };
     checkCorrectUserOrAdmin(req, res, next);
@@ -116,7 +117,7 @@ describe('checkPostOwnerOrAdmin', () => {
     const { id } = postSearch.rows[0];
     const req = { params: { postId: id } };
     const res = { locals: { user: { username: 'JDean1', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkPostOwnerOrAdmin(req, res, next);
@@ -127,7 +128,7 @@ describe('checkPostOwnerOrAdmin', () => {
     const { id } = postSearch.rows[0];
     const req = { params: { postId: id } };
     const res = { locals: { user: { username: 'adminGuy', isAdmin: true } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkPostOwnerOrAdmin(req, res, next);
@@ -138,7 +139,7 @@ describe('checkPostOwnerOrAdmin', () => {
     const { id } = postSearch.rows[0];
     const req = { params: { postId: id } };
     const res = { locals: { user: { username: 'badManTricksterGuy', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err instanceof UnauthorizedError).toBeTruthy();
     };
     checkPostOwnerOrAdmin(req, res, next);
@@ -151,7 +152,7 @@ describe('checkTemplateOwnerOrAdmin', () => {
     const { id } = templateSearch.rows[0];
     const req = { params: { templateId: id } };
     const res = { locals: { user: { username: 'JDean1', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkTemplateOwnerOrAdmin(req, res, next);
@@ -162,7 +163,7 @@ describe('checkTemplateOwnerOrAdmin', () => {
     const { id } = templateSearch.rows[0];
     const req = { params: { templateId: id } };
     const res = { locals: { user: { username: 'adminGuy', isAdmin: true } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err).toBeFalsy();
     };
     checkTemplateOwnerOrAdmin(req, res, next);
@@ -173,7 +174,7 @@ describe('checkTemplateOwnerOrAdmin', () => {
     const { id } = templateSearch.rows[0];
     const req = { params: { templateId: id } };
     const res = { locals: { user: { username: 'badManTricksterGuy', isAdmin: false } } };
-    const next = function (err) {
+    const next = (err) => {
       expect(err instanceof UnauthorizedError).toBeTruthy();
     };
     checkTemplateOwnerOrAdmin(req, res, next);

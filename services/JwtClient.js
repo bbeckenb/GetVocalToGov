@@ -7,10 +7,8 @@ class JwtClient {
       username: user.username,
       isAdmin: user.isAdmin,
     };
-  
     return jwt.sign(payload, SECRET_KEY);
   }
 }
-
 
 module.exports = JwtClient;

@@ -1,10 +1,10 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
 const db = require('../db');
 const Post = require('./Post');
 const {
   NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require('../expressError');
+} = require('../ExpressError');
 const {
   commonBeforeAll,
   commonBeforeEach,

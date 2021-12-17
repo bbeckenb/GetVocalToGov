@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-underscore-dangle */
 const db = require('../db');
 const User = require('./User');
 const {
@@ -25,10 +27,10 @@ describe('check to see if basic User was stored in db from _testCommon', () => {
       lastName: 'Deanus',
       username: 'JDean12',
       password: '1234',
-      street: '60 Sierra Street', 
-      city: 'Calumet City', 
-      state: 'IL', 
-      zip: '60409', 
+      street: '60 Sierra Street',
+      city: 'Calumet City',
+      state: 'IL',
+      zip: '60409',
       county: 'Cook',
       email: 'jdean@gmail.com',
       isAdmin: true,
@@ -84,10 +86,10 @@ describe('update', () => {
       lastName: 'Dane',
       username: 'JD1',
       password: '1234',
-      street: '60 Sierra Street', 
-      city: 'Calumet City', 
-      state: 'IL', 
-      zip: '60409', 
+      street: '60 Sierra Street',
+      city: 'Calumet City',
+      state: 'IL',
+      zip: '60409',
       county: 'Cook',
       email: 'jdean1@gmail.com',
       isAdmin: true,
@@ -185,35 +187,35 @@ describe('deleteUser', () => {
 describe('userDataChecks', () => {
   test('works', async () => {
     const goodData = {
-      street: '2210 OCEANWALK DR W', 
-      city: 'ATLANTIC BEACH', 
-      state: 'FL', 
-      zip: '32233', 
-      username: 'newUsername' 
-    }
+      street: '2210 OCEANWALK DR W',
+      city: 'ATLANTIC BEACH',
+      state: 'FL',
+      zip: '32233',
+      username: 'newUsername',
+    };
     const dataOut = await User.userDataChecks(goodData);
     expect(dataOut).toEqual({
-      street: '2210 OCEANWALK DR W', 
-      city: 'ATLANTIC BEACH', 
-      state: 'FL', 
-      zip: '32233', 
+      street: '2210 OCEANWALK DR W',
+      city: 'ATLANTIC BEACH',
+      state: 'FL',
+      zip: '32233',
     });
   });
 
   test('bad address Bad Req', async () => {
-    /* With the way tests are set up, a user is 
+    /* With the way tests are set up, a user is
     registered each test, this is throttling the EasyPost API
     Therefore this integration test is not effective.
     The EasyPostClient test file validates it function when called however */
     const badData = {
-      street: '2210 OCEANWALK DR W', 
-      city: 'ATLANTIC BEACH', 
-      state: 'FL', 
-      zip: '32233', 
-      username: 'JDean1'
-    }
+      street: '2210 OCEANWALK DR W',
+      city: 'ATLANTIC BEACH',
+      state: 'FL',
+      zip: '32233',
+      username: 'JDean1',
+    };
     try {
-        await User.userDataChecks(badData);
+      await User.userDataChecks(badData);
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
@@ -222,14 +224,14 @@ describe('userDataChecks', () => {
 
   test('username exists Bad Req', async () => {
     const badData = {
-      street: '2210 OCEANWALK DR W', 
-      city: 'ATLANTIC BEACH', 
-      state: 'FL', 
-      zip: '32233', 
-      username: 'JDean1'
-    }
+      street: '2210 OCEANWALK DR W',
+      city: 'ATLANTIC BEACH',
+      state: 'FL',
+      zip: '32233',
+      username: 'JDean1',
+    };
     try {
-        await User.userDataChecks(badData);
+      await User.userDataChecks(badData);
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();

@@ -1,12 +1,7 @@
+/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../app');
-const Post = require('../models/Post');
 
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require('../expressError');
 const {
   commonBeforeAll,
   commonBeforeEach,

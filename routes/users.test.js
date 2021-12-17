@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../app');
 
@@ -27,10 +28,10 @@ describe('GET /users/:username', () => {
         lastName: 'Dean',
         username: 'JDean1',
         password: expect.any(String),
-        street: '2210 OCEANWALK DR W', 
-        city: 'ATLANTIC BEACH', 
-        state: 'FL', 
-        zip: '32233', 
+        street: '2210 OCEANWALK DR W',
+        city: 'ATLANTIC BEACH',
+        state: 'FL',
+        zip: '32233',
         email: 'jdean@gmail.com',
         isAdmin: true,
       },
@@ -63,10 +64,10 @@ describe('PATCH /users/:username', () => {
         lastName: 'Dane',
         username: 'JDean12',
         password: '1234',
-        street: '60 Sierra Street', 
-        city: 'Calumet City', 
-        state: 'IL', 
-        zip: '60409', 
+        street: '60 Sierra Street',
+        city: 'Calumet City',
+        state: 'IL',
+        zip: '60409',
         email: 'jdean@gmail.com',
       })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
@@ -77,10 +78,10 @@ describe('PATCH /users/:username', () => {
         firstName: 'Jammy',
         lastName: 'Dane',
         username: 'JDean12',
-        street: '60 Sierra Street', 
-        city: 'Calumet City', 
-        state: 'IL', 
-        zip: '60409', 
+        street: '60 Sierra Street',
+        city: 'Calumet City',
+        state: 'IL',
+        zip: '60409',
         email: 'jdean@gmail.com',
         isAdmin: true,
       },
@@ -104,10 +105,10 @@ describe('PATCH /users/:username', () => {
         lastName: 'Dane',
         username: 'JDean12',
         password: '1234',
-        street: '60 Sierra Street', 
-        city: 'Calumet City', 
-        state: 'IL', 
-        zip: '60409', 
+        street: '60 Sierra Street',
+        city: 'Calumet City',
+        state: 'IL',
+        zip: '60409',
         email: 'jdean1@gmail.com',
       })
       .set('authorization', `Bearer ${testUser1TokenNonAdmin}`);
@@ -120,10 +121,10 @@ describe('PATCH /users/:username', () => {
       .patch('/users/JDean1')
       .send({
         password: '1234',
-        street: '60 Sierra Street', 
-        city: 'Calumet City', 
-        state: 'IL', 
-        zip: '60409', 
+        street: '60 Sierra Street',
+        city: 'Calumet City',
+        state: 'IL',
+        zip: '60409',
         email: 'jdean@gmail.com',
         isAdmin: true,
         email: 'jdean1@gmail.com',

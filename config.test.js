@@ -1,3 +1,6 @@
+/* eslint-disable no-undef */
+const config = require('./config');
+
 describe('config can come from env', () => {
   test('works', () => {
     process.env.SECRET_KEY = 'secret_key';
@@ -5,7 +8,6 @@ describe('config can come from env', () => {
     process.env.DATABASE_URL = 'other';
     process.env.NODE_ENV = 'other';
 
-    const config = require('./config');
     expect(config.SECRET_KEY).toEqual(expect.any(String));
     expect(config.PORT).toEqual(3001);
     expect(config.getDatabaseUri()).toEqual('other');

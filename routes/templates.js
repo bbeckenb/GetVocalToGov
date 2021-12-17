@@ -44,7 +44,10 @@ router.patch('/:templateId', checkLoggedIn, checkTemplateOwnerOrAdmin, async (re
       const errs = validator.errors.map((err) => err.stack);
       throw new BadRequestError(errs);
     }
-    const template = await Template.update(req.params.templateId, { ...req.body, userId: res.locals.user.username });
+    const template = await Template.update(
+      req.params.templateId,
+      { ...req.body, userId: res.locals.user.username },
+    );
     return res.json({ template });
   } catch (err) {
     return next(err);

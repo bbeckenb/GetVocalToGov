@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const jwt = require('jsonwebtoken');
 const JwtClient = require('./JwtClient');
 const { SECRET_KEY } = require('../config');

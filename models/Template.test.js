@@ -1,3 +1,5 @@
+/* eslint-disable no-underscore-dangle */
+/* eslint-disable no-undef */
 const db = require('../db');
 const Template = require('./Template');
 const {

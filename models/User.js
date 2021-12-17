@@ -39,8 +39,12 @@ class User {
   }
 
   static async register(data) {
-    const { username, password, firstName, lastName, email, isAdmin } = data;
-    const { street, city, state, zip } = await User.userDataChecks(data);
+    const {
+      username, password, firstName, lastName, email, isAdmin,
+    } = data;
+    const {
+      street, city, state, zip,
+    } = await User.userDataChecks(data);
     const hashedPassword = await bcrypt.hash(password, BCRYPT_WORK_FACTOR);
     try {
       await db.query(
@@ -51,7 +55,16 @@ class User {
       );
       UserModelLogger.info(`New User ${username} created`);
       return new User({
-        firstName, lastName, username, password: hashedPassword, email, isAdmin, street, city, state, zip
+        firstName,
+        lastName,
+        username,
+        password: hashedPassword,
+        email,
+        isAdmin,
+        street,
+        city,
+        state,
+        zip,
       });
     } catch (err) {
       UserModelLogger.error(`Error occurred registering new user: ${err}`);
@@ -76,8 +89,12 @@ class User {
   static async update(heldUsername, data) {
     /* setting this up for form entry, all fields will be auto-filled except password.
     All fields can be adjusted, password will be used to authorize change */
-    const { username, password, firstName, lastName, email, isAdmin } = data;
-    const { street, city, state, zip } = await User.userDataChecks(data);
+    const {
+      username, password, firstName, lastName, email, isAdmin,
+    } = data;
+    const {
+      street, city, state, zip,
+    } = await User.userDataChecks(data);
     // use authenticate to ensure User who is requesting update is aware of required password
     const authorizedUser = await User.authenticate(heldUsername, password);
     try {
@@ -97,7 +114,16 @@ class User {
       );
       UserModelLogger.info(`User ${heldUsername} updated`);
       return new User({
-        firstName, lastName, username, password: authorizedUser.password, email, isAdmin, street, city, state, zip
+        firstName,
+        lastName,
+        username,
+        password: authorizedUser.password,
+        email,
+        isAdmin,
+        street,
+        city,
+        state,
+        zip,
       });
     } catch (err) {
       UserModelLogger.error(`Error occurred updating User: ${err}`);
@@ -141,17 +167,21 @@ class User {
   }
 
   static async userDataChecks(data) {
-    const { username, street, city, state, zip } = data;
+    const {
+      username, street, city, state, zip,
+    } = data;
     if (await User._usernameExists(username)) {
       throw new BadRequestError(`Duplicate username: ${username}`);
     }
-    let verifiedAddress
+    let verifiedAddress;
     if (process.env.NODE_ENV === 'test') {
-      verifiedAddress = {street, city, state, zip}
+      verifiedAddress = {
+        street, city, state, zip,
+      };
     } else {
       verifiedAddress = await EasyPostClient.verifyAddress(data);
     }
-    return verifiedAddress
+    return verifiedAddress;
   }
 }
 

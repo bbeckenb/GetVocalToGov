@@ -1,11 +1,7 @@
+/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../app');
 
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require('../expressError');
 const {
   commonBeforeAll,
   commonBeforeEach,
@@ -59,10 +55,10 @@ describe('POST /auth/register', () => {
         lastName: 'Bear',
         username: 'TB12',
         password: '1234',
-        street: '60 Sierra Street', 
-        city: 'Calumet City', 
-        state: 'IL', 
-        zip: '60409', 
+        street: '60 Sierra Street',
+        city: 'Calumet City',
+        state: 'IL',
+        zip: '60409',
         county: 'Cook',
         email: 'tedbear@gmail.com',
         isAdmin: true,
@@ -77,10 +73,10 @@ describe('POST /auth/register', () => {
       .send({
         username: 'TB12',
         password: '1234',
-        street: '60 Sierra Street', 
-        city: 'Calumet City', 
-        state: 'IL', 
-        zip: '60409', 
+        street: '60 Sierra Street',
+        city: 'Calumet City',
+        state: 'IL',
+        zip: '60409',
         county: 'Cook',
         email: 'tedbear@gmail.com',
         isAdmin: true,

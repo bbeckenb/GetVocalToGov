@@ -1,12 +1,7 @@
+/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../app');
-const GoogleCivicClient = require('../services/GoogleCivicClient');
 
-const {
-  NotFoundError,
-  BadRequestError,
-  UnauthorizedError,
-} = require('../expressError');
 const {
   commonBeforeAll,
   commonBeforeEach,
@@ -15,7 +10,6 @@ const {
   testUser0TokenAdmin,
   testUser1TokenNonAdmin,
 } = require('./_testCommon');
-const db = require('../db');
 
 beforeAll(commonBeforeAll);
 beforeEach(commonBeforeEach);
@@ -25,7 +19,7 @@ afterAll(commonAfterAll);
 describe('GET /representatives/:username', () => {
   test('works', async () => {
     const res = await request(app)
-      .get(`/representatives/JDean1`)
+      .get('/representatives/JDean1')
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.statusCode).toEqual(200);
@@ -47,6 +41,3 @@ describe('GET /representatives/:username', () => {
     expect(res.statusCode).toEqual(401);
   });
 });
-
-
-

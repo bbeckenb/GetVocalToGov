@@ -69,7 +69,7 @@ class Post {
       [id],
     );
     const post = res.rows[0];
-    if (post == undefined) {
+    if (post === undefined) {
       throw new NotFoundError(`Post with id of ${id} Does Not Exist`);
     }
     return new Post(post);
