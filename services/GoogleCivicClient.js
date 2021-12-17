@@ -11,9 +11,10 @@ class GoogleCivicClient {
         const url = `https://www.googleapis.com/civicinfo/v2/representatives?key=${googleApiKey}&address=${address}`;
         try {
             const repData = await axios.get(url);
-            console.log(repData)
+            // console.log(repData);
+            return repData
         } catch (err) {
-            console.log(err)
+            // console.log(err)
             throw new BadRequestError(`Something went wrong getting User Representative Information:`, err);
         }
     }

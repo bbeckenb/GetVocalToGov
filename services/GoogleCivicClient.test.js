@@ -5,16 +5,30 @@ const {
     BadRequestError,
   } = require('../ExpressError');
 
-  describe('getRepresentatives', () => {
+describe('getRepresentatives', () => {
     test('works', async () => {
-      const goodAddress = {
+        const goodAddress = {
         street: '2210 OCEANWALK DR W', 
         city: 'ATLANTIC BEACH', 
         state: 'FL', 
         zip: '32233', 
-      }
-      const addressOut = await GoogleCivicClient.getRepresentatives(goodAddress);
-      console.log(addressOut);
+        }
+        const addressOut = await GoogleCivicClient.getRepresentatives(goodAddress);
+        expect(addressOut.status).toEqual(200);
     });
-  
+    
+    test('bad address throws bad req', async () => {
+        const badAddress = {
+        street: 'Meh', 
+        city: '', 
+        state: 'F', 
+        zip: '3', 
+        }
+        try {
+            await GoogleCivicClient.getRepresentatives(badAddress);
+            fail();
+        } catch (err) {
+            expect(err instanceof BadRequestError).toBeTruthy();
+        }
+    });
 });

@@ -7,6 +7,7 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const postRoutes = require('./routes/posts');
 const templateRoutes = require('./routes/templates');
+const representativeRoutes = require('./routes/representatives');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use('/auth', authRoutes);
 app.use('/users', userRoutes);
 app.use('/posts', postRoutes);
 app.use('/templates', templateRoutes);
+app.use('/representatives', representativeRoutes);
 
 /** Handle 404 errors -- this matches everything */
 app.use((req, res, next) => next(new NotFoundError()));
