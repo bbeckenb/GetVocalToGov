@@ -1432,3 +1432,93 @@
 {"level":"info","message":"template with id 1258 updated","timestamp":"2021-12-17 17:54:39"}
 {"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-17 17:54:39"}
 {"level":"info","message":"template with id 1258 Deleted","timestamp":"2021-12-17 17:54:39"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:04"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:04"}
+{"level":"info","message":"New Post 1142 created","timestamp":"2021-12-17 18:08:04"}
+{"errors":{"zip":"Error: Invalid prop `zip` of type `number` supplied to `Address`, expected `string`."},"level":"error","message":"Something went wrong verifying User address: Failed validating Address. View `e.errors` for details.","name":"ValidationError","stack":"ValidationError: Failed validating Address. View `e.errors` for details.\n    at Address.validateProperties (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/webpack:/resources/base.js:97:15)\n    at /Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/webpack:/resources/base.js:159:14\n    at Generator.next (<anonymous>)\n    at asyncGeneratorStep (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:666:103)\n    at _next (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:668:194)\n    at /Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:668:364\n    at new Promise (<anonymous>)\n    at /Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:668:97\n    at Address.save (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/webpack:/resources/base.js:157:18)\n    at Function.verifyAddress (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/services/EasyPostClient.js:21:25)","status":422,"timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"New Post 1143 created","timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"New Post 1144 created","timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"Post with id 1143 updated","timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"Post with id 1143 Deleted","timestamp":"2021-12-17 18:08:05"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New Post 1145 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"template with id 1262 updated","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"template with id 1262 Deleted","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New Post 1146 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New Post 1147 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New Post 1148 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean12 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-17 18:08:06"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New Post 1149 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New Post 1150 created","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"template with id 1269 updated","timestamp":"2021-12-17 18:08:06"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"template with id 1269 Deleted","timestamp":"2021-12-17 18:08:06"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:07"}
+{"level":"info","message":"New Post 1151 created","timestamp":"2021-12-17 18:08:07"}
+{"level":"info","message":"New Post 1152 created","timestamp":"2021-12-17 18:08:07"}
+{"level":"info","message":"Post with id 1151 updated","timestamp":"2021-12-17 18:08:07"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"2021-12-17 18:08:07"}
+{"level":"info","message":"Post with id 1151 Deleted","timestamp":"2021-12-17 18:08:07"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:26"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:26"}
+{"level":"info","message":"New Post 1153 created","timestamp":"2021-12-17 18:08:26"}
+{"errors":{"zip":"Error: Invalid prop `zip` of type `number` supplied to `Address`, expected `string`."},"level":"error","message":"Something went wrong verifying User address: Failed validating Address. View `e.errors` for details.","name":"ValidationError","stack":"ValidationError: Failed validating Address. View `e.errors` for details.\n    at Address.validateProperties (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/webpack:/resources/base.js:97:15)\n    at /Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/webpack:/resources/base.js:159:14\n    at Generator.next (<anonymous>)\n    at asyncGeneratorStep (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:666:103)\n    at _next (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:668:194)\n    at /Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:668:364\n    at new Promise (<anonymous>)\n    at /Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/easypost.js:668:97\n    at Address.save (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/node_modules/@easypost/api/webpack:/resources/base.js:157:18)\n    at Function.verifyAddress (/Users/brycebeckenbach/Desktop/Programming_Projects/GetVocalToGov/services/EasyPostClient.js:21:25)","status":422,"timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New Post 1154 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New Post 1155 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"Post with id 1154 updated","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"Post with id 1154 Deleted","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"New Post 1156 created","timestamp":"2021-12-17 18:08:27"}
+{"level":"info","message":"template with id 1274 updated","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"template with id 1274 Deleted","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1157 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean2 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1158 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User TB12 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1159 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1160 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"Post with id 1159 updated","timestamp":"2021-12-17 18:08:28"}
+{"level":"error","message":"Post with id 0 Not Found","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"Post with id 1159 Deleted","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1161 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean12 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"User JDean1 updated","timestamp":"2021-12-17 18:08:28"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"JDean1 Deleted","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1162 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"template with id 1281 updated","timestamp":"2021-12-17 18:08:28"}
+{"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"template with id 1281 Deleted","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New User JDean1 created","timestamp":"2021-12-17 18:08:28"}
+{"level":"info","message":"New Post 1163 created","timestamp":"2021-12-17 18:08:28"}

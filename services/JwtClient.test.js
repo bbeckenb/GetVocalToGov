@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const { genAuthToken } = require('./tokens');
+const JwtClient = require('./JwtClient');
 const { SECRET_KEY } = require('../config');
 
 describe('genAuthToken', () => {
   test('works with admin', () => {
     const testUser = { username: 'testUsername', isAdmin: true };
-    const token = genAuthToken(testUser);
+    const token = JwtClient.genAuthToken(testUser);
     const payload = jwt.verify(token, SECRET_KEY);
     expect(payload).toEqual({
       iat: expect.any(Number),
@@ -15,7 +15,7 @@ describe('genAuthToken', () => {
 
   test('works with no admin', () => {
     const testUser = { username: 'testUsername', isAdmin: false };
-    const token = genAuthToken(testUser);
+    const token = JwtClient.genAuthToken(testUser);
     const payload = jwt.verify(token, SECRET_KEY);
     expect(payload).toEqual({
       iat: expect.any(Number),

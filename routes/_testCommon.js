@@ -2,7 +2,7 @@ const db = require('../db');
 const User = require('../models/User');
 const Post = require('../models/Post');
 const Template = require('../models/Template');
-const { genAuthToken } = require('../helpers/tokens');
+const JwtClient = require('../services/JwtClient');
 
 async function commonBeforeAll() {
   await db.query('DELETE FROM users');
@@ -68,8 +68,8 @@ async function commonAfterAll() {
   await db.end();
 }
 
-const testUser0TokenAdmin = genAuthToken({ username: 'JDean1', isAdmin: true });
-const testUser1TokenNonAdmin = genAuthToken({ username: 'JDean2', isAdmin: false });
+const testUser0TokenAdmin = JwtClient.genAuthToken({ username: 'JDean1', isAdmin: true });
+const testUser1TokenNonAdmin = JwtClient.genAuthToken({ username: 'JDean2', isAdmin: false });
 
 module.exports = {
   commonBeforeAll,

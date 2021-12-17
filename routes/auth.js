@@ -1,6 +1,6 @@
 const jsonschema = require('jsonschema');
 const express = require('express');
-const { genAuthToken } = require('../helpers/tokens');
+const JwtClient = require('../services/JwtClient');
 const {
   BadRequestError,
 } = require('../ExpressError');
@@ -20,7 +20,7 @@ router.post('/token', async (req, res, next) => {
 
     const { username, password } = req.body;
     const user = await User.authenticate(username, password);
-    const token = genAuthToken(user);
+    const token = JwtClient.genAuthToken(user);
     return res.json({ token });
   } catch (err) {
     return next(err);
@@ -35,7 +35,7 @@ router.post('/register', async (req, res, next) => {
       throw new BadRequestError(errs);
     }
     const newUser = await User.register({ ...req.body, isAdmin: false });
-    const token = genAuthToken(newUser);
+    const token = JwtClient.genAuthToken(newUser);
     return res.status(201).json({ token });
   } catch (err) {
     return next(err);
