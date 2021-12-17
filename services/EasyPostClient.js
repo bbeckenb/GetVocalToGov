@@ -25,7 +25,7 @@ class EasyPostClient {
                     state: address.state, 
                     zip: address.zip.substring(0,5) }
         } catch (err) {
-          console.log(err)
+          EasyPostClientLogger.error(`Something went wrong verifying User address:`, err);
           throw new BadRequestError(`Something went wrong verifying User address:`, err);
         }
     }
