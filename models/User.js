@@ -78,6 +78,7 @@ class User {
       // if username exists, all data will be returned
       const passwordMatch = await bcrypt.compare(password, user.password);
       if (passwordMatch === true) {
+        UserModelLogger.info(`User, ${user.username} authenticated`);
         return new User(user);
       }
     }
