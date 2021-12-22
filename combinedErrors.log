@@ -1000,3 +1000,14 @@
 {"level":"info","message":"template with id 239 updated","timestamp":"2021-12-22 11:32:38"}
 {"level":"error","message":"template with id 0 Not Found","timestamp":"2021-12-22 11:32:38"}
 {"level":"info","message":"template with id 239 Deleted","timestamp":"2021-12-22 11:32:38"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:40:19"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:40:47"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:41:09"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 11:43:16"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 11:43:29"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 11:46:20"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:50:39"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:55:12"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:59:41"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:00:46"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:01:02"}

@@ -25,13 +25,13 @@ app.use('/representatives', representativeRoutes);
 app.use((req, res, next) => next(new NotFoundError()));
 
 /** Generic error handler; anything unhandled goes here. */
-app.use((err, req, res) => {
+app.use((err, req, res, next) => {
   if (process.env.NODE_ENV !== 'test') console.error(err.stack);
   const status = err.status || 500;
   const { message } = err;
-
+  const error = { message, status };
   return res.status(status).json({
-    error: { message, status },
+    error,
   });
 });
 
