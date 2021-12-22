@@ -1011,3 +1011,16 @@
 {"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 11:59:41"}
 {"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:00:46"}
 {"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:01:02"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:14:02"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:14:25"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:21:29"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:21:33"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:21:36"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:21:50"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:22:08"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:31:06"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:31:28"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found","timestamp":"2021-12-22 12:32:13"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:40:21"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:44:26"}
+{"level":"info","message":"New User CrabbyDaddy1 created","timestamp":"2021-12-22 12:45:23"}

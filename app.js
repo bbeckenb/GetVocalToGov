@@ -25,6 +25,7 @@ app.use('/representatives', representativeRoutes);
 app.use((req, res, next) => next(new NotFoundError()));
 
 /** Generic error handler; anything unhandled goes here. */
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   if (process.env.NODE_ENV !== 'test') console.error(err.stack);
   const status = err.status || 500;
