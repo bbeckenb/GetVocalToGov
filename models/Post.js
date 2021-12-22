@@ -84,9 +84,8 @@ class Post {
     const {
       title, link, body, tag, location,
     } = data;
-    try {
-      const res = await db.query(
-        `UPDATE posts
+    const res = await db.query(
+      `UPDATE posts
                 SET title = $1,
                     link = $2,
                     body = $3,
@@ -94,17 +93,15 @@ class Post {
                     location = $5
                 WHERE id = $6
                 RETURNING user_id AS "userId"`,
-        [title, link, body, tag, location, id],
-      );
-      const { userId } = res.rows[0];
-      PostModelLogger.info(`Post with id ${id} updated`);
-      return new Post({
-        id, title, link, body, userId, tag, location,
-      });
-    } catch (err) {
-      PostModelLogger.error(`Error occurred updating Post with id ${id}: ${err}`);
-      throw new BadRequestError(`Error occurred updating Post with id ${id}: ${err}`);
-    }
+      [title, link, body, tag, location, id],
+    );
+    const { userId } = res.rows[0];
+    PostModelLogger.info(`Post with id ${id} updated`);
+    return new Post({
+      id, title, link, body, userId, tag, location,
+    });
+    // PostModelLogger.error(`Error occurred updating Post with id ${id}: ${err}`);
+    // throw new BadRequestError(`Error occurred updating Post with id ${id}: ${err}`);
   }
 
   static async deletePost(id) {

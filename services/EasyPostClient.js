@@ -19,18 +19,19 @@ class EasyPostClient {
       zip,
       country: 'US',
     });
-    try {
-      await address.save();
+    await address.save();
+    const { delivery } = address.verifications;
+    if (delivery.success) {
       return {
         street: address.street1,
         city: address.city,
         state: address.state,
         zip: address.zip.substring(0, 5),
       };
-    } catch (err) {
-      EasyPostClientLogger.error('Something went wrong verifying User address:', err);
-      throw new BadRequestError('Something went wrong verifying User address:', err);
     }
+    const errs = delivery.errors.map((e) => e.message);
+    EasyPostClientLogger.error(`Something went wrong verifying User address: ${errs}`);
+    throw new BadRequestError(`Something went wrong verifying User address: ${errs}`);
   }
 }
 

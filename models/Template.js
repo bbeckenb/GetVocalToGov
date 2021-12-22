@@ -72,25 +72,23 @@ class Template {
       throw new NotFoundError(`template with id ${id} Not Found`);
     }
     const { title, body } = data;
-    try {
-      const res = await db.query(
-        `UPDATE templates
+
+    const res = await db.query(
+      `UPDATE templates
                 SET title = $1,
                     body = $2
                 WHERE id = $3
                 RETURNING post_id AS "postId",
                           user_id AS "userId"`,
-        [title, body, id],
-      );
-      const { postId, userId } = res.rows[0];
-      TemplateModelLogger.info(`template with id ${id} updated`);
-      return new Template({
-        id, title, body, postId, userId,
-      });
-    } catch (err) {
-      TemplateModelLogger.error(`Error occurred updating template with id ${id}: ${err}`);
-      throw new BadRequestError(`Error occurred updating template with id ${id}: ${err}`);
-    }
+      [title, body, id],
+    );
+    const { postId, userId } = res.rows[0];
+    TemplateModelLogger.info(`template with id ${id} updated`);
+    return new Template({
+      id, title, body, postId, userId,
+    });
+    // TemplateModelLogger.error(`Error occurred updating template with id ${id}: ${err}`);
+    // throw new BadRequestError(`Error occurred updating template with id ${id}: ${err}`);
   }
 
   static async deleteTemplate(id) {

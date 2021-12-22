@@ -23,13 +23,14 @@ describe('verifyAddress', () => {
 
   test('bad address Bad Req', async () => {
     const badAddress = {
-      street: 'UNDELIEVRABLE ST',
-      city: 'DNE town',
-      state: 'IX',
-      zip: 35,
+      street: 'pp town 2',
+      city: 'butt city',
+      state: 'fl',
+      zip: '3456',
     };
     try {
-      await EasyPostClient.verifyAddress(badAddress);
+      let output = await EasyPostClient.verifyAddress(badAddress);
+      console.log(output)
       fail();
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
