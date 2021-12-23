@@ -1024,3 +1024,11 @@
 {"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:40:21"}
 {"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2021-12-22 12:44:26"}
 {"level":"info","message":"New User CrabbyDaddy1 created","timestamp":"2021-12-22 12:45:23"}
+{"level":"info","message":"User, CrabbyDaddy1 authenticated","timestamp":"2021-12-22 14:52:47"}
+{"level":"info","message":"User, CrabbyDaddy1 authenticated","timestamp":"2021-12-22 14:53:43"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-22 14:55:07"}
+{"level":"info","message":"User, CrabbyDaddy1 authenticated","timestamp":"2021-12-22 15:25:12"}
+{"level":"info","message":"User, CrabbyDaddy1 authenticated","timestamp":"2021-12-22 15:25:53"}
+{"level":"error","message":"Error occurred authenticating user","timestamp":"2021-12-22 16:26:05"}
+{"level":"info","message":"User, CrabbyDaddy1 authenticated","timestamp":"2021-12-22 16:26:17"}
+{"level":"info","message":"User, CrabbyDaddy1 authenticated","timestamp":"2021-12-22 16:30:20"}
