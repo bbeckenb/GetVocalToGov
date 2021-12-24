@@ -2,7 +2,6 @@
 const db = require('../db');
 const { PostModelLogger } = require('../logger');
 const {
-  BadRequestError,
   NotFoundError,
 } = require('../ExpressError');
 
@@ -11,7 +10,7 @@ class Post {
   Post (id, userId, link, title, body, timestamp, tag/s, location) */
 
   constructor({
-    id, title, link, body, userId, tag, location,
+    id, title, link, body, userId, tag, location, createdAt,
   }) {
     this.id = Number(id);
     this.title = title;
@@ -20,6 +19,7 @@ class Post {
     this.userId = userId;
     this.tag = tag;
     this.location = location;
+    this.createdAt = createdAt;
   }
 
   static async _postExists(id) {
@@ -45,14 +45,49 @@ class Post {
                 tag,
                 location)
                 VALUES ($1, $2, $3, $4, $5, $6)
-                RETURNING id`,
+                RETURNING id, created_at AS "createdAt"`,
       [title, link, body, userId, tag, location],
     );
-    const { id } = result.rows[0];
+    const { id, createdAt } = result.rows[0];
     PostModelLogger.info(`New Post ${id} created`);
     return new Post({
-      id, title, link, body, userId, tag, location,
+      id, title, link, body, userId, tag, location, createdAt,
     });
+  }
+
+  static async getAllOrFilterPosts(filters = {}) {
+    /* Filter criteria = title, body, tag, location */
+    let queryString = 'SELECT * FROM posts';
+    const {
+      title, body, tag, location,
+    } = filters;
+    // eslint-disable-next-line prefer-const
+    let filterStatements = [];
+    // eslint-disable-next-line prefer-const
+    let queryVals = [];
+    if (title) {
+      queryVals.push(`%${title}%`);
+      filterStatements.push(`title ILIKE $${queryVals.length}`);
+    }
+    if (body !== undefined) {
+      queryVals.push(`%${body}%`);
+      filterStatements.push(`body ILIKE $${queryVals.length}`);
+    }
+    if (tag !== undefined) {
+      queryVals.push(tag);
+      filterStatements.push(`tag=$${queryVals.length}`);
+    }
+    if (location !== undefined) {
+      queryVals.push(location);
+      filterStatements.push(`location=$${queryVals.length}`);
+    }
+    if (filterStatements.length > 0) {
+      queryString += ` WHERE ${filterStatements.join(' AND ')}`;
+    }
+    queryString += ' ORDER BY created_at';
+    const res = await db.query(queryString, queryVals);
+    console.log(res.rows);
+    return res.rows.map((post) => new Post(post));
   }
 
   static async getPost(id) {
@@ -63,7 +98,8 @@ class Post {
                     body,
                     user_id AS "userId",
                     tag,
-                    location
+                    location,
+                    created_at AS createdAt
             FROM posts
             WHERE id = $1`,
       [id],
@@ -92,13 +128,13 @@ class Post {
                     tag = $4,
                     location = $5
                 WHERE id = $6
-                RETURNING user_id AS "userId"`,
+                RETURNING user_id AS "userId", created_at AS createdAt`,
       [title, link, body, tag, location, id],
     );
-    const { userId } = res.rows[0];
+    const { userId, createdAt } = res.rows[0];
     PostModelLogger.info(`Post with id ${id} updated`);
     return new Post({
-      id, title, link, body, userId, tag, location,
+      id, title, link, body, userId, tag, location, createdAt,
     });
     // PostModelLogger.error(`Error occurred updating Post with id ${id}: ${err}`);
     // throw new BadRequestError(`Error occurred updating Post with id ${id}: ${err}`);

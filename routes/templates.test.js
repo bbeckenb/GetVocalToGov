@@ -33,6 +33,7 @@ describe('POST /templates', () => {
       template: {
         ...newTemplate,
         id: expect.any(Number),
+        createdAt: expect.any(String),
         postId: null,
         userId: 'JDean1',
       },
@@ -58,6 +59,7 @@ describe('POST /templates', () => {
         ...newTemplate,
         id: expect.any(Number),
         userId: 'JDean1',
+        createdAt: expect.any(String),
       },
     });
   });
@@ -98,6 +100,7 @@ describe('GET /templates/:templateId', () => {
         body: 'test template body',
         userId: 'JDean1',
         postId: expect.any(Number),
+        createdAt: expect.any(String),
       },
     });
   });
@@ -139,6 +142,7 @@ describe('PATCH /templates/:templateId', () => {
         body: 'updated body',
         userId: 'JDean1',
         postId: expect.any(Number),
+        createdAt: expect.any(String),
       },
     });
   });

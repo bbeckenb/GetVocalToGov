@@ -37,6 +37,7 @@ describe('POST /posts', () => {
       post: {
         ...newPost,
         id: expect.any(Number),
+        createdAt: expect.any(String),
       },
     });
   });

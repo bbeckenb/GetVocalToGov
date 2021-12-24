@@ -134,3 +134,49 @@ describe('deletePost', () => {
     }
   });
 });
+
+describe('getAllOrFilterPosts', () => {
+  test('retrieves all with no filter criteria', async () => {
+    const res = await Post.getAllOrFilterPosts();
+    expect(res.length).toEqual(4);
+  });
+
+  test('retrieves specified title', async () => {
+    const res = await Post.getAllOrFilterPosts({ title: 'title search' });
+    expect(res.length).toEqual(1);
+    expect(res[0]).toBeInstanceOf(Post);
+    expect(res[0].title).toEqual('test title search');
+  });
+
+  test('retrieves specified body', async () => {
+    const res = await Post.getAllOrFilterPosts({ body: 'specific inquiry' });
+    expect(res.length).toEqual(1);
+    expect(res[0]).toBeInstanceOf(Post);
+    expect(res[0].body).toEqual('very specific inquiry');
+  });
+
+  test('retrieves specified tag', async () => {
+    const res = await Post.getAllOrFilterPosts({ tag: 'health care' });
+    expect(res.length).toEqual(2);
+    expect(res[0]).toBeInstanceOf(Post);
+    expect(res[1].title).toEqual('test title 2');
+  });
+
+  test('retrieves specified location', async () => {
+    const res = await Post.getAllOrFilterPosts({ location: 'CO' });
+    expect(res.length).toEqual(2);
+    expect(res[0]).toBeInstanceOf(Post);
+    expect(res[1].tag).toEqual('defense');
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await Post.getAllOrFilterPosts({ location: 'CO', tag: 'environment' });
+    expect(res.length).toEqual(0);
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await Post.getAllOrFilterPosts({ location: 'CO', tag: 'health care' });
+    expect(res.length).toEqual(1);
+    expect(res[0]).toBeInstanceOf(Post);
+  });
+});

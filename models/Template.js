@@ -2,7 +2,6 @@
 const db = require('../db');
 const { TemplateModelLogger } = require('../logger');
 const {
-  BadRequestError,
   NotFoundError,
 } = require('../ExpressError');
 
@@ -11,13 +10,14 @@ class Template {
   Template (id, title, body, templateId, username) */
 
   constructor({
-    id, title, body, postId, userId,
+    id, title, body, postId, userId, createdAt,
   }) {
     this.id = Number(id);
     this.title = title;
     this.body = body;
     this.userId = userId;
     this.postId = postId;
+    this.createdAt = createdAt;
   }
 
   static async _templateExists(id) {
@@ -37,14 +37,41 @@ class Template {
       `INSERT INTO templates
             (title, body, post_id, user_id)                
                 VALUES ($1, $2, $3, $4)
-                RETURNING id`,
+                RETURNING id, created_at AS "createdAt"`,
       [title, body, postId, userId],
     );
 
-    const { id } = result.rows[0];
+    const { id, createdAt } = result.rows[0];
     return new Template({
-      id, title, body, postId, userId,
+      id, title, body, postId, userId, createdAt,
     });
+  }
+
+  static async getAllOrFilterTemplates(filters = {}) {
+    /* Filter criteria = title, body, tag, location */
+    let queryString = 'SELECT * FROM templates';
+    const {
+      title, body,
+    } = filters;
+    // eslint-disable-next-line prefer-const
+    let filterStatements = [];
+    // eslint-disable-next-line prefer-const
+    let queryVals = [];
+    if (title !== undefined) {
+      queryVals.push(`%${title}%`);
+      filterStatements.push(`title ILIKE $${queryVals.length}`);
+    }
+    if (body !== undefined) {
+      queryVals.push(`%${body}%`);
+      filterStatements.push(`body ILIKE $${queryVals.length}`);
+    }
+    if (filterStatements.length > 0) {
+      queryString += ` WHERE ${filterStatements.join(' AND ')}`;
+    }
+    queryString += ' ORDER BY created_at';
+    const res = await db.query(queryString, queryVals);
+    console.log(res.rows);
+    return res.rows.map((template) => new Template(template));
   }
 
   static async getTemplate(id) {
@@ -53,7 +80,8 @@ class Template {
                     title,
                     body,
                     post_id AS "postId",
-                    user_id AS "userId"
+                    user_id AS "userId",
+                    created_at AS "createdAt"
             FROM templates
             WHERE id = $1`,
       [id],
@@ -79,13 +107,14 @@ class Template {
                     body = $2
                 WHERE id = $3
                 RETURNING post_id AS "postId",
-                          user_id AS "userId"`,
+                          user_id AS "userId",
+                          created_at AS "createdAt"`,
       [title, body, id],
     );
-    const { postId, userId } = res.rows[0];
+    const { postId, userId, createdAt } = res.rows[0];
     TemplateModelLogger.info(`template with id ${id} updated`);
     return new Template({
-      id, title, body, postId, userId,
+      id, title, body, postId, userId, createdAt,
     });
     // TemplateModelLogger.error(`Error occurred updating template with id ${id}: ${err}`);
     // throw new BadRequestError(`Error occurred updating template with id ${id}: ${err}`);

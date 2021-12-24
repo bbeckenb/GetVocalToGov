@@ -124,3 +124,35 @@ describe('deleteTemplate', () => {
     }
   });
 });
+
+describe('getAllOrFilterTemplates', () => {
+  test('retrieves all with no filter criteria', async () => {
+    const res = await Template.getAllOrFilterTemplates();
+    expect(res.length).toEqual(3);
+  });
+
+  test('retrieves specified title', async () => {
+    const res = await Template.getAllOrFilterTemplates({ title: 'header' });
+    expect(res.length).toEqual(1);
+    expect(res[0]).toBeInstanceOf(Template);
+    expect(res[0].title).toEqual('test header');
+  });
+
+  test('retrieves specified body', async () => {
+    const res = await Template.getAllOrFilterTemplates({ body: 'specific inquiry' });
+    expect(res.length).toEqual(1);
+    expect(res[0]).toBeInstanceOf(Template);
+    expect(res[0].body).toEqual('very specific inquiry');
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await Template.getAllOrFilterTemplates({ title: 'test', body: 'DNE' });
+    expect(res.length).toEqual(0);
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await Template.getAllOrFilterTemplates({ title: 'title', body: '2' });
+    expect(res.length).toEqual(1);
+    expect(res[0]).toBeInstanceOf(Template);
+  });
+});
