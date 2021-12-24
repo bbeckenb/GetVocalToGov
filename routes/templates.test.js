@@ -85,6 +85,55 @@ describe('POST /templates', () => {
   });
 });
 
+describe('GET /templates', () => {
+  test('retrieves all with no filter paramaters', async () => {
+    const res = await request(app)
+      .get('/templates')
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.templates.length).toEqual(3);
+  });
+
+  test('retrieves specified title', async () => {
+    const res = await request(app)
+      .get('/templates')
+      .query({ title: 'header' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.templates.length).toEqual(1);
+    expect(res.body.templates[0].title).toEqual('test header');
+  });
+
+  test('retrieves specified body', async () => {
+    const res = await request(app)
+      .get('/templates')
+      .query({ body: 'specific inquiry' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.templates.length).toEqual(1);
+    expect(res.body.templates[0].body).toEqual('very specific inquiry');
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await request(app)
+      .get('/templates')
+      .query({ title: 'test', body: 'DNE' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.templates.length).toEqual(0);
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await request(app)
+      .get('/templates')
+      .query({ title: 'title', body: '2' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.templates.length).toEqual(1);
+    expect(res.body.templates[0].body).toEqual('test template body2');
+  });
+});
+
 describe('GET /templates/:templateId', () => {
   test('works', async () => {
     const templateSearch = await db.query('SELECT id FROM templates WHERE title=\'test title\'');

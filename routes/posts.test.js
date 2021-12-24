@@ -81,7 +81,24 @@ describe('GET /posts', () => {
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(1);
-    expect(res.body.posts[0].title).toEqual('test tit      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+    expect(res.body.posts[0].title).toEqual('test title search');
+  });
+
+  test('retrieves specified body', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ body: 'specific inquiry' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(1);
+    expect(res.body.posts[0].body).toEqual('very specific inquiry');
+  });
+
+  test('retrieves specified tag', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ tag: 'health care' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(2);
     expect(res.body.posts[1].title).toEqual('test title 2');
@@ -115,24 +132,7 @@ describe('GET /posts', () => {
     expect(res.body.posts.length).toEqual(1);
     expect(res.body.posts[0].title).toEqual('test title');
   });
-});le search');
-  });
-
-  test('retrieves specified body', async () => {
-    const res = await request(app)
-      .get('/posts')
-      .query({ body: 'specific inquiry' })
-      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
-
-    expect(res.body.posts.length).toEqual(1);
-    expect(res.body.posts[0].body).toEqual('very specific inquiry');
-  });
-
-  test('retrieves specified tag', async () => {
-    const res = await request(app)
-      .get('/posts')
-      .query({ tag: 'health care' })
-
+});
 
 describe('GET /posts/:postId', () => {
   test('works', async () => {

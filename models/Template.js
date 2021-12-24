@@ -70,7 +70,6 @@ class Template {
     }
     queryString += ' ORDER BY created_at';
     const res = await db.query(queryString, queryVals);
-    console.log(res.rows);
     return res.rows.map((template) => new Template(template));
   }
 
