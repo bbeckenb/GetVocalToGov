@@ -1,5 +1,6 @@
 const express = require('express');
 const jsonschema = require('jsonschema');
+const postGetFilterSchema = require('../schemas/postGetFilterSchema.json');
 const postCreateSchema = require('../schemas/postCreateSchema.json');
 const postUpdateSchema = require('../schemas/postUpdateSchema.json');
 
@@ -23,6 +24,21 @@ router.post('/', checkLoggedIn, async (req, res, next) => {
     }
     const post = await Post.create(req.body);
     return res.status(201).json({ post });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.get('/', async (req, res, next) => {
+  const q = req.query;
+  try {
+    const validator = jsonschema.validate(q, postGetFilterSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
+    const posts = await Post.getAllOrFilterPosts(q);
+    return res.json({ posts });
   } catch (err) {
     return next(err);
   }

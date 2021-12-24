@@ -47,6 +47,36 @@ async function commonBeforeAll() {
   };
   const testPost0 = await Post.create(testPost0Data);
 
+  const testPost1Data = {
+    title: 'test title 2',
+    link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
+    body: 'we need to do x, y, z',
+    userId: testUser0.username,
+    tag: 'health care',
+    location: 'FL',
+  };
+  Post.create(testPost1Data);
+
+  const testPost2Data = {
+    title: 'test title search',
+    link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
+    body: 'we need to do x, y, z',
+    userId: testUser0.username,
+    tag: 'environment',
+    location: 'AZ',
+  };
+  await Post.create(testPost2Data);
+
+  const testPost3Data = {
+    title: 'test title',
+    link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
+    body: 'very specific inquiry',
+    userId: testUser0.username,
+    tag: 'defense',
+    location: 'CO',
+  };
+  await Post.create(testPost3Data);
+
   const testTemplate0Data = {
     title: 'test title',
     body: 'test template body',
@@ -54,6 +84,22 @@ async function commonBeforeAll() {
     postId: testPost0.id,
   };
   await Template.create(testTemplate0Data);
+
+  const testTemplate1Data = {
+    title: 'test title',
+    body: 'test template body2',
+    userId: 'JDean1',
+    postId: testPost0.id,
+  };
+  await Template.create(testTemplate1Data);
+
+  const testTemplate2Data = {
+    title: 'test header',
+    body: 'very specific inquiry',
+    userId: 'JDean1',
+    postId: testPost0.id,
+  };
+  await Template.create(testTemplate2Data);
 }
 
 async function commonBeforeEach() {

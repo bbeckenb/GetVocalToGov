@@ -1,5 +1,6 @@
 const express = require('express');
 const jsonschema = require('jsonschema');
+const templateGetFilterSchema = require('../schemas/templateGetFilterSchema.json');
 const templateCreateSchema = require('../schemas/templateCreateSchema.json');
 const templateUpdateSchema = require('../schemas/templateUpdateSchema.json');
 const {
@@ -23,6 +24,21 @@ router.post('/', checkLoggedIn, async (req, res, next) => {
     }
     const template = await Template.create({ ...req.body, userId: res.locals.user.username });
     return res.status(201).json({ template });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.get('/', async (req, res, next) => {
+  const q = req.query;
+  try {
+    const validator = jsonschema.validate(q, templateGetFilterSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map((e) => e.stack);
+      throw new BadRequestError(errs);
+    }
+    const templates = await Template.getAllOrFilterTemplates(q);
+    return res.json({ templates });
   } catch (err) {
     return next(err);
   }

@@ -65,6 +65,75 @@ describe('POST /posts', () => {
   });
 });
 
+describe('GET /posts', () => {
+  test('retrieves all with no filter paramaters', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(4);
+  });
+
+  test('retrieves specified title', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ title: 'title search' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(1);
+    expect(res.body.posts[0].title).toEqual('test tit      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(2);
+    expect(res.body.posts[1].title).toEqual('test title 2');
+  });
+
+  test('retrieves specified location', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ location: 'CO' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(2);
+    expect(res.body.posts[1].tag).toEqual('defense');
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ location: 'CO', tag: 'environment' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(0);
+  });
+
+  test('retrieves correctly with multiple filters', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ location: 'CO', tag: 'health care' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(1);
+    expect(res.body.posts[0].title).toEqual('test title');
+  });
+});le search');
+  });
+
+  test('retrieves specified body', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ body: 'specific inquiry' })
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body.posts.length).toEqual(1);
+    expect(res.body.posts[0].body).toEqual('very specific inquiry');
+  });
+
+  test('retrieves specified tag', async () => {
+    const res = await request(app)
+      .get('/posts')
+      .query({ tag: 'health care' })
+
+
 describe('GET /posts/:postId', () => {
   test('works', async () => {
     const postSearch = await db.query('SELECT id FROM posts WHERE title=\'test title\'');
