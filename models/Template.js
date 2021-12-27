@@ -49,7 +49,7 @@ class Template {
 
   static async getAllOrFilterTemplates(filters = {}) {
     /* Filter criteria = title, body, tag, location */
-    let queryString = 'SELECT * FROM templates';
+    let queryString = 'SELECT id, title, body, created_at AS "createdAt", post_id AS "postId", user_id AS "userId" FROM templates';
     const {
       title, body,
     } = filters;
