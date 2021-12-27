@@ -364,3 +364,4 @@
 {"level":"info","message":"Post with id 1779 updated","timestamp":"2021-12-27 13:51:39"}
 {"level":"error","message":"Post with id 0 Not Found","timestamp":"2021-12-27 13:51:39"}
 {"level":"info","message":"Post with id 1779 Deleted","timestamp":"2021-12-27 13:51:39"}
+{"level":"info","message":"User, Test_User authenticated","timestamp":"2021-12-27 15:02:33"}
