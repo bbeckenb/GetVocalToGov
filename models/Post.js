@@ -57,7 +57,7 @@ class Post {
 
   static async getAllOrFilterPosts(filters = {}) {
     /* Filter criteria = title, body, tag, location */
-    let queryString = 'SELECT * FROM posts';
+    let queryString = 'SELECT id, title, link, body, user_id AS "userId", tag, location, created_at AS "createdAt"';
     const {
       title, body, tag, location,
     } = filters;
@@ -98,7 +98,7 @@ class Post {
                     user_id AS "userId",
                     tag,
                     location,
-                    created_at AS createdAt
+                    created_at AS "createdAt"
             FROM posts
             WHERE id = $1`,
       [id],
