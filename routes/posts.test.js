@@ -146,6 +146,7 @@ describe('GET /posts/:postId', () => {
       post: {
         id: expect.any(Number),
         title: 'test title',
+        createdAt: expect.any(String),
         link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
         body: 'we need to do x, y, z',
         userId: 'JDean1',
@@ -154,13 +155,6 @@ describe('GET /posts/:postId', () => {
       },
     });
     expect(res.statusCode).toEqual(200);
-  });
-
-  test('if no token unauth', async () => {
-    const res = await request(app)
-      .get('/posts/0');
-
-    expect(res.statusCode).toEqual(401);
   });
 
   test('if post DNE NotFound', async () => {

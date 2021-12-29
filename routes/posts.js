@@ -44,7 +44,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-router.get('/:postId', checkLoggedIn, async (req, res, next) => {
+router.get('/:postId', async (req, res, next) => {
   try {
     const post = await Post.getPost(req.params.postId);
     return res.json({ post });
