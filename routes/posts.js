@@ -22,7 +22,7 @@ router.post('/', checkLoggedIn, async (req, res, next) => {
       const errs = validator.errors.map((err) => err.stack);
       throw new BadRequestError(errs);
     }
-    const post = await Post.create(req.body);
+    const post = await Post.create({ ...req.body, userId: res.locals.user.username });
     return res.status(201).json({ post });
   } catch (err) {
     return next(err);
