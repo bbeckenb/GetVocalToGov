@@ -11,8 +11,7 @@
             "link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
             "body": "we need to do q, r, s",
             "tag": "health care",
-            "location": "FL",
-            "userId": "JDean1"
+            "location": "FL"
         }
     ],
     "required": [
@@ -20,8 +19,7 @@
         "link",
         "body",
         "tag",
-        "location",
-        "userId"
+        "location"
     ],
     "properties": {
         "title": {
