@@ -10,7 +10,7 @@ class Post {
   Post (id, userId, link, title, body, timestamp, tag/s, location) */
 
   constructor({
-    id, title, link, body, userId, tag, location, createdAt,
+    id, title, link, body, userId, tag, location, createdAt, templates = null,
   }) {
     this.id = Number(id);
     this.title = title;
@@ -20,6 +20,7 @@ class Post {
     this.tag = tag;
     this.location = location;
     this.createdAt = createdAt;
+    this.templates = templates;
   }
 
   static async _postExists(id) {
@@ -107,6 +108,13 @@ class Post {
     if (post === undefined) {
       throw new NotFoundError(`Post with id of ${id} Does Not Exist`);
     }
+    const postTemplates = await db.query(
+      `SELECT id, title, body, user_id AS "userId", created_at AS "createdAt", post_id AS "postId"
+      FROM templates
+      WHERE post_id=$1`,
+      [id],
+    );
+    post.templates = postTemplates.rows;
     return new Post(post);
   }
 

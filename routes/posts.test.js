@@ -37,6 +37,7 @@ describe('POST /posts', () => {
       post: {
         ...newPost,
         id: expect.any(Number),
+        templates: null,
         createdAt: expect.any(String),
       },
     });
@@ -150,6 +151,7 @@ describe('GET /posts/:postId', () => {
         link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
         body: 'we need to do x, y, z',
         userId: 'JDean1',
+        templates: expect.any(Array),
         tag: 'health care',
         location: 'CO',
       },
@@ -187,6 +189,7 @@ describe('PATCH /posts/:postId', () => {
         ...updatedPost,
         id: expect.any(Number),
         userId: 'JDean1',
+        templates: null,
       },
     });
   });
