@@ -238,3 +238,273 @@ describe('userDataChecks', () => {
     }
   });
 });
+
+describe('_favoriteExists', () => {
+  test('provides bool false if favorite DNE', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const output = await User._favoriteExists(username, id);
+    expect(output).toEqual(false);
+  });
+
+  test('provides bool true if favorite exists', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    await User.addFavorite(username, id);
+    const output = await User._favoriteExists(username, id);
+    expect(output).toEqual(true);
+  });
+
+  test('throws Not Found if username DNE', async () => {
+    const username = 'DNE';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    try {
+      await User._favoriteExists(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+
+  test('throws Not Found if template DNE', async () => {
+    const username = 'JDean1';
+    const id = 0;
+    try {
+      await User._favoriteExists(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+describe('addFavorite', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const output = await User.addFavorite(username, id);
+    expect(output).toEqual(expect.any(Number));
+  });
+
+  test('throws bad req if favorite already exists', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    await User.addFavorite(username, id);
+    try {
+      await User.addFavorite(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
+
+  test('throws Not Found if username DNE', async () => {
+    const username = 'DNE';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    try {
+      await User.addFavorite(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+describe('removeFavorite', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    await User.addFavorite(username, id);
+    const output = await User.removeFavorite(username, id);
+    expect(output).toEqual(expect.any(Number));
+  });
+
+  test('throws Not Found if favorite DNE', async () => {
+    const username = 'DNE';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    try {
+      await User.removeFavorite(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+describe('_postExists', () => {
+  test('provides bool false if bookmark DNE', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const output = await User._bookmarkExists(username, id);
+    expect(output).toEqual(false);
+  });
+
+  test('provides bool true if bookmark exists', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    await User.addBookmark(username, id);
+    const output = await User._bookmarkExists(username, id);
+    expect(output).toEqual(true);
+  });
+
+  test('throws Not Found if username DNE', async () => {
+    const username = 'DNE';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    try {
+      await User._bookmarkExists(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+
+  test('throws Not Found if template DNE', async () => {
+    const username = 'JDean1';
+    const id = 0;
+    try {
+      await User._bookmarkExists(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+describe('addBookmark', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const output = await User.addBookmark(username, id);
+    expect(output).toEqual(expect.any(Number));
+  });
+
+  test('throws bad req if bookmark already exists', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    await User.addBookmark(username, id);
+    try {
+      await User.addBookmark(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof BadRequestError).toBeTruthy();
+    }
+  });
+
+  test('throws Not Found if username DNE', async () => {
+    const username = 'DNE';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    try {
+      await User.addBookmark(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+describe('removeBookmark', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    await User.addBookmark(username, id);
+    const output = await User.removeBookmark(username, id);
+    expect(output).toEqual(expect.any(Number));
+  });
+
+  test('throws Not Found if bookmark DNE', async () => {
+    const username = 'DNE';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    try {
+      await User.removeBookmark(username, id);
+      fail();
+    } catch (err) {
+      expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+});
+
+describe('retrieveFavorites', () => {
+  test('provides empty array for user with no favorites', async () => {
+    const username = 'JDean1';
+    const output = await User.retrieveFavorites(username);
+    expect(output).toEqual([]);
+  });
+
+  test('provides array with template ids of favorited templates', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    await User.addFavorite(username, id);
+    const output = await User.retrieveFavorites(username);
+    expect(output).toEqual([id]);
+  });
+});
+
+describe('retrieveBookmarks', () => {
+  test('provides empty array for user with no bookmarks', async () => {
+    const username = 'JDean1';
+    const output = await User.retrieveBookmarks(username);
+    expect(output).toEqual([]);
+  });
+
+  test('provides array with IDs of bookmarked posts', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    await User.addBookmark(username, id);
+    const output = await User.retrieveBookmarks(username);
+    expect(output).toEqual([id]);
+  });
+});

@@ -10,7 +10,7 @@ class Post {
   Post (id, userId, link, title, body, timestamp, tag/s, location) */
 
   constructor({
-    id, title, link, body, userId, tag, location, createdAt, templates = null,
+    id, title, link, body, userId, tag, location, createdAt, templates = [],
   }) {
     this.id = Number(id);
     this.title = title;

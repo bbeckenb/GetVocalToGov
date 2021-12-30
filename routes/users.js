@@ -45,4 +45,24 @@ router.delete('/:username', checkCorrectUserOrAdmin, async (req, res, next) => {
   }
 });
 
+router.post('/:username/templates/:templateId', checkCorrectUserOrAdmin, async (req, res, next) => {
+  try {
+    const { username, templateId } = req.params;
+    const id = await User.addFavorite(username, templateId);
+    return res.status(201).json({ favorited: id });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.delete('/:username/templates/:templateId', checkCorrectUserOrAdmin, async (req, res, next) => {
+  try {
+    const { username, templateId } = req.params;
+    const id = await User.removeFavorite(username, templateId);
+    return res.status(200).json({ unfavorited: id });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = router;

@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../app');
+const db = require('../db');
 
 const {
   commonBeforeAll,
@@ -34,6 +35,8 @@ describe('GET /users/:username', () => {
         zip: '32233',
         email: 'jdean@gmail.com',
         isAdmin: true,
+        favorites: expect.any(Array),
+        bookmarks: expect.any(Array),
       },
     });
     expect(res.statusCode).toEqual(200);
@@ -84,6 +87,8 @@ describe('PATCH /users/:username', () => {
         zip: '60409',
         email: 'jdean@gmail.com',
         isAdmin: true,
+        favorites: expect.any(Array),
+        bookmarks: expect.any(Array),
       },
     });
 
@@ -127,7 +132,6 @@ describe('PATCH /users/:username', () => {
         zip: '60409',
         email: 'jdean@gmail.com',
         isAdmin: true,
-        email: 'jdean1@gmail.com',
       })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
@@ -166,5 +170,135 @@ describe('DELETE /users/:username', () => {
       .delete('/users/JDean1');
 
     expect(res.statusCode).toEqual(401);
+  });
+});
+
+describe('POST /users/:username/templates/:templateId', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body).toEqual({ favorited: id });
+    expect(res.statusCode).toEqual(201);
+  });
+
+  test('throws not found if username DNE', async () => {
+    const username = 'DNE';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws unauth if username does not match and is not admin', async () => {
+    const username = 'DNE';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser1TokenNonAdmin}`);
+
+    expect(res.statusCode).toEqual(401);
+  });
+
+  test('throws not found if template ID DNE', async () => {
+    const username = 'DNE';
+    const id = 0;
+    const res = await request(app)
+      .post(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws bad req if favorite already exists', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[1];
+    const res = await request(app)
+      .post(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(400);
+  });
+});
+
+describe('DELETE /users/:username/templates/:templateId', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[1];
+    const res = await request(app)
+      .delete(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body).toEqual({ unfavorited: id });
+    expect(res.statusCode).toEqual(200);
+  });
+
+  test('throws unauth if not user or admin', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[1];
+    const res = await request(app)
+      .delete(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser1TokenNonAdmin}`);
+
+    expect(res.statusCode).toEqual(401);
+  });
+
+  test('throws not found if favorite DNE', async () => {
+    const username = 'JDean1';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const res = await request(app)
+      .delete(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws not found if username DNE', async () => {
+    const username = 'DNE';
+    const grabTemplateId = await db.query(
+      'SELECT id FROM templates WHERE title=\'test title\'',
+    );
+    const { id } = grabTemplateId.rows[0];
+    const res = await request(app)
+      .delete(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws not found if template id DNE', async () => {
+    const username = 'DNE';
+    const id = 0;
+    const res = await request(app)
+      .delete(`/users/${username}/templates/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
   });
 });

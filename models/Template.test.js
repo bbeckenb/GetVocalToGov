@@ -38,10 +38,10 @@ describe('check to see if basic Template can be created', () => {
 
 describe('_templateExists', () => {
   test('returns bool true if template exists', async () => {
-    const grabtemplateId = await db.query(
+    const grabTemplateId = await db.query(
       'SELECT id FROM templates WHERE title=\'test title\'',
     );
-    const { id } = grabtemplateId.rows[0];
+    const { id } = grabTemplateId.rows[0];
     const check = await Template._templateExists(id);
     expect(check).toEqual(true);
   });
@@ -76,10 +76,10 @@ describe('getTemplate', () => {
 
 describe('update', () => {
   test('works', async () => {
-    const grabtemplateId = await db.query(
+    const grabTemplateId = await db.query(
       'SELECT id FROM templates WHERE title=\'test title\'',
     );
-    const { id } = grabtemplateId.rows[0];
+    const { id } = grabTemplateId.rows[0];
     const updateData = {
       title: 'test title updated',
       body: 'body updated',

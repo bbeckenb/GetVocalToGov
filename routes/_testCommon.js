@@ -55,7 +55,7 @@ async function commonBeforeAll() {
     tag: 'health care',
     location: 'FL',
   };
-  Post.create(testPost1Data);
+  const testPost1 = await Post.create(testPost1Data);
 
   const testPost2Data = {
     title: 'test title search',
@@ -91,7 +91,7 @@ async function commonBeforeAll() {
     userId: 'JDean1',
     postId: testPost0.id,
   };
-  await Template.create(testTemplate1Data);
+  const testTemplate1 = await Template.create(testTemplate1Data);
 
   const testTemplate2Data = {
     title: 'test header',
@@ -100,6 +100,9 @@ async function commonBeforeAll() {
     postId: testPost0.id,
   };
   await Template.create(testTemplate2Data);
+
+  await User.addBookmark('JDean1', testPost1.id);
+  await User.addFavorite('JDean1', testTemplate1.id);
 }
 
 async function commonBeforeEach() {

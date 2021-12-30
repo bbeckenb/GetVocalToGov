@@ -40,7 +40,7 @@ async function commonBeforeAll() {
     tag: 'health care',
     location: 'FL',
   };
-  Post.create(testPost1Data);
+  await Post.create(testPost1Data);
 
   const testPost2Data = {
     title: 'test title search',

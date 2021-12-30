@@ -2,6 +2,8 @@
 const bcrypt = require('bcrypt');
 const db = require('../db');
 const EasyPostClient = require('../services/EasyPostClient');
+const Template = require('./Template');
+const Post = require('./Post');
 const { UserModelLogger } = require('../logger');
 const { BCRYPT_WORK_FACTOR } = require('../config');
 const {
@@ -14,7 +16,17 @@ class User {
   /* User class scaffolding for User ORM holds attributes
   User (username, password, firstName, lastName, street, city, state, zip, email, isAdmin) */
   constructor({
-    username, password, firstName, lastName, street, city, state, zip, email, isAdmin,
+    username,
+    password,
+    firstName,
+    lastName,
+    street, city,
+    state,
+    zip,
+    email,
+    isAdmin,
+    favorites = [],
+    bookmarks = [],
   }) {
     this.username = username;
     this.password = password;
@@ -26,6 +38,8 @@ class User {
     this.zip = zip;
     this.email = email;
     this.isAdmin = isAdmin;
+    this.favorites = favorites;
+    this.bookmarks = bookmarks;
   }
 
   static async _usernameExists(username) {
@@ -112,6 +126,8 @@ class User {
       [firstName, lastName, username, email, isAdmin, street, city, state, zip, heldUsername],
     );
     UserModelLogger.info(`User ${heldUsername} updated`);
+    const favorites = await User.retrieveFavorites(username);
+    const bookmarks = await User.retrieveBookmarks(username);
     return new User({
       firstName,
       lastName,
@@ -123,10 +139,9 @@ class User {
       city,
       state,
       zip,
+      favorites,
+      bookmarks,
     });
-
-    // UserModelLogger.error(`Error occurred updating User: ${err}`);
-    // throw new BadRequestError(`Something went wrong while updating User: ${err}`);
   }
 
   static async getUser(username) {
@@ -150,6 +165,8 @@ class User {
       [username],
     );
     const user = res.rows[0];
+    user.favorites = await User.retrieveFavorites(username);
+    user.bookmarks = await User.retrieveBookmarks(username);
     return new User(user);
   }
 
@@ -180,6 +197,126 @@ class User {
       verifiedAddress = await EasyPostClient.verifyAddress(data);
     }
     return verifiedAddress;
+  }
+
+  static async _favoriteExists(username, tId) {
+    const userCheck = await User._usernameExists(username);
+    if (!userCheck) {
+      throw new NotFoundError(`${username} Does Not Exist`);
+    }
+    const templateCheck = await Template._templateExists(tId);
+    if (!templateCheck) {
+      throw new NotFoundError(`template with id ${tId} Not Found`);
+    }
+    const checkDbForFavorite = await db.query(
+      `SELECT user_id AS "userId", template_id AS "templateId" 
+            FROM favorites
+            WHERE user_id = $1
+            AND template_id = $2`,
+      [username, tId],
+    );
+    return checkDbForFavorite.rows[0] !== undefined;
+  }
+
+  static async addFavorite(username, tId) {
+    const favCheck = await User._favoriteExists(username, tId);
+    if (favCheck) {
+      throw new BadRequestError(`${username} already favorited this template`);
+    }
+    const newFavorite = await db.query(
+      `INSERT INTO favorites (user_id, template_id)
+      VALUES ($1, $2)
+      RETURNING template_id AS "templateId"`,
+      [username, tId],
+    );
+    const { templateId } = newFavorite.rows[0];
+    return templateId;
+  }
+
+  static async removeFavorite(username, tId) {
+    const favCheck = await User._favoriteExists(username, tId);
+    if (!favCheck) {
+      throw new NotFoundError(`${username} cannot unfavorite this template because this record does not exist in the database`);
+    }
+    const removeFavorite = await db.query(
+      `DELETE FROM favorites
+      WHERE user_id = $1 AND template_id = $2
+      RETURNING template_id AS "templateId"`,
+      [username, tId],
+    );
+    const { templateId } = removeFavorite.rows[0];
+    return templateId;
+  }
+
+  static async _bookmarkExists(username, pId) {
+    const userCheck = await User._usernameExists(username);
+    if (!userCheck) {
+      throw new NotFoundError(`${username} Does Not Exist`);
+    }
+    const postCheck = await Post._postExists(pId);
+    if (!postCheck) {
+      throw new NotFoundError(`post with id ${pId} Not Found`);
+    }
+    const checkDbForBookmark = await db.query(
+      `SELECT user_id AS "userId", post_id AS "postId" 
+            FROM bookmarks
+            WHERE user_id = $1
+            AND post_id = $2`,
+      [username, pId],
+    );
+    return checkDbForBookmark.rows[0] !== undefined;
+  }
+
+  static async addBookmark(username, pId) {
+    const bmCheck = await User._bookmarkExists(username, pId);
+    if (bmCheck) {
+      throw new BadRequestError(`${username} already bookmarked this post`);
+    }
+    const newBookmark = await db.query(
+      `INSERT INTO bookmarks (user_id, post_id)
+      VALUES ($1, $2)
+      RETURNING post_id AS "postId"`,
+      [username, pId],
+    );
+    const { postId } = newBookmark.rows[0];
+    return postId;
+  }
+
+  static async removeBookmark(username, pId) {
+    const bmCheck = await User._bookmarkExists(username, pId);
+    if (!bmCheck) {
+      throw new NotFoundError(`${username} cannot unbookmark this post because this record does not exist in the database`);
+    }
+    const removeBookmark = await db.query(
+      `DELETE FROM bookmarks
+      WHERE user_id = $1 AND post_id = $2
+      RETURNING post_id AS "postId"`,
+      [username, pId],
+    );
+    const { postId } = removeBookmark.rows[0];
+    return postId;
+  }
+
+  static async retrieveFavorites(username) {
+    const userFavRes = await db.query(
+      `SELECT template_id AS "templateId"
+      FROM favorites
+      WHERE user_id = $1
+      ORDER BY created_at DESC`,
+      [username],
+    );
+    return userFavRes.rows.map((fav) => fav.templateId);
+  }
+
+  static async retrieveBookmarks(username) {
+    const userBmRes = await db.query(
+      `SELECT post_id AS "postId"
+      FROM bookmarks
+      WHERE user_id = $1
+      ORDER BY created_at DESC`,
+      [username],
+    );
+    return userBmRes.rows.map((bm) => bm.postId);
   }
 }
 

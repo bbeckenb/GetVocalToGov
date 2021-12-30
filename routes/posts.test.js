@@ -37,7 +37,7 @@ describe('POST /posts', () => {
       post: {
         ...newPost,
         id: expect.any(Number),
-        templates: null,
+        templates: expect.any(Array),
         createdAt: expect.any(String),
       },
     });
@@ -189,7 +189,7 @@ describe('PATCH /posts/:postId', () => {
         ...updatedPost,
         id: expect.any(Number),
         userId: 'JDean1',
-        templates: null,
+        templates: expect.any(Array),
       },
     });
   });
