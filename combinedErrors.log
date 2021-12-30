@@ -1130,3 +1130,9 @@
 {"level":"info","message":"New Post 2128 created","timestamp":"2021-12-29 19:13:43"}
 {"level":"info","message":"Post with id 2124 updated","timestamp":"2021-12-29 19:13:43"}
 {"level":"info","message":"Post with id 2124 Deleted","timestamp":"2021-12-29 19:13:43"}
+{"level":"info","message":"template with id 23 Deleted","timestamp":"2021-12-29 20:55:43"}
+{"level":"info","message":"template with id 24 updated","timestamp":"2021-12-29 20:56:04"}
+{"level":"info","message":"template with id 25 updated","timestamp":"2021-12-29 20:59:12"}
+{"level":"info","message":"template with id 24 Deleted","timestamp":"2021-12-29 20:59:46"}
+{"level":"info","message":"Post with id 3 Deleted","timestamp":"2021-12-29 20:59:49"}
+{"level":"info","message":"Post with id 4 Deleted","timestamp":"2021-12-29 21:00:33"}
