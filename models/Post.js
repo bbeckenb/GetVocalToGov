@@ -85,7 +85,7 @@ class Post {
     if (filterStatements.length > 0) {
       queryString += ` WHERE ${filterStatements.join(' AND ')}`;
     }
-    queryString += ' ORDER BY created_at';
+    queryString += ' ORDER BY created_at DESC';
     const res = await db.query(queryString, queryVals);
     return res.rows.map((post) => new Post(post));
   }
