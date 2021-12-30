@@ -65,4 +65,24 @@ router.delete('/:username/templates/:templateId', checkCorrectUserOrAdmin, async
   }
 });
 
+router.post('/:username/posts/:postId', checkCorrectUserOrAdmin, async (req, res, next) => {
+  try {
+    const { username, postId } = req.params;
+    const id = await User.addBookmark(username, postId);
+    return res.status(201).json({ bookmarked: id });
+  } catch (err) {
+    return next(err);
+  }
+});
+
+router.delete('/:username/posts/:postId', checkCorrectUserOrAdmin, async (req, res, next) => {
+  try {
+    const { username, postId } = req.params;
+    const id = await User.removeBookmark(username, postId);
+    return res.status(200).json({ unbookmarked: id });
+  } catch (err) {
+    return next(err);
+  }
+});
+
 module.exports = router;
