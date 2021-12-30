@@ -102,7 +102,7 @@ describe('GET /posts', () => {
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(2);
-    expect(res.body.posts[1].title).toEqual('test title 2');
+    expect(res.body.posts[1].title).toEqual('test title');
   });
 
   test('retrieves specified location', async () => {
@@ -112,7 +112,7 @@ describe('GET /posts', () => {
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(2);
-    expect(res.body.posts[1].tag).toEqual('defense');
+    expect(res.body.posts[1].tag).toEqual('health care');
   });
 
   test('retrieves correctly with multiple filters', async () => {

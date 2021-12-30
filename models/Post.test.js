@@ -159,14 +159,14 @@ describe('getAllOrFilterPosts', () => {
     const res = await Post.getAllOrFilterPosts({ tag: 'health care' });
     expect(res.length).toEqual(2);
     expect(res[0]).toBeInstanceOf(Post);
-    expect(res[1].title).toEqual('test title 2');
+    expect(res[1].title).toEqual('test title');
   });
 
   test('retrieves specified location', async () => {
     const res = await Post.getAllOrFilterPosts({ location: 'CO' });
     expect(res.length).toEqual(2);
     expect(res[0]).toBeInstanceOf(Post);
-    expect(res[1].tag).toEqual('defense');
+    expect(res[1].tag).toEqual('health care');
   });
 
   test('retrieves correctly with multiple filters', async () => {
