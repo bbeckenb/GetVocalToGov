@@ -302,3 +302,133 @@ describe('DELETE /users/:username/templates/:templateId', () => {
     expect(res.statusCode).toEqual(404);
   });
 });
+
+describe('POST /users/:username/posts/:postId', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body).toEqual({ bookmarked: id });
+    expect(res.statusCode).toEqual(201);
+  });
+
+  test('throws not found if username DNE', async () => {
+    const username = 'DNE';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws unauth if username does not match and is not admin', async () => {
+    const username = 'DNE';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser1TokenNonAdmin}`);
+
+    expect(res.statusCode).toEqual(401);
+  });
+
+  test('throws not found if post ID DNE', async () => {
+    const username = 'DNE';
+    const id = 0;
+    const res = await request(app)
+      .post(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws bad req if bookmark already exists', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title 2\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .post(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(400);
+  });
+});
+
+describe('DELETE /users/:username/posts/:postId', () => {
+  test('works', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title 2\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .delete(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.body).toEqual({ unbookmarked: id });
+    expect(res.statusCode).toEqual(200);
+  });
+
+  test('throws unauth if not user or admin', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[1];
+    const res = await request(app)
+      .delete(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser1TokenNonAdmin}`);
+
+    expect(res.statusCode).toEqual(401);
+  });
+
+  test('throws not found if favorite DNE', async () => {
+    const username = 'JDean1';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .delete(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws not found if username DNE', async () => {
+    const username = 'DNE';
+    const grabPostId = await db.query(
+      'SELECT id FROM posts WHERE title=\'test title\'',
+    );
+    const { id } = grabPostId.rows[0];
+    const res = await request(app)
+      .delete(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+
+  test('throws not found if post id DNE', async () => {
+    const username = 'DNE';
+    const id = 0;
+    const res = await request(app)
+      .delete(`/users/${username}/posts/${id}`)
+      .set('authorization', `Bearer ${testUser0TokenAdmin}`);
+
+    expect(res.statusCode).toEqual(404);
+  });
+});
