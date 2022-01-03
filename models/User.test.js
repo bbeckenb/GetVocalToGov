@@ -100,6 +100,26 @@ describe('update', () => {
     expect(updatedUser.username).toEqual('JD1');
   });
 
+  test('bypasses username manipulation if username remains the same', async () => {
+    const updateData = {
+      firstName: 'Jammy',
+      lastName: 'Dane',
+      username: 'JDean1',
+      password: '1234',
+      street: '60 Sierra Street',
+      city: 'Calumet City',
+      state: 'IL',
+      zip: '60409',
+      county: 'Cook',
+      email: 'jdean1@gmail.com',
+      isAdmin: true,
+    };
+    const updatedUser = await User.update('JDean1', updateData);
+    expect(updatedUser.firstName).toEqual('Jammy');
+    expect(updatedUser.lastName).toEqual('Dane');
+    expect(updatedUser.username).toEqual('JDean1');
+  });
+
   test('throws NotFound error if username is invalid', async () => {
     try {
       /* TestUser0 from _testCommon
@@ -236,6 +256,23 @@ describe('userDataChecks', () => {
     } catch (err) {
       expect(err instanceof BadRequestError).toBeTruthy();
     }
+  });
+
+  test('bypasses username check if input boolean is false', async () => {
+    const usernameExists = {
+      street: '2210 OCEANWALK DR W',
+      city: 'ATLANTIC BEACH',
+      state: 'FL',
+      zip: '32233',
+      username: 'JDean1',
+    };
+    const dataOut = await User.userDataChecks(usernameExists, false);
+    expect(dataOut).toEqual({
+      street: '2210 OCEANWALK DR W',
+      city: 'ATLANTIC BEACH',
+      state: 'FL',
+      zip: '32233',
+    });
   });
 });
 

@@ -181,11 +181,11 @@ class User {
     UserModelLogger.info(`${username} Deleted`);
   }
 
-  static async userDataChecks(data) {
+  static async userDataChecks(data, userCheck = true) {
     const {
       username, street, city, state, zip,
     } = data;
-    if (await User._usernameExists(username)) {
+    if (userCheck && await User._usernameExists(username)) {
       throw new BadRequestError(`Duplicate username: ${username}`);
     }
     let verifiedAddress;
