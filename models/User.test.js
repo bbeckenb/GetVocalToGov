@@ -100,7 +100,7 @@ describe('update', () => {
     expect(updatedUser.username).toEqual('JD1');
   });
 
-  test('bypasses username manipulation if username remains the same', async () => {
+  test('handles same username', async () => {
     const updateData = {
       firstName: 'Jammy',
       lastName: 'Dane',
@@ -138,6 +138,18 @@ describe('update', () => {
             username:"JDean1",
             password:"1234",  */
       await User.update('JDean1', { password: 'WRONGO' });
+      fail();
+    } catch (err) {
+      expect(err instanceof UnauthorizedError).toBeTruthy();
+    }
+  });
+
+  test('throws Unauthorized error if demoUser', async () => {
+    try {
+      /* TestUser0 from _testCommon
+            username:"JDean1",
+            password:"1234",  */
+      await User.update('demoUser', { password: 'passGood' });
       fail();
     } catch (err) {
       expect(err instanceof UnauthorizedError).toBeTruthy();
@@ -200,6 +212,18 @@ describe('deleteUser', () => {
       fail();
     } catch (err) {
       expect(err instanceof NotFoundError).toBeTruthy();
+    }
+  });
+
+  test('throws Unauth if demoUser', async () => {
+    try {
+      /* TestUser0 from _testCommon
+            username:"JDean1",
+            password:"1234",  */
+      await User.deleteUser('demoUser');
+      fail();
+    } catch (err) {
+      expect(err instanceof UnauthorizedError).toBeTruthy();
     }
   });
 });
@@ -266,7 +290,7 @@ describe('userDataChecks', () => {
       zip: '32233',
       username: 'JDean1',
     };
-    const dataOut = await User.userDataChecks(usernameExists, false);
+    const dataOut = await User.userDataChecks(usernameExists, true);
     expect(dataOut).toEqual({
       street: '2210 OCEANWALK DR W',
       city: 'ATLANTIC BEACH',

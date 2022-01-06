@@ -102,12 +102,13 @@ class User {
   static async update(heldUsername, data) {
     /* setting this up for form entry, all fields will be auto-filled except password.
     All fields can be adjusted, password will be used to authorize change */
+    if (heldUsername === 'demoUser') throw new UnauthorizedError('Cannot modify or delete demoUser');
     const {
       username, password, firstName, lastName, email, isAdmin,
     } = data;
     const {
       street, city, state, zip,
-    } = await User.userDataChecks(data);
+    } = await User.userDataChecks(data, (heldUsername === username));
     // use authenticate to ensure User who is requesting update is aware of required password
     const authorizedUser = await User.authenticate(heldUsername, password);
 
@@ -171,6 +172,7 @@ class User {
   }
 
   static async deleteUser(username) {
+    if (username === 'demoUser') throw new UnauthorizedError('Cannot modify or delete demoUser');
     const userCheck = await User._usernameExists(username);
     if (!userCheck) {
       throw new NotFoundError(`${username} Does Not Exist`);
@@ -181,11 +183,11 @@ class User {
     UserModelLogger.info(`${username} Deleted`);
   }
 
-  static async userDataChecks(data, userCheck = true) {
+  static async userDataChecks(data, bypassUserCheck = false) {
     const {
       username, street, city, state, zip,
     } = data;
-    if (userCheck && await User._usernameExists(username)) {
+    if (!bypassUserCheck && await User._usernameExists(username)) {
       throw new BadRequestError(`Duplicate username: ${username}`);
     }
     let verifiedAddress;
