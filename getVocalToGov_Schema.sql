@@ -13,7 +13,7 @@ CREATE TABLE users (
     is_admin BOOLEAN NOT NULL DEFAULT FALSE
 );
 
-CREATE TYPE "category" AS ENUM ('environment', 'health care', 'defense');
+CREATE TYPE "category" AS ENUM ('Agriculture', 'Arts and Humanities', 'Banking', 'Budget', 'Criminal Justice', 'Defense', 'Economy', 'Education', 'Election Reform', 'Energy', 'Environment', 'FEMA', 'Finance', 'Fire Arms', 'Foreign Affairs', 'Health Care', 'Housing', 'Immigration', 'Interior', 'Judiciary', 'Labor', 'Law Enforcement', 'Medicare', 'Presidential Personnel', 'Religion', 'Service Academies', 'Small Business', 'Social Security', 'Taxes', 'Telecommunications', 'Trade', 'Transportation', 'Veterans', 'Welfare');
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
   title TEXT NOT NULL,

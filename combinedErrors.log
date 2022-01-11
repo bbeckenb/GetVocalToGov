@@ -2138,3 +2138,43 @@
 {"level":"info","message":"template with id 2401 Deleted","timestamp":"2022-01-06 18:51:27"}
 {"level":"info","message":"New User JDean1 created","timestamp":"2022-01-06 18:51:27"}
 {"level":"info","message":"New Post 3008 created","timestamp":"2022-01-06 18:51:27"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 13:26:54"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 13:26:54"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 20:22:44"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 20:30:20"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 21:23:24"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 21:25:18"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 21:32:12"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-07 21:34:53"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 11:04:23"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 11:26:04"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 11:26:22"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 11:30:21"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:02:02"}
+{"level":"info","message":"tacocat Deleted","timestamp":"2022-01-11 12:02:10"}
+{"level":"info","message":"New User tacocat created","timestamp":"2022-01-11 12:02:39"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:05:22"}
+{"level":"info","message":"User tacocat updated","timestamp":"2022-01-11 12:05:22"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:05:22"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:05:49"}
+{"level":"info","message":"User tacocat updated","timestamp":"2022-01-11 12:05:49"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:05:50"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:05:50"}
+{"level":"info","message":"User tacocat updated","timestamp":"2022-01-11 12:05:50"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:05:50"}
+{"level":"error","message":"Something went wrong verifying User address: Address not found,House number is missing","timestamp":"2022-01-11 12:08:06"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:08:24"}
+{"level":"info","message":"User tacocat updated","timestamp":"2022-01-11 12:08:24"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:08:24"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:08:25"}
+{"level":"info","message":"User tacocat updated","timestamp":"2022-01-11 12:08:25"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:08:25"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:11:16"}
+{"level":"info","message":"User tacocat updated","timestamp":"2022-01-11 12:11:16"}
+{"level":"info","message":"User, tacocat authenticated","timestamp":"2022-01-11 12:11:16"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:17:53"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:20:07"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:21:16"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:28:58"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:35:08"}
+{"level":"info","message":"New Post 9 created","timestamp":"2022-01-11 15:16:01"}
