@@ -111,7 +111,8 @@ class Post {
     const postTemplates = await db.query(
       `SELECT id, title, body, user_id AS "userId", created_at AS "createdAt", post_id AS "postId"
       FROM templates
-      WHERE post_id=$1`,
+      WHERE post_id=$1
+      ORDER BY created_at DESC`,
       [id],
     );
     post.templates = postTemplates.rows;

@@ -2178,3 +2178,14 @@
 {"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:28:58"}
 {"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-11 12:35:08"}
 {"level":"info","message":"New Post 9 created","timestamp":"2022-01-11 15:16:01"}
+{"level":"info","message":"New User demoUser created","timestamp":"2022-01-11 15:51:02"}
+{"level":"info","message":"New Post 1 created","timestamp":"2022-01-11 15:51:32"}
+{"level":"info","message":"Post with id 1 updated","timestamp":"2022-01-11 15:55:52"}
+{"level":"info","message":"New Post 2 created","timestamp":"2022-01-11 16:24:17"}
+{"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-11 16:33:39"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-12 17:13:16"}
+{"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-12 18:32:58"}
+{"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-12 18:35:21"}
+{"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-12 18:36:06"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-12 18:53:45"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-13 17:52:47"}
