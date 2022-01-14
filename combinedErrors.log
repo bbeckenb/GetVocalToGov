@@ -2189,3 +2189,7 @@
 {"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-12 18:36:06"}
 {"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-12 18:53:45"}
 {"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-13 17:52:47"}
+{"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-14 12:20:17"}
+{"level":"info","message":"New User tacocat created","timestamp":"2022-01-14 12:52:11"}
+{"level":"info","message":"User, demoUser authenticated","timestamp":"2022-01-14 13:22:50"}
+{"level":"info","message":"Post with id 2 updated","timestamp":"2022-01-14 13:23:22"}
