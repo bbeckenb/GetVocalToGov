@@ -3,7 +3,7 @@
 # GetVocalToGov
 ## Exchange your ideas on current events and let your thoughts be heard!
 
-[![GetVocalToGov App](src/images/getVocalToGovDisplayView.png)](https://getvocaltogov.surge.sh/)
+[![GetVocalToGov App](static/images/getVocalToGovDisplayView.png)](https://getvocaltogov.surge.sh/)
 
 
 ## Description:
