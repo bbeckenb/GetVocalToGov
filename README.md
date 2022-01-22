@@ -82,7 +82,7 @@ Postgres
 <a name="Schema"></a>
 
 ## Schema
-![Schema](src/images/schema.png)
+![Schema](static/images/schema.png)
 
 <a name="Deployment"></a>
 
@@ -93,7 +93,7 @@ The Front-End React App is deployed on surge at [https://getvocaltogov.surge.sh/
 
 ## Developer
 ### Bryce Beckenbach
-![Me](src/images/professional_shot.jpeg)
+![Me](static/images/professional_shot.jpeg)
 
 Please feel free to reach out!
 - Email: [brycebeckenbach@gmail.com](mailto:brycebeckenbach@gmail.com)
