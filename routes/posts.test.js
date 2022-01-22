@@ -23,7 +23,7 @@ describe('POST /posts', () => {
       title: 'test title 2',
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do q, r, s',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'FL',
       userId: 'JDean1',
     };
@@ -54,7 +54,7 @@ describe('POST /posts', () => {
     const badPost = {
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do q, r, s',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'FL',
     };
     const res = await request(app)
@@ -98,7 +98,7 @@ describe('GET /posts', () => {
   test('retrieves specified tag', async () => {
     const res = await request(app)
       .get('/posts')
-      .query({ tag: 'health care' })
+      .query({ tag: 'Health Care' })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(2);
@@ -112,13 +112,13 @@ describe('GET /posts', () => {
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(2);
-    expect(res.body.posts[1].tag).toEqual('health care');
+    expect(res.body.posts[1].tag).toEqual('Health Care');
   });
 
   test('retrieves correctly with multiple filters', async () => {
     const res = await request(app)
       .get('/posts')
-      .query({ location: 'CO', tag: 'environment' })
+      .query({ location: 'CO', tag: 'Environment' })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(0);
@@ -127,7 +127,7 @@ describe('GET /posts', () => {
   test('retrieves correctly with multiple filters', async () => {
     const res = await request(app)
       .get('/posts')
-      .query({ location: 'CO', tag: 'health care' })
+      .query({ location: 'CO', tag: 'Health Care' })
       .set('authorization', `Bearer ${testUser0TokenAdmin}`);
 
     expect(res.body.posts.length).toEqual(1);
@@ -152,7 +152,7 @@ describe('GET /posts/:postId', () => {
         body: 'we need to do x, y, z',
         userId: 'JDean1',
         templates: expect.any(Array),
-        tag: 'health care',
+        tag: 'Health Care',
         location: 'CO',
       },
     });
@@ -176,7 +176,7 @@ describe('PATCH /posts/:postId', () => {
       title: 'test title updated',
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do l, m, n',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'GA',
     };
     const res = await request(app)
@@ -208,7 +208,7 @@ describe('PATCH /posts/:postId', () => {
       title: 'test title updated',
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do l, m, n',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'GA',
     };
     const res = await request(app)
@@ -223,7 +223,7 @@ describe('PATCH /posts/:postId', () => {
       title: 'test title updated',
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do l, m, n',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'GA',
     };
     const res = await request(app)
@@ -238,7 +238,7 @@ describe('PATCH /posts/:postId', () => {
     const badPost = {
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do q, r, s',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'FL',
     };
     const postToUpdate = await db.query('SELECT id FROM posts WHERE title=\'test title\'');

@@ -30,7 +30,7 @@ async function commonBeforeAll() {
     link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
     body: 'we need to do x, y, z',
     userId: testUser0.username,
-    tag: 'health care',
+    tag: 'Health Care',
     location: 'CO',
   };
   const testPost0 = await Post.create(testPost0Data);

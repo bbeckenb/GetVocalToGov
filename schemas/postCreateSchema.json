@@ -10,7 +10,7 @@
             "title": "test title 2",
             "link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
             "body": "we need to do q, r, s",
-            "tag": "health care",
+            "tag": "Health Care",
             "location": "FL"
         }
     ],
@@ -59,7 +59,7 @@
             "description": "An explanation about the purpose of this instance.",
             "default": "",
             "examples": [
-                "health care"
+                "Health Care"
             ]
         },
         "location": {

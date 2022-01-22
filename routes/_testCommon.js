@@ -42,7 +42,7 @@ async function commonBeforeAll() {
     link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
     body: 'we need to do x, y, z',
     userId: testUser0.username,
-    tag: 'health care',
+    tag: 'Health Care',
     location: 'CO',
   };
   const testPost0 = await Post.create(testPost0Data);
@@ -52,7 +52,7 @@ async function commonBeforeAll() {
     link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
     body: 'we need to do x, y, z',
     userId: testUser0.username,
-    tag: 'health care',
+    tag: 'Health Care',
     location: 'FL',
   };
   const testPost1 = await Post.create(testPost1Data);
@@ -62,7 +62,7 @@ async function commonBeforeAll() {
     link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
     body: 'we need to do x, y, z',
     userId: testUser0.username,
-    tag: 'environment',
+    tag: 'Environment',
     location: 'AZ',
   };
   await Post.create(testPost2Data);
@@ -72,7 +72,7 @@ async function commonBeforeAll() {
     link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
     body: 'very specific inquiry',
     userId: testUser0.username,
-    tag: 'defense',
+    tag: 'Defense',
     location: 'CO',
   };
   await Post.create(testPost3Data);

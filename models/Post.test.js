@@ -29,7 +29,7 @@ describe('check to see if basic Post can be created', () => {
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do x, y, z',
       userId: username,
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'CO',
     };
 
@@ -38,7 +38,7 @@ describe('check to see if basic Post can be created', () => {
     expect(res.userId).toEqual(username);
     expect(res.id).toEqual(expect.any(Number));
     expect(res.title).toEqual('test title');
-    expect(res.tag).toEqual('health care');
+    expect(res.tag).toEqual('Health Care');
   });
 });
 
@@ -75,7 +75,7 @@ describe('update', () => {
       title: 'test title updated',
       link: 'https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/',
       body: 'we need to do a, b, c',
-      tag: 'health care',
+      tag: 'Health Care',
       location: 'CO',
     };
     const updatedPost = await Post.update(id, updateData);
@@ -156,7 +156,7 @@ describe('getAllOrFilterPosts', () => {
   });
 
   test('retrieves specified tag', async () => {
-    const res = await Post.getAllOrFilterPosts({ tag: 'health care' });
+    const res = await Post.getAllOrFilterPosts({ tag: 'Health Care' });
     expect(res.length).toEqual(2);
     expect(res[0]).toBeInstanceOf(Post);
     expect(res[1].title).toEqual('test title');
@@ -166,16 +166,16 @@ describe('getAllOrFilterPosts', () => {
     const res = await Post.getAllOrFilterPosts({ location: 'CO' });
     expect(res.length).toEqual(2);
     expect(res[0]).toBeInstanceOf(Post);
-    expect(res[1].tag).toEqual('health care');
+    expect(res[1].tag).toEqual('Health Care');
   });
 
   test('retrieves correctly with multiple filters', async () => {
-    const res = await Post.getAllOrFilterPosts({ location: 'CO', tag: 'environment' });
+    const res = await Post.getAllOrFilterPosts({ location: 'CO', tag: 'Environment' });
     expect(res.length).toEqual(0);
   });
 
   test('retrieves correctly with multiple filters', async () => {
-    const res = await Post.getAllOrFilterPosts({ location: 'CO', tag: 'health care' });
+    const res = await Post.getAllOrFilterPosts({ location: 'CO', tag: 'Health Care' });
     expect(res.length).toEqual(1);
     expect(res[0]).toBeInstanceOf(Post);
   });
