@@ -230,6 +230,44 @@ Example Response:
 
 #### PATCH /users/:username
 
+Sample Request:
+```
+curl --request PATCH \
+  --url https://getvocaltogov.herokuapp.com/users/testUser \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g' \
+  --data '{
+			"firstName": "changedname",
+      "lastName": "user",
+      "username": "testUser",
+      "password": "passGood",
+      "email": "testUser@test.com",
+      "street": "2210 oceanwalk dr w",
+      "city": "atlantic beach",
+      "state": "FL",
+      "zip": "32233"
+}'
+```
+
+Sample Response:
+```
+{
+	"user": {
+		"username": "testUser",
+		"password": "$2b$12$A0CLfKS/wKKuu0TL5M9r5uWhb4EonWuQ9UydKhStPOl73K6lQzUuy",
+		"firstName": "changedname",
+		"lastName": "user",
+		"street": "2210 OCEANWALK DR W",
+		"city": "ATLANTIC BEACH",
+		"state": "FL",
+		"zip": "32233",
+		"email": "testUser@test.com",
+		"isAdmin": false,
+		"favorites": [],
+		"bookmarks": []
+	}
+}
+```
 
 <a name="DeleteUser"></a>
 
