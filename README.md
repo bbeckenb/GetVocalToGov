@@ -273,6 +273,20 @@ Sample Response:
 
 #### User Deletion
 
+Sample Request:
+```
+curl --request DELETE \
+  --url https://getvocaltogov.herokuapp.com/users/testUser \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{
+	"deleted": "testUser"
+}
+```
 
 <a name="PostRequests"></a>
 
