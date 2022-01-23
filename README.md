@@ -172,20 +172,22 @@ curl -X POST https://getvocaltogov.herokuapp.com/users/${USERNAME} \
 
 Response:
 ```
-{ "user": {
-    "username";
-    "password": String
-    "firstName": String
-    "lastName": String
-    "street": String
-    "city": String
-    "state": String
-    "zip": String
-    "email": String
-    "isAdmin": Boolean
-    "favorites": [Number]
-    "bookmarks" = [Number]
-} }
+{ "user": 
+    {
+        "username";
+        "password": String
+        "firstName": String
+        "lastName": String
+        "street": String
+        "city": String
+        "state": String
+        "zip": String
+        "email": String
+        "isAdmin": Boolean
+        "favorites": [Number]
+        "bookmarks" = [Number]
+    } 
+}
 ```
 
 <a name="LoginAndDemo"></a>
