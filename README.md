@@ -42,7 +42,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ POST /posts ](#AddPost)
         - [ GET /posts ](#getPost)
         - [ GET /posts/:postId ](#specificPost)
-        - [ Updating a Post ](#UpdatePost)
+        - [ PATCH /posts/:postId ](#UpdatePost)
         - [ Deleting Post](#DeletePost)
         - [ Filtering Posts ](#FilterPosts)
         - [ Bookmark Post ](#BookmarkPost)
@@ -463,7 +463,7 @@ Sample Response:
 		"id": 4,
 		"title": "Newsom backs away from single-payer health care pledge",
 		"link": "https://calmatters.org/commentary/2022/01/newsom-single-payer-health-care/",
-		"body": "Californians, I am sure like the rest of the country, this is a hot topic. I, for one, think healthcare is one of the most important issues at the moment. I am including a template of what I would write to Newsom and his team if I lived over there!",
+		"body": String,
 		"userId": "demoUser",
 		"tag": "Health Care",
 		"location": "CA",
@@ -482,6 +482,43 @@ Sample Response:
 }
 ```
 
+<a name="UpdatePost"></a>
+
+#### PATCH /posts/:postId
+
+Sample Request:
+```
+curl --request PATCH \
+  --url https://getvocaltogov.herokuapp.com/posts/9 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g' \
+  --data '{
+	 "title": "test title 2",
+      "link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
+      "body": "edited body",
+      "tag": "Health Care",
+      "location": "FL",
+      "userId": "JDean1"
+     
+}'
+```
+
+Sample Response:
+```
+{
+	"post": {
+		"id": 9,
+		"title": "test title 2",
+		"link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
+		"body": "edited body",
+		"userId": "testUser",
+		"tag": "Health Care",
+		"location": "FL",
+		"templates": []
+	}
+}
+```
+
 <a name="specificPost"></a>
 
 #### GET /posts/:postId
@@ -496,22 +533,6 @@ Sample Response:
 
 ```
 
-**Navigating to Posts Feed**
-![Home Options](src/images/homeOptions.png)
-
-**Posts Feed**
-Posts Feed displays all Posts from all Users and can be filtered (more on that later)
-![Posts Feed](src/images/postsFeed.png)
-
-**Posts Created**
-![Posts Created](src/images/postsCreated.png)
-
-The behavior is the same in both locations, but to explain the process we will go through the 'Posts Feed'. Once on the Posts Feed (accessible to Users and non-Users, however the capability to create a post is only available to logged in Users), the User will see the drop-down option to 'Create New Post'.
-
-**Create New Post**
-![Create Post](src/images/createPost.png)
-
-The User fills in the fields ('Location' and 'Tag' are drop-down select fields, Link is nullable), then clicks 'Create Post' at the bottom of the field. Form validation of the front-end will ensure all fields are within tolerance. The form data will then be sent to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) which will perform its own schema validation, then if all data is within tolerance, store the record in the database and pass back additional information (created_at). This instance will immediately be able for viewing on the 'Posts Feed' or 'Posts Created' list. 
 
 #### Updating Post
 To update a Post, the User has to have ownership (they must have created the Post to have ownership) of the Post in question. If they do, they will see an option to 'Edit' at the bottom of the Post:
