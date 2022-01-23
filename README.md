@@ -111,7 +111,8 @@ Please feel free to reach out!
 #### Register
 
 Request:
-```curl -X POST https://getvocaltogov.herokuapp.com/auth/register \
+```
+curl -X POST https://getvocaltogov.herokuapp.com/auth/register \
 -H 'Content-Type: application/json' \
 -d '{
     "firstName": String,
