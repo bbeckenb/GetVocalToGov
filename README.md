@@ -48,7 +48,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ POST /templates ](#AddTemplate)
         - [ GET /templates ](#getTemplate)
         - [ GET /templates/:templateId ](#specificTemplate)
-        - [ Editing a Template ](#EditTemplate)
+        - [ PATCH /templates/:templateId ](#EditTemplate)
         - [ Deleting a Template ](#DeleteTemplate)
         - [ Filtering Templates ](#FilterTemplates)
         - [ Favorite Template ](#FavoriteTemplate)
@@ -614,42 +614,35 @@ Sample Response:
 
 ```
 
-**Navigating to Templates Feed**
-![Home Options](src/images/homeOptions.png)
-
-**Templates Feed**: Templates Feed displays all Templates from all Users and can be filtered (more on that later)
-![Templates Feed](src/images/templatesFeed.png)
-
-**Templates Created**
-![Templates Created](src/images/templatesCreated.png)
-
-**Post Details Create Related Template**
-![Posts Details](src/images/postDetailsCreateTemplate.png)
-
-The behavior is the same in all three locations, but to explain the process we will go through the 'Templates Feed'. Once on the Templates Feed (accessible to Users and non-Users, however the capability to create a Template is only available to logged in Users), the User will see the drop-down option to 'Create New Template'.
-
-**Create New Template**
-![Create Template](src/images/createTemplate.png)
-
-The User fills in the fields, then clicks 'Create Template' at the bottom of the field. Form validation of the front-end will ensure all fields are within tolerance. The form data will then be sent to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) which will perform its own schema validation, then if all data is within tolerance, store the record in the database and pass back additional information (created_at). This instance will immediately be able for viewing on the 'Templates Feed', 'Templates Created', or The Post's Details page. 
-
 <a name="EditTemplate"></a>
 
-#### Editing a Template
-To update a Template, the User has to have ownership (they must have created the Template to have ownership) of the Template in question. If they do, they will see an option to 'Edit' at the bottom of the Template:
+#### PATCH /templates/:templateId
 
-**Owned Template Example**
-![Owned Template](src/images/templateOwned.png)
+Sample Request:
+```
+curl --request PATCH \
+  --url https://getvocaltogov.herokuapp.com/templates/18 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g' \
+  --data '{
+	 "title": "edited title",
+    "body": "we need to do q, r, s"
+}'
+```
 
-If they do not, there will be no options.
-
-**unOwned Template Example**
-![Template](src/images/unownedTemplate.png)
-
-If they click on 'Edit' on a Template they own, the User will be redirected to an Edit Template Portal for that particular Template. The form will be auto-populated with the current data of the Template in question. The User simply changes whichever fields they want to alter and clicks 'Edit Template' at the bottom of the form. Form validation of the front-end will ensure all fields are within tolerance. The form data will then be sent to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) which will perform its own schema validation, then if all data is within tolerance, store the record updates in the database. The updated instance will immediately be able for viewing on the 'Templates Feed', 'Templates Created', or The Post's Details page. 
-
-**Edit Template Portal**
-![Edit Template](src/images/editTemplate.png)
+Sample Response:
+```
+{
+	"template": {
+		"id": 18,
+		"title": "edited title",
+		"body": "we need to do q, r, s",
+		"userId": "testUser",
+		"postId": null,
+		"createdAt": "2022-01-23T19:26:57.849Z"
+	}
+}
+```
 
 <a name="DeleteTemplate"></a>
 
