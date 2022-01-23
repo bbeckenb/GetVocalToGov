@@ -115,10 +115,11 @@ Please feel free to reach out!
 
 Request:
 ```
-curl -X POST https://getvocaltogov.herokuapp.com/auth/register \
--H 'Content-Type: application/json' \
--d '{
-    "firstName": String,
+curl --request POST \
+  --url https://getvocaltogov.herokuapp.com/auth/register \
+  --header 'Content-Type: application/json' \
+  --data '{
+			"firstName": String,
       "lastName": String,
       "username": String,
       "password": String,
@@ -126,7 +127,7 @@ curl -X POST https://getvocaltogov.herokuapp.com/auth/register \
       "street": String,
       "city": String,
       "state": String,
-      "zip": String,
+      "zip": String
 }'
 ```
 

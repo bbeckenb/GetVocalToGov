@@ -432,11 +432,3 @@ describe('DELETE /users/:username/posts/:postId', () => {
     expect(res.statusCode).toEqual(404);
   });
 });
-
-
-curl -X POST https://getvocaltogov.herokuapp.com/auth/token \
--H 'Content-Type: application/json' \
--d '{
-      "username": "demoUser",
-      "password": "passGood",
-}'
