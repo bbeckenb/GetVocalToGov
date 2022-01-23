@@ -108,7 +108,7 @@ Please feel free to reach out!
 
 ### Auth Requests
 
-#### Register
+#### POST /auth/token
 
 Request:
 ```
@@ -124,6 +124,23 @@ curl -X POST https://getvocaltogov.herokuapp.com/auth/register \
       "city": String,
       "state": String,
       "zip": String,
+}'
+```
+
+Response:
+```
+{ "token": String }
+```
+
+#### POST /auth/token
+Retrieves a token for existing Users
+Request:
+```
+curl -X POST https://getvocaltogov.herokuapp.com/auth/token \
+-H 'Content-Type: application/json' \
+-d '{
+      "username": String,
+      "password": String,
 }'
 ```
 
