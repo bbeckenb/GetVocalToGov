@@ -49,10 +49,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ GET /templates ](#getTemplate)
         - [ GET /templates/:templateId ](#specificTemplate)
         - [ PATCH /templates/:templateId ](#EditTemplate)
-        - [ Deleting a Template ](#DeleteTemplate)
-        - [ Filtering Templates ](#FilterTemplates)
-        - [ Favorite Template ](#FavoriteTemplate)
-        - [ Quick Copy ](#QuickCopy)
+        - [ DELETE /templates/:templateId ](#DeleteTemplate)
     - [ Representatives ](#RepresentativeRequests)
 6. [ Running App Locally ](#RunningLocally)
     - [ Requirements ](#Requirements)
@@ -600,20 +597,6 @@ Sample Response:
 }
 ```
 
-<a name="specificPost"></a>
-
-#### GET /posts/:postId
-
-Sample Request:
-```
-
-```
-
-Sample Response:
-```
-
-```
-
 <a name="EditTemplate"></a>
 
 #### PATCH /templates/:templateId
@@ -646,74 +629,17 @@ Sample Response:
 
 <a name="DeleteTemplate"></a>
 
-#### Deleting a Template
-To delete a Template, the User has to have ownership (they must have created the Template to have ownership) of the Template in question. If they do, they will see an option to 'Delete' at the bottom of the Template:
+#### DELETE /templates/:templateId
 
-**Owned Template Example**
-![Owned Template](src/images/templateOwned.png)
+Sample Request:
+```
 
-If they click this 'Delete' button, the Template id along with the user token (to check for ownership) will be sent to [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov). If they have ownership and the record exists, it will be deleted from the database, the front-end will be informed and updated by removing the Template in question.
+```
 
-<a name="FilterTemplates"></a>
+Sample Response:
+```
 
-#### Filtering Templates
-There are three Template Lists on the app that allow a User to filter the Templates. The first is by navigating to the Templates feed by clicking 'Templates' on the navbar or under the 'Options' drop-down on the home page. The second is by navigating to the 'Profile' page and selecting the 'Templates Created' tab on the secondary navbar. The third is by navigating to the 'Profile' page and selecting the 'Templates Favorited' tab on the secondary navbar. For the second two, you need to be logged in.
-
-**Navigating to Templates Feed**
-![Home Options](src/images/homeOptions.png)
-
-**Templates Feed**: Templates Feed displays all Templates from all Users
-![Templates Feed](src/images/templatesFeed.png)
-
-**Templates Created**: Templates Created shows a logged in User all of the Templates they have personally created
-![Templates Created](src/images/templatesCreated.png)
-
-**Templates Favorited**: Templates Favorited shows a logged in User all of the Templates they have Favorited (more on that later)
-![Templates Favorited](src/images/templatesFavorited.png)
-
-The behavior is the same in all locations, but to explain the process we will go through the 'Templates Feed'. Once on the Templates Feed (accessible to Users and non-Users, as is the 'Search for Template' functionality), the User will see the drop-down option to 'Search for Template'. Once clicked, this will present a 'Search Templates' form where the User can select any and all of search criteria 'title' (matching phrase) and 'body' (matching phrase).
-
-**Search Templates**
-![Search Templates](src/images/searchTemplates.png)
-
-Once the User enters their search criteria and selects 'Search Templates' at the bottom of the form, the request will be sent to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov). The database will be queried for records that match all filters. The resulting list will be sent and displayed on the front-end along with the search criteria in the form's alert message box.
-
-**Search Templates Success**
-![Search Templates Success](src/images/searchTemplatesSuccess.png)
-
-<a name="FavoritTemplate"></a>
-
-#### Favoriting a Templates
-Favoriting, in this context, is a Request meant to allow a User to tag a Template of interest to be more easily accessed when they want to find it again at a later time. This is a Request only accessible to a logged-in User. When logged-in viewing Templates, the User will see a yellow Favorite icon on all Templates. If it is outlined, the Template has not been tagged, if it is filled in, the Template has been tagged. The user can toggle Favorited status by clicking on the icon button.
-
-**Template unFavorited**
-![Template unFavorited](src/images/unFavorited.png)
-
-**Template Favorited**
-![Template Favorited](src/images/favorited.png)
-
-For ease of finding a User's Favorited Templates, the User simply has to navigate to their 'Profile' page and select 'Templates Favorited' on the secondary navbar. This will show the User a list of their Favorited Templates from most recently created to least recently created.
-
-**Templates Favorited List**
-![Templates Favorited](src/images/templatesFavorited.png)
-
-<a name="QuickCopy"></a>
-
-#### QuickCopy Template Body
-Logged in Users can also QuickCopy the Body of a Template. They click the Copy icon on the Template of interest, this will copy the body of that specific Template to their computer's clipboard along with an introductory part of the message and a sign-off containing theUser's first and last name on file.
-
-**Template QuickCopy**
-![Template QuickCopy](src/images/unFavorited.png)
-
-Once the User has the message on their clipboard, they can paste it wherever they choose! 
-
-**Templates QuickCopy Demo**
-![Templates QuickCopy Demo](src/images/quickCopy.png)
-
-**Templates QuickCopy Demo Continued**
-![Templates QuickCopy Demo Continued](src/images/quickPaste.png)
-
-The idea behind this is that Users can find Templates they like, copy the message, bring it to their Representative's Contact page, and deliver it very quickly.
+```
 
 <a name="RepresentativeRequests"></a>
 
