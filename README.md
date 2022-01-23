@@ -46,6 +46,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ DELETE /posts/:postId ](#deletePost)
     - [ Template Requests ](#TemplateRequests)
         - [ POST /templates ](#AddTemplate)
+        - [ GET /templates ](#getTemplate)
         - [ Editing a Template ](#EditTemplate)
         - [ Deleting a Template ](#DeleteTemplate)
         - [ Filtering Templates ](#FilterTemplates)
@@ -432,20 +433,6 @@ Response:
 
 Sample Request:
 ```
-
-```
-
-Sample Response:
-```
-
-```
-
-<a name="specificPost"></a>
-
-#### GET /posts/:postId
-
-Sample Request:
-```
 curl --request GET \
   --url https://getvocaltogov.herokuapp.com/posts/4 \
   --header 'Content-Type: application/json' \
@@ -534,8 +521,6 @@ Sample Response:
 }
 ```
 
-
-
 <a name="TemplateRequests"></a>
 
 ### Template Requests
@@ -569,6 +554,37 @@ Sample Response:
 		"createdAt": "2022-01-23T19:26:57.849Z"
 	}
 }
+```
+
+<a name="getTemplate"></a>
+
+#### GET /templates
+
+Sample Request:
+```
+curl --request GET \
+  --url https://getvocaltogov.herokuapp.com/templates \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{ "templates": [Object] }
+```
+
+<a name="specificPost"></a>
+
+#### GET /posts/:postId
+
+Sample Request:
+```
+
+```
+
+Sample Response:
+```
+
 ```
 
 <a name="specificPost"></a>
