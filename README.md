@@ -51,6 +51,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ PATCH /templates/:templateId ](#EditTemplate)
         - [ DELETE /templates/:templateId ](#DeleteTemplate)
     - [ Representatives ](#RepresentativeRequests)
+        - [ GET /representatives/:username ](#getRepresentative)
 6. [ Running App Locally ](#RunningLocally)
     - [ Requirements ](#Requirements)
     - [ API Keys ](#APIKeys)
@@ -651,10 +652,24 @@ Sample Response:
 ### Representative Requests
 When a User registers, they are required to enter their residential address. This address is verified through an external service before being stored in the database. The address is then used to retrieve the User's Government representatives, from the President of The United States to their local officials. The list of representatives along with their contact information can be found on the User's 'Profile' page under the 'Representatives' tab. There is variance in what contact information (address, phone #, email, web page) is available, but the maximum amount of contact information is displayed for each Representative.
 
-**Representative**
-![Representative](src/images/representative.png)
+<a name="getRepresentative"></a>
 
-The representative's party affiliation informs the color of their title banner. (Democratic Party=blue, Republican Party=Red, Unknown=Purple). Simply QuickCopy the Template you want, navigate to the Representative you deem most appropriate for the situation and let your voice be heard!
+#### GET /representatives/:username
+
+Sample Request:
+```
+curl --request GET \
+  --url https://getvocaltogov.herokuapp.com/representatives/demoUser \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbW9Vc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MTkyOX0.mYkdokA8TbMD3qW9HbfnYR4wK9_aV6SYQ2yFUqnb8JQ'
+```
+This route utilizes a wrapper that communicates to [Google Civic Information API](https://developers.google.com/civic-information) under the hood. See the documentation on retrieving [representative information](https://developers.google.com/civic-information/docs/v2#Representatives) to understand more about what the 'Object' in the sample response below contains.
+
+Sample Response:
+```
+{
+	"representatives": Object
+}
+```
 
 <a name="RunningLocally"></a>
 
