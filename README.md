@@ -165,30 +165,39 @@ Response:
 
 #### GET /users/:username
 
-Request:
+Example Request:
 ```
-curl -X POST https://getvocaltogov.herokuapp.com/users/${USERNAME} \
--H 'Content-Type: application/json' \
--H 'authorization: Bearer ${TOKEN}'
+curl --request GET \
+  --url https://getvocaltogov.herokuapp.com/users/demoUser \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImRlbW9Vc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MTkyOX0.mYkdokA8TbMD3qW9HbfnYR4wK9_aV6SYQ2yFUqnb8JQ'
 ```
 
-Response:
+Example Response:
 ```
-{ "user": 
-    {
-        "username";
-        "password": String
-        "firstName": String
-        "lastName": String
-        "street": String
-        "city": String
-        "state": String
-        "zip": String
-        "email": String
-        "isAdmin": Boolean
-        "favorites": [Number]
-        "bookmarks" = [Number]
-    } 
+{
+	"user": {
+		"username": "demoUser",
+		"password": "$2b$12$s3NJiNz1bbT2DZ56rWenredu60wGddT0qNR5WblylReVgoreFttdu",
+		"firstName": "Demo",
+		"lastName": "User",
+		"street": "2003 KLATTENHOFF DR",
+		"city": "AUSTIN",
+		"state": "TX",
+		"zip": "78728",
+		"email": "demoUser@demo.user",
+		"isAdmin": false,
+		"favorites": [
+			14,
+			11,
+			12
+		],
+		"bookmarks": [
+			4,
+			8,
+			5,
+			6
+		]
+	}
 }
 ```
 
