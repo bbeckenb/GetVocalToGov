@@ -142,11 +142,12 @@ Retrieves a token for existing Users
 
 Request:
 ```
-curl -X POST https://getvocaltogov.herokuapp.com/auth/token \
--H 'Content-Type: application/json' \
--d '{
+curl --request POST \
+  --url https://getvocaltogov.herokuapp.com/auth/token \
+  --header 'Content-Type: application/json' \
+  --data '{
       "username": String,
-      "password": String,
+      "password": String
 }'
 ```
 
