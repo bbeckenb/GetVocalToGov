@@ -28,11 +28,11 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
 4. [ Developer ](#Developer)
 5. [ Requests ](#Requests)
     - [ Auth Requests ](#AuthRequests)
-        - [ Register ](#Register)
-        - [ Token ](#Token)
+        - [ POST /auth/register ](#Register)
+        - [ POST /auth/token ](#Token)
     - [ User Requests ](#UserRequests)
-        - [ User Get ](#GetUser)
-        - [ User Editing ](#EditUser)
+        - [ GET /users/:username ](#GetUser)
+        - [ PATCH /users/:username ](#EditUser)
         - [ User Deletion ](#DeleteUser)
     - [ Post Requests ](#PostRequests)
         - [ Adding a Post ](#AddPost)
@@ -119,15 +119,15 @@ curl --request POST \
   --url https://getvocaltogov.herokuapp.com/auth/register \
   --header 'Content-Type: application/json' \
   --data '{
-			"firstName": String,
-      "lastName": String,
-      "username": String,
-      "password": String,
-      "email": String,
-      "street": String,
-      "city": String,
-      "state": String,
-      "zip": String
+	    "firstName": String,
+        "lastName": String,
+        "username": String,
+        "password": String,
+        "email": String,
+        "street": String,
+        "city": String,
+        "state": String,
+        "zip": String
 }'
 ```
 
@@ -201,22 +201,9 @@ Example Response:
 }
 ```
 
-<a name="LoginAndDemo"></a>
-
-#### Login and Demo User
-User Login operates very similarly to Registration. It uses a form to gather the username and password credentials to pass to the [ API ](https://github.com/bbeckenb/GetVocalToGov). The API runs the inputted password through a bcrypt compare function with the hash output stored in the database. If the compare returns bool True, the API returns a signed JSON Web Token (JWT). The JWT is stored in a piece of state (token using setToken) and on the GetVocalToGovApi class for further calls that require User authorization. A second call is then made to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) to get the User details which are stored in a piece of state (currUser using setCurrUser). 
-
-To reduce barrier of entry of someone trying to experience the App, I integrated a 'Demo' button on the Login form. This automatically passes Demo User credentials to the API behind the scenes:
-- Username: demoUser
-- Password: passGood
-
-**NOTE:** There is backend logic to protect demoUser from modification or deletion
-
-![login](src/images/login.png)
-
 <a name="EditUser"></a>
 
-#### User Editing
+#### PATCH /users/:username
 Once a user is logged in, they can navigate to 'Profile' either through the navbar or from the homepage when they click on the 'Options' button.
 
 **Home Options**
