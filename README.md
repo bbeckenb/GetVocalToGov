@@ -189,7 +189,7 @@ Response:
 
 ### User Requests
 
-<a name="#GetUser"></a>
+<a name="GetUser"></a>
 
 #### GET /users/:username
 
