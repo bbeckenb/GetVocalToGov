@@ -35,6 +35,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ PATCH /users/:username ](#EditUser)
         - [ DELETE /users/:username ](#DeleteUser)
         - [POST /users/:username/templates/:templateId](#createFavorite)
+        - [ DELETE /users/:username/templates/:templateId ](#deleteFavorite)
     - [ Post Requests ](#PostRequests)
         - [ Adding a Post ](#AddPost)
         - [ Updating a Post ](#UpdatePost)
@@ -304,6 +305,25 @@ curl --request POST \
 Sample Response:
 ```{
 	"favorited": 14
+}
+```
+
+<a name="deleteFavorite"></a>
+
+#### DELETE /users/:username/templates/:templateId
+
+Sample Request:
+```
+curl --request DELETE \
+  --url https://getvocaltogov.herokuapp.com/users/testUser/templates/14 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{
+	"unfavorited": 14
 }
 ```
 
