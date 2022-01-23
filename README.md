@@ -40,6 +40,8 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [DELETE /users/:username/posts/:postId](#deleteBookmark)
     - [ Post Requests ](#PostRequests)
         - [ POST /posts ](#AddPost)
+        - [ GET /posts ](#getPost)
+        - [ GET /posts/:postId ](#specificPost)
         - [ Updating a Post ](#UpdatePost)
         - [ Deleting Post](#DeletePost)
         - [ Filtering Posts ](#FilterPosts)
@@ -411,18 +413,21 @@ Sample Response:
 }
 ```
 
-<a name="tag"></a>
+<a name="getPost"></a>
 
-#### NAME OF ROUTE
+#### GET /posts
 
 Sample Request:
 ```
-
+curl --request GET \
+  --url https://getvocaltogov.herokuapp.com/posts \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
 ```
 
-Sample Response:
+Response:
 ```
-
+{"posts": [Object]}
 ```
 
 <a name="tag"></a>
