@@ -43,12 +43,9 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ GET /posts ](#getPost)
         - [ GET /posts/:postId ](#specificPost)
         - [ PATCH /posts/:postId ](#UpdatePost)
-        - [ Deleting Post](#DeletePost)
-        - [ Filtering Posts ](#FilterPosts)
-        - [ Bookmark Post ](#BookmarkPost)
-        - [ Post Details ](#PostDetails)
+        - [ DELETE /posts/:postId ](#deletePost)
     - [ Template Requests ](#TemplateRequests)
-        - [ Adding a Template ](#AddTemplate)
+        - [ POST /templates ](#AddTemplate)
         - [ Editing a Template ](#EditTemplate)
         - [ Deleting a Template ](#DeleteTemplate)
         - [ Filtering Templates ](#FilterTemplates)
@@ -385,7 +382,6 @@ curl --request POST \
   --header 'Content-Type: application/json' \
   --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g' \
   --data '{
-      "userId": "testUser",
 	 "title": "test title 2",
       "link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
       "body": "we need to do q, r, s",
@@ -519,6 +515,53 @@ Sample Response:
 }
 ```
 
+<a name="deletePost"></a>
+
+#### DELETE /posts/:postId
+
+Sample Request:
+```
+curl --request DELETE \
+  --url https://getvocaltogov.herokuapp.com/posts/9 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{
+	"deleted": 9
+}
+```
+
+
+
+<a name="TemplateRequests"></a>
+
+### Template Requests
+A Template, in this context, is a User generated title and body of an email one would send to their Representative. Here is a sample [reference](https://www.nlacrc.org/home/showdocument?id=272) of how one could structure Template content. Users can create Templates  in relation to that Post or independently unattached to a Post. They can then update and/or delete Templates they own. All Users can read and favorite/unfavorite Templates from the Template feed. They consist of a title, body (to assert whatever the Post is about), and created_at (timestamp). 
+
+<a name="AddTemplate"></a>
+
+#### POST /templates
+
+Sample Request:
+```
+curl --request POST \
+  --url https://getvocaltogov.herokuapp.com/templates \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g' \
+  --data '{
+	 "title": "test title 2",
+      "body": "we need to do q, r, s"  
+}'
+```
+
+Sample Response:
+```
+
+```
+
 <a name="specificPost"></a>
 
 #### GET /posts/:postId
@@ -532,102 +575,6 @@ Sample Response:
 ```
 
 ```
-
-
-#### Updating Post
-To update a Post, the User has to have ownership (they must have created the Post to have ownership) of the Post in question. If they do, they will see an option to 'Edit' at the bottom of the Post:
-
-**Owned Post Example**
-![Owned Post](src/images/postOwned.png)
-
-If they do not, they will only see an option to view 'Details'.
-
-**unOwned Post Example**
-![Post](src/images/Post.png)
-
-If they click on 'Edit' on a Post they own, the User will be redirected to an Edit Post Portal for that particular Post. The form will be auto-populated with the current data of the Post in question. The User simply changes whichever fields they want to alter and clicks 'Edit Post' at the bottom of the form. Form validation of the front-end will ensure all fields are within tolerance. The form data will then be sent to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) which will perform its own schema validation, then if all data is within tolerance, store the record updates in the database. The updated instance will immediately be able for viewing on the 'Posts Feed' or 'Posts Created' list. 
-
-**Edit Post Portal**
-![Edit Post](src/images/editPost.png)
-
-<a name="DeletePost"></a>
-
-#### Deleting Post
-To delete a Post, the User has to have ownership (they must have created the Post to have ownership) of the Post in question. If they do, they will see an option to 'Delete' at the bottom of the Post:
-
-**Owned Post Example**
-![Owned Post](src/images/postOwned.png)
-
-If they click this 'Delete' button, the Post id along with the user token (to check for ownership) will be sent to [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov). If they have ownership and the record exists, it will be deleted from the database, the front-end will be informed and updated by removing the Post in question.
-
-<a name="FilterPosts"></a>
-
-#### Filtering Posts
-There are three Post Lists on the app that allow a User to filter the Posts. The first is by navigating to the Posts feed by clicking 'Posts' on the navbar or under the 'Options' drop-down on the home page. The second is by navigating to the 'Profile' page and selecting the 'Posts Created' tab on the secondary navbar. The third is by navigating to the 'Profile' page and selecting the 'Posts Bookmarked' tab on the secondary navbar. For the second two, you need to be logged in.
-
-**Navigating to Posts Feed**
-![Home Options](src/images/homeOptions.png)
-
-**Posts Feed**: Posts Feed displays all Posts from all Users
-![Posts Feed](src/images/postsFeed.png)
-
-**Posts Created**: Posts Created shows a logged in User all of the Posts they have personally created
-![Posts Created](src/images/postsCreated.png)
-
-**Posts Bookmarked**: Posts Bookmarked shows a logged in User all of the Posts they have bookmarked (more on that later)
-![Posts Bookmarked](src/images/postsBookmarked.png)
-
-The behavior is the same in all locations, but to explain the process we will go through the 'Posts Feed'. Once on the Posts Feed (accessible to Users and non-Users, as is the 'Search for Post' functionality), the User will see the drop-down option to 'Search for Post'. Once clicked, this will present a 'Search Posts' form where the User can select any and all of search criteria 'title' (matching phrase), 'body' (matching phrase), 'location' (select field), and 'tag' (select field).
-
-**Search Posts**
-![Search Posts](src/images/searchPosts.png)
-
-Once the User enters their search criteria and selects 'Search Posts' at the bottom of the form, the request will be sent to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov). The database will be queried for records that match all filters. The resulting list will be sent and displayed on the front-end along with the search criteria in the form's alert message box.
-
-**Search Posts Success**
-![Search Posts Success](src/images/searchPostsSuccess.png)
-
-<a name="BookmarkPost"></a>
-
-#### Bookmarking a Posts
-Bookmarking, in this context, is a Request meant to allow a User to tag a Post of interest to be more easily accessed when they want to find it again at a later time. This is a Request only accessible to a logged-in User. When logged-in viewing Posts, the User will see a yellow bookmark icon on all Posts. If it is outlined, the Post has not been tagged, if it is filled in, the Post has been tagged. The user can toggle bookmarked status by clicking on the icon button.
-
-**Post unbookmarked**
-![Post unbookmarked](src/images/unBookmarked.png)
-
-**Post bookmarked**
-![Post bookmarked](src/images/bookmarked.png)
-
-For ease of finding a User's bookmarked Posts, the User simply has to navigate to their 'Profile' page and select 'Posts Bookmarked' on the secondary navbar. This will show the User a list of their Bookmarked posts from most recently created to least recently created.
-
-**Posts Bookmarked List**
-![Posts Bookmarked](src/images/postsBookmarked.png)
-
-<a name="PostDetails"></a>
-
-#### Post Details
-Post Details are available to logged-in Users and non logged-in visitors. When viewing a Post, there will always be a 'Details' button available at the bottom. Clicking upon this will bring the User to a Post Details page for that particular Post. This will show the Post in question, a Template Creation Portal for that particular Post, and a list of all Templates (more on these shortly) currently associated with that Post. 
-
-**Post Details**
-![Posts Details](src/images/postDetails.png)
-
-You can create a new Template you want associated to the Post you are viewing the details of by expanding the 'Create New Template For This Post' drop-down, filling out and submitting the form! Probably a helpful time to explain what a Template is, Template Requests section is right below this.
-
-**Post Details Create Related Template**
-![Posts Details](src/images/postDetailsCreateTemplate.png)
-
-<a name="TemplateRequests"></a>
-
-### Template Requests
-A Template, in this context, is a User generated title and body of an email one would send to their Representative. Here is a sample [reference](https://www.nlacrc.org/home/showdocument?id=272) of how one could structure Template content. Users can create Templates on a [Post's details page](#PostDetails) in relation to that Post or independently unattached to a Post. They can then update and/or delete Templates they own. All Users can read and favorite/unfavorite Templates from the Template feed. They consist of a title, body (to assert whatever the Post is about), and created_at (timestamp). 
-
-**Template Example**
-![Template](src/images/Template.png)
-
-<a name="AddTemplate"></a>
-
-#### Adding a Template
-There are three locations that allow a User to create a new Template. The first is by navigating to the Templates feed by clicking 'Templates' on the navbar or under the 'Options' drop-down on the home page. The second is by navigating to the 'Profile' page and selecting the 'Templates Created' tab on the secondary navbar. The third is on a [Post's details page](#PostDetails).
 
 **Navigating to Templates Feed**
 ![Home Options](src/images/homeOptions.png)
