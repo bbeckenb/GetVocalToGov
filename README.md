@@ -26,27 +26,28 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
 2. [ Database Schema ](#Schema)
 3. [ Deployment ](#Deployment)
 4. [ Developer ](#Developer)
-5. [ Requests ](#Features)
-    - [ User Requests ](#UserFeatures)
+5. [ Requests ](#Requests)
+    - [ Auth Requests ](#AuthRequests)
+    - [ User Requests ](#UserRequests)
         - [ Registration ](#Registration)
         - [ Login ](#LoginAndDemo)
         - [ User Editing ](#EditUser)
         - [ User Deletion ](#DeleteUser)
-    - [ Post Requests ](#PostFeatures)
+    - [ Post Requests ](#PostRequests)
         - [ Adding a Post ](#AddPost)
         - [ Updating a Post ](#UpdatePost)
         - [ Deleting Post](#DeletePost)
         - [ Filtering Posts ](#FilterPosts)
         - [ Bookmark Post ](#BookmarkPost)
         - [ Post Details ](#PostDetails)
-    - [ Template Requests ](#TemplateFeatures)
+    - [ Template Requests ](#TemplateRequests)
         - [ Adding a Template ](#AddTemplate)
         - [ Editing a Template ](#EditTemplate)
         - [ Deleting a Template ](#DeleteTemplate)
         - [ Filtering Templates ](#FilterTemplates)
         - [ Favorite Template ](#FavoriteTemplate)
         - [ Quick Copy ](#QuickCopy)
-    - [ Representatives ](#RepresentativeFeatures)
+    - [ Representatives ](#RepresentativeRequests)
 6. [ Running App Locally ](#RunningLocally)
     - [ Requirements ](#Requirements)
     - [ API Keys ](#APIKeys)
@@ -99,13 +100,40 @@ Please feel free to reach out!
 - Email: [brycebeckenbach@gmail.com](mailto:brycebeckenbach@gmail.com)
 - [ Linkedin ](https://www.linkedin.com/in/bryce-beckenbach-52a5276a/)
 
-<a name="Features"></a>
+<a name="Requests"></a>
 
-## Features:
+## Requests:
 
-<a name="UserFeatures"></a>
+<a name="AuthRequests"></a>
 
-### User Features
+### Auth Requests
+
+#### Register
+
+Request:
+```curl -X POST https://getvocaltogov.herokuapp.com/auth/register \
+-H 'Content-Type: application/json' \
+-d '{
+    "firstName": String,
+      "lastName": String,
+      "username": String,
+      "password": String,
+      "email": String,
+      "street": String,
+      "city": String,
+      "state": String,
+      "zip": String,
+}'
+```
+
+Response:
+```
+{ "token": String }
+```
+
+<a name="UserRequests"></a>
+
+### User Requests
 
 <a name="Registration"></a>
 
@@ -171,9 +199,9 @@ When they click 'Delete' once, they will see the warning text asking them to con
 
 If they click 'Cancel', the prompt will revert back to the original intro message. If they click 'Delete' again, the front-end will send a command to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) to delete that User instance. If it is the demoUser, the API will send a message to the front-end that the demoUser profile 'cannot be deleted or modified'. If it is not the demoUser, that User instance will be removed from the database and the front-end will clear the token and currUser pieces of state, then redirect to the no-user version of the home page.
 
-<a name="PostFeatures"></a>
+<a name="PostRequests"></a>
 
-### Post Features
+### Post Requests
 A Post, in this context, is a User generated record containing information and commentary about a current event. Users can create then edit and/or delete Posts they own. Any User can read or bookmark/unbookmark a Post from the main Post feed. Posts are meant to create awareness of current events and to inspire Users to generate Templates to petition their Representatives. They consist of a title, body (to assert whatever the Post is about), link to article/reference (nullable), tag (to mark category), created_at (timestamp), and location (what state the post is referencing or if it is a federal issue, use District of Columbia). 
 
 **Post Example**
@@ -257,7 +285,7 @@ Once the User enters their search criteria and selects 'Search Posts' at the bot
 <a name="BookmarkPost"></a>
 
 #### Bookmarking a Posts
-Bookmarking, in this context, is a feature meant to allow a User to tag a Post of interest to be more easily accessed when they want to find it again at a later time. This is a feature only accessible to a logged-in User. When logged-in viewing Posts, the User will see a yellow bookmark icon on all Posts. If it is outlined, the Post has not been tagged, if it is filled in, the Post has been tagged. The user can toggle bookmarked status by clicking on the icon button.
+Bookmarking, in this context, is a Request meant to allow a User to tag a Post of interest to be more easily accessed when they want to find it again at a later time. This is a Request only accessible to a logged-in User. When logged-in viewing Posts, the User will see a yellow bookmark icon on all Posts. If it is outlined, the Post has not been tagged, if it is filled in, the Post has been tagged. The user can toggle bookmarked status by clicking on the icon button.
 
 **Post unbookmarked**
 ![Post unbookmarked](src/images/unBookmarked.png)
@@ -278,14 +306,14 @@ Post Details are available to logged-in Users and non logged-in visitors. When v
 **Post Details**
 ![Posts Details](src/images/postDetails.png)
 
-You can create a new Template you want associated to the Post you are viewing the details of by expanding the 'Create New Template For This Post' drop-down, filling out and submitting the form! Probably a helpful time to explain what a Template is, Template Features section is right below this.
+You can create a new Template you want associated to the Post you are viewing the details of by expanding the 'Create New Template For This Post' drop-down, filling out and submitting the form! Probably a helpful time to explain what a Template is, Template Requests section is right below this.
 
 **Post Details Create Related Template**
 ![Posts Details](src/images/postDetailsCreateTemplate.png)
 
-<a name="TemplateFeatures"></a>
+<a name="TemplateRequests"></a>
 
-### Template Features
+### Template Requests
 A Template, in this context, is a User generated title and body of an email one would send to their Representative. Here is a sample [reference](https://www.nlacrc.org/home/showdocument?id=272) of how one could structure Template content. Users can create Templates on a [Post's details page](#PostDetails) in relation to that Post or independently unattached to a Post. They can then update and/or delete Templates they own. All Users can read and favorite/unfavorite Templates from the Template feed. They consist of a title, body (to assert whatever the Post is about), and created_at (timestamp). 
 
 **Template Example**
@@ -373,7 +401,7 @@ Once the User enters their search criteria and selects 'Search Templates' at the
 <a name="FavoritTemplate"></a>
 
 #### Favoriting a Templates
-Favoriting, in this context, is a feature meant to allow a User to tag a Template of interest to be more easily accessed when they want to find it again at a later time. This is a feature only accessible to a logged-in User. When logged-in viewing Templates, the User will see a yellow Favorite icon on all Templates. If it is outlined, the Template has not been tagged, if it is filled in, the Template has been tagged. The user can toggle Favorited status by clicking on the icon button.
+Favoriting, in this context, is a Request meant to allow a User to tag a Template of interest to be more easily accessed when they want to find it again at a later time. This is a Request only accessible to a logged-in User. When logged-in viewing Templates, the User will see a yellow Favorite icon on all Templates. If it is outlined, the Template has not been tagged, if it is filled in, the Template has been tagged. The user can toggle Favorited status by clicking on the icon button.
 
 **Template unFavorited**
 ![Template unFavorited](src/images/unFavorited.png)
@@ -404,9 +432,9 @@ Once the User has the message on their clipboard, they can paste it wherever the
 
 The idea behind this is that Users can find Templates they like, copy the message, bring it to their Representative's Contact page, and deliver it very quickly.
 
-<a name="RepresentativeFeatures"></a>
+<a name="RepresentativeRequests"></a>
 
-### Representative Features
+### Representative Requests
 When a User registers, they are required to enter their residential address. This address is verified through an external service before being stored in the database. The address is then used to retrieve the User's Government representatives, from the President of The United States to their local officials. The list of representatives along with their contact information can be found on the User's 'Profile' page under the 'Representatives' tab. There is variance in what contact information (address, phone #, email, web page) is available, but the maximum amount of contact information is displayed for each Representative.
 
 **Representative**
@@ -445,16 +473,16 @@ Retrieve free API keys from:
     - `cd getvocaltogov-frontend`
     - `cd GetVocalToGov`
 
-4. Install requirements in each project directory:
+3. Install requirements in each project directory:
     - `npm install`
 
-5. Set up local database:
+4. Set up local database:
     - `createdb get_vocal_to_gov_db`
 
-6. Set up .env file in GetVocalToGov:
+5. Set up .env file in GetVocalToGov:
     - `touch .env`
 
-7. Add the following fields and enter your information (Requires API key retrieval step) where it says **YourInfo** 
+6. Add the following fields and enter your information (Requires API key retrieval step) where it says **YourInfo** 
     ```
     GOOGLE_API_KEY=YourInfo
     EASY_POST_API_KEY=YourInfo
@@ -463,11 +491,11 @@ Retrieve free API keys from:
     ```
     **NOTE:** `SECRET_KEY` can be whatever you want it to be, you can generate 16 random bytes of hex digits using `hexdump -n 16 -e '4/4 "%08X" 1 "\n"' /dev/urandom` in the command line.
 
-9. Run Express API Application
+7. Run Express API Application
 - In terminal where you are in the 'GetVocalToGov' directory, type `npm start`
 - This will be on port 3001
 
-10. Run React front-end server
+8. Run React front-end server
 - In terminal where you are in the 'getvocaltogov-frontend' directory, type `npm start`
 - This will be on port 3000
 
