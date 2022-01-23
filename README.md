@@ -47,6 +47,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
     - [ Template Requests ](#TemplateRequests)
         - [ POST /templates ](#AddTemplate)
         - [ GET /templates ](#getTemplate)
+        - [ GET /templates/:templateId ](#specificTemplate)
         - [ Editing a Template ](#EditTemplate)
         - [ Deleting a Template ](#DeleteTemplate)
         - [ Filtering Templates ](#FilterTemplates)
@@ -573,18 +574,30 @@ Sample Response:
 { "templates": [Object] }
 ```
 
-<a name="specificPost"></a>
+<a name="specificTemplate"></a>
 
-#### GET /posts/:postId
+#### GET /templates/:templateId
 
 Sample Request:
 ```
-
+curl --request GET \
+  --url https://getvocaltogov.herokuapp.com/templates/18 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
 ```
 
 Sample Response:
 ```
-
+{
+	"template": {
+		"id": 18,
+		"title": "test title 2",
+		"body": "we need to do q, r, s",
+		"userId": "testUser",
+		"postId": null,
+		"createdAt": "2022-01-23T19:26:57.849Z"
+	}
+}
 ```
 
 <a name="specificPost"></a>
