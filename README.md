@@ -28,8 +28,10 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
 4. [ Developer ](#Developer)
 5. [ Requests ](#Requests)
     - [ Auth Requests ](#AuthRequests)
+        - [ Register ](#Register)
+        - [ Token ](#Token)
     - [ User Requests ](#UserRequests)
-        - [ Registration ](#Registration)
+        
         - [ Login ](#LoginAndDemo)
         - [ User Editing ](#EditUser)
         - [ User Deletion ](#DeleteUser)
@@ -108,7 +110,9 @@ Please feel free to reach out!
 
 ### Auth Requests
 
-#### POST /auth/token
+<a name="Register"></a>
+
+#### POST /auth/register
 
 Request:
 ```
@@ -131,6 +135,8 @@ Response:
 ```
 { "token": String }
 ```
+
+<a name="Token"></a>
 
 #### POST /auth/token
 Retrieves a token for existing Users
