@@ -559,7 +559,16 @@ curl --request POST \
 
 Sample Response:
 ```
-
+{
+	"template": {
+		"id": 18,
+		"title": "test title 2",
+		"body": "we need to do q, r, s",
+		"userId": "testUser",
+		"postId": null,
+		"createdAt": "2022-01-23T19:26:57.849Z"
+	}
+}
 ```
 
 <a name="specificPost"></a>
