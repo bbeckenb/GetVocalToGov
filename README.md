@@ -136,6 +136,31 @@ Response:
 { "token": String }
 ```
 
+Sample Request:
+```
+curl --request POST \
+  --url https://getvocaltogov.herokuapp.com/auth/register \
+  --header 'Content-Type: application/json' \
+  --data '{
+			"firstName": "testUser",
+      "lastName": "test",
+      "username": "user",
+      "password": "passGood",
+      "email": "testUser@test.com",
+      "street": "2210 oceanwalk dr w",
+      "city": "atlantic beach",
+      "state": "FL",
+      "zip": "32233"
+}'
+```
+
+Sample Response:
+```
+{
+	"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIiLCJpc0FkbWluIjpmYWxzZSwiaWF0IjoxNjQyOTYzMzYwfQ.3dCWzXq60thKMTP3M_Pf37uR4GljqYOTjdRijNQEAII"
+}
+```
+
 <a name="Token"></a>
 
 #### POST /auth/token
@@ -204,28 +229,12 @@ Example Response:
 <a name="EditUser"></a>
 
 #### PATCH /users/:username
-Once a user is logged in, they can navigate to 'Profile' either through the navbar or from the homepage when they click on the 'Options' button.
-
-**Home Options**
-![Home Options](src/images/homeOptions.png)
-
-Once on their Profile page, they will see drop-down options to 'Edit Profile' as 'User Options' is default on the 'Profile' page. When they expand it, they will see an 'Edit Profile' form auto-populated with their current User information. To edit their information, they simply need to change the information stored in the current fields, enter the correct password to confirm their changes, and click 'Edit User' at the bottom of the form. The form validation will operate the same as [ Registration ](#Registration). If the data is accepted, the [ API ](https://github.com/bbeckenb/GetVocalToGov) will authenticate the password provided with the original username, the address will be verified, and if all that passes, the database will be updated and an updated JWT will be provided. The JWT is stored in a piece of state (token using setToken) and on the GetVocalToGovApi class for further calls that require User authorization. A second call is then made to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) to get the User details which are stored in a piece of state (currUser using setCurrUser). 
-
-![Edit Profile](src/images/editProfileForm.png)
 
 
 <a name="DeleteUser"></a>
 
 #### User Deletion
-Once a User is logged in, they can navigate to 'Profile' either through the navbar or from the homepage when they click on the 'Options' button, same as navigating to [ User Editing ](#EditUser) above. They will see an option to 'Delete Profile' under 'User Options'. When they expand this drop-down, they will see the Delete User Portal.
 
-Delete User Portal
-![Delete User Portal](src/images/deleteUserPortal.png)
-
-When they click 'Delete' once, they will see the warning text asking them to confirm they want to delete their profile:
-![Delete User Portal Warning](src/images/deleteUserPortalWarning.png)
-
-If they click 'Cancel', the prompt will revert back to the original intro message. If they click 'Delete' again, the front-end will send a command to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) to delete that User instance. If it is the demoUser, the API will send a message to the front-end that the demoUser profile 'cannot be deleted or modified'. If it is not the demoUser, that User instance will be removed from the database and the front-end will clear the token and currUser pieces of state, then redirect to the no-user version of the home page.
 
 <a name="PostRequests"></a>
 
