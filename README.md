@@ -31,8 +31,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ Register ](#Register)
         - [ Token ](#Token)
     - [ User Requests ](#UserRequests)
-        
-        - [ Login ](#LoginAndDemo)
+        - [ User Get ](#GetUser)
         - [ User Editing ](#EditUser)
         - [ User Deletion ](#DeleteUser)
     - [ Post Requests ](#PostRequests)
@@ -160,30 +159,34 @@ Response:
 
 ### User Requests
 
-<a name="Registration"></a>
+<a name="#GetUser"></a>
 
-#### Registration
-User Registration uses a form to gather the information and pass it through the [ API ](https://github.com/bbeckenb/GetVocalToGov), to create the User or report back what is wrong with the inputted data. User enters desired username, password, first name, last name, street, city, state, zip, and email. All information is required, username (as the primary key for the users table) must be unique for the model to generate a User instance. Password is run through Bcrypt hashing function where the output is stored in the database. The address information (street, city, state, and zip) are verified through the EasyPost API. If the address passes verification, the User instance is stored in the database and a JSON Web Token is sent back to the front-end to be stored in a piece of state (token using setToken) and on the GetVocalToGovApi class for further calls that require User authorization. A second call is then made to the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov) to get the User details which are stored in a piece of state (currUser using setCurrUser). 
+#### GET /users/:username
 
-![Signup](src/images/signup.png)
+Request:
+```
+curl -X POST https://getvocaltogov.herokuapp.com/users/${USERNAME} \
+-H 'Content-Type: application/json' \
+-H 'authorization: Bearer ${TOKEN}'
+```
 
-Yup is used on the React Hook Form for schema validation to ensure the API is receiving the best data it can enforce. If the data falls out of specified parameters, the form halts submission and a specific message populates for the field in question.  
-
-![Form Validation](src/images/RegistrationFormValidation.png)
-
-To give the User messages from the API in response to their inputs, each form has a built in alert box that displays text and color indicitive of the situation. It starts as a blue 'welcome' message, but will display red if there is an error from the [ GetVocalToGov API ](https://github.com/bbeckenb/GetVocalToGov). Then will display a green 'success' message or re-route to the appropriate place depending on the form and situation. For registration, it re-routes home.
-
-'welcome'
-![welcome](src/images/welcomeFormAlert.png)
-
-'duplicate username'
-![duplicate username](src/images/duplicateUsernameFormAlert.png)
-
-'bad address'
-![duplicate username](src/images/badAddressFormAlert.png)
-
-'success' (from Template Creation)
-![success](src/images/successFormAlert.png)
+Response:
+```
+{ "user": {
+    "username";
+    "password": String
+    "firstName": String
+    "lastName": String
+    "street": String
+    "city": String
+    "state": String
+    "zip": String
+    "email": String
+    "isAdmin": Boolean
+    "favorites": [Number]
+    "bookmarks" = [Number]
+} }
+```
 
 <a name="LoginAndDemo"></a>
 
