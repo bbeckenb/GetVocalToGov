@@ -430,9 +430,61 @@ Response:
 {"posts": [Object]}
 ```
 
-<a name="tag"></a>
+<a name="specificPost"></a>
 
-#### NAME OF ROUTE
+#### GET /posts/:postId
+
+Sample Request:
+```
+
+```
+
+Sample Response:
+```
+
+```
+
+<a name="specificPost"></a>
+
+#### GET /posts/:postId
+
+Sample Request:
+```
+curl --request GET \
+  --url https://getvocaltogov.herokuapp.com/posts/4 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{
+	"post": {
+		"id": 4,
+		"title": "Newsom backs away from single-payer health care pledge",
+		"link": "https://calmatters.org/commentary/2022/01/newsom-single-payer-health-care/",
+		"body": "Californians, I am sure like the rest of the country, this is a hot topic. I, for one, think healthcare is one of the most important issues at the moment. I am including a template of what I would write to Newsom and his team if I lived over there!",
+		"userId": "demoUser",
+		"tag": "Health Care",
+		"location": "CA",
+		"createdAt": "2022-01-18T19:40:36.143Z",
+		"templates": [
+			{
+				"id": 8,
+				"title": "Healthcare System needs change!",
+				"body": String,
+				"userId": "demoUser",
+				"createdAt": "2022-01-18T19:44:21.624Z",
+				"postId": 4
+			}
+		]
+	}
+}
+```
+
+<a name="specificPost"></a>
+
+#### GET /posts/:postId
 
 Sample Request:
 ```
