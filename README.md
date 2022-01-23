@@ -134,6 +134,7 @@ Response:
 
 #### POST /auth/token
 Retrieves a token for existing Users
+
 Request:
 ```
 curl -X POST https://getvocaltogov.herokuapp.com/auth/token \
