@@ -36,6 +36,8 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ DELETE /users/:username ](#DeleteUser)
         - [POST /users/:username/templates/:templateId](#createFavorite)
         - [ DELETE /users/:username/templates/:templateId ](#deleteFavorite)
+        - [ POST /users/:username/posts/:postId ](#createBookmark)
+        - [DELETE /users/:username/posts/:postId](#deleteBookmark)
     - [ Post Requests ](#PostRequests)
         - [ Adding a Post ](#AddPost)
         - [ Updating a Post ](#UpdatePost)
@@ -324,6 +326,44 @@ Sample Response:
 ```
 {
 	"unfavorited": 14
+}
+```
+
+<a name="createBookmark"></a>
+
+#### POST /users/:username/posts/:postId
+
+Sample Request:
+```
+curl --request POST \
+  --url https://getvocaltogov.herokuapp.com/users/testUser/posts/4 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{
+	"bookmarked": 4
+}
+```
+
+<a name="deleteBookmark"></a>
+
+#### DELETE /users/:username/posts/:postId
+
+Sample Request:
+```
+curl --request DELETE \
+  --url https://getvocaltogov.herokuapp.com/users/testUser/posts/4 \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g'
+```
+
+Sample Response:
+```
+{
+	"unbookmarked": 4
 }
 ```
 
