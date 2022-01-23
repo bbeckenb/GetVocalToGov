@@ -39,7 +39,7 @@ This Node/Express RESTful API serves a frontend React App, [getvocaltogov-fronte
         - [ POST /users/:username/posts/:postId ](#createBookmark)
         - [DELETE /users/:username/posts/:postId](#deleteBookmark)
     - [ Post Requests ](#PostRequests)
-        - [ Adding a Post ](#AddPost)
+        - [ POST /posts ](#AddPost)
         - [ Updating a Post ](#UpdatePost)
         - [ Deleting Post](#DeletePost)
         - [ Filtering Posts ](#FilterPosts)
@@ -367,6 +367,50 @@ Sample Response:
 }
 ```
 
+<a name="PostRequests"></a>
+
+### Post Requests
+A Post, in this context, is a User generated record containing information and commentary about a current event. Users can create then edit and/or delete Posts they own. Any User can read or bookmark/unbookmark a Post from the main Post feed. Posts are meant to create awareness of current events and to inspire Users to generate Templates to petition their Representatives. They consist of a title, body (to assert whatever the Post is about), link to article/reference (nullable), tag (to mark category), created_at (timestamp), and location (what state the post is referencing or if it is a federal issue, use District of Columbia). 
+
+<a name="AddPost"></a>
+
+#### POST /posts
+
+Sample Request:
+```
+curl --request POST \
+  --url https://getvocaltogov.herokuapp.com/posts \
+  --header 'Content-Type: application/json' \
+  --header 'authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InRlc3RVc2VyIiwiaXNBZG1pbiI6ZmFsc2UsImlhdCI6MTY0Mjk2MzQ4Mn0.mkzJDI5dAVOS2Gpa2aPek6pXVhfzazKcAMUducIvx9g' \
+  --data '{
+      "userId": "testUser",
+	 "title": "test title 2",
+      "link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
+      "body": "we need to do q, r, s",
+      "tag": "Health Care",
+      "location": "FL",
+      "userId": "JDean1"
+     
+}'
+```
+
+Sample Response:
+```
+{
+	"post": {
+		"id": 9,
+		"title": "test title 2",
+		"link": "https://kdvr.com/news/coronavirus/omicron-variant-case-confirmed-in-boulder-county/",
+		"body": "we need to do q, r, s",
+		"userId": "testUser",
+		"tag": "Health Care",
+		"location": "FL",
+		"createdAt": "2022-01-23T19:10:50.989Z",
+		"templates": []
+	}
+}
+```
+
 <a name="tag"></a>
 
 #### NAME OF ROUTE
@@ -381,18 +425,19 @@ Sample Response:
 
 ```
 
-<a name="PostRequests"></a>
+<a name="tag"></a>
 
-### Post Requests
-A Post, in this context, is a User generated record containing information and commentary about a current event. Users can create then edit and/or delete Posts they own. Any User can read or bookmark/unbookmark a Post from the main Post feed. Posts are meant to create awareness of current events and to inspire Users to generate Templates to petition their Representatives. They consist of a title, body (to assert whatever the Post is about), link to article/reference (nullable), tag (to mark category), created_at (timestamp), and location (what state the post is referencing or if it is a federal issue, use District of Columbia). 
+#### NAME OF ROUTE
 
-**Post Example**
-![Post](src/images/Post.png)
+Sample Request:
+```
 
-<a name="AddPost"></a>
+```
 
-#### Adding a Post
-There are two locations that allow a User to create a new Post. The first is by navigating to the Posts feed by clicking 'Posts' on the navbar or under the 'Options' drop-down on the home page. The second is by navigating to the 'Profile' page and selecting the 'Posts Created' tab on the secondary navbar.
+Sample Response:
+```
+
+```
 
 **Navigating to Posts Feed**
 ![Home Options](src/images/homeOptions.png)
